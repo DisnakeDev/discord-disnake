@@ -2,14 +2,16 @@ import re
 from setuptools import setup
 
 
+requirements = []
+with open("requirements.txt", "r", encoding="utf-8") as f:
+    requirements = f.readlines()
+
 version = ""
 with open("discord/__init__.py", encoding="utf-8") as f:
     version = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]', f.read(), re.MULTILINE).group(1)  # type: ignore
 
 if not version:
     raise RuntimeError("version is not set")
-
-requirements = [f"disnake=={version}"]
 
 readme = ""
 with open("README.md", encoding="utf-8") as f:
@@ -31,7 +33,7 @@ setup(
     url="https://github.com/DisnakeDev/discord-disnake",
     project_urls={
         "Documentation": "https://docs.disnake.dev/en/latest",
-        "Issue tracker": "https://github.com/DisnakeDev/disnake/issues",
+        "Issue tracker": "https://github.com/DisnakeDev/discord-disnake/issues",
     },
     version=version,
     packages=packages,
