@@ -36,7 +36,6 @@ from disnake.interactions.base import (
     annotations,
     async_context,
     asyncio,
-    components_to_dict,
     handle_message_parameters,
     try_enum,
     utils,

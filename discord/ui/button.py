@@ -7,6 +7,7 @@ from disnake.ui.button import (
     ComponentType,
     DecoratedItem,
     Item,
+    ItemCallbackType,
     Optional,
     PartialEmoji,
     TYPE_CHECKING,

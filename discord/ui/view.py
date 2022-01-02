@@ -7,6 +7,7 @@ from disnake.ui.view import (
     Component,
     Dict,
     Item,
+    ItemCallbackType,
     Iterator,
     List,
     Optional,

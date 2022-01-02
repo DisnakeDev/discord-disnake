@@ -8,6 +8,8 @@ from disnake.ui.item import (
     I,
     I_co,
     Item,
+    ItemCallbackType,
+    MessageInteraction,
     Optional,
     Protocol,
     TYPE_CHECKING,

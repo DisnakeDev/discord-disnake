@@ -38,7 +38,6 @@ from disnake.webhook.async_ import (
     annotations,
     async_context,
     asyncio,
-    components_to_dict,
     handle_message_parameters,
     logging,
     overload,

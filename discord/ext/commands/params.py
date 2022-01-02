@@ -30,7 +30,6 @@ from disnake.ext.commands.params import (
     TypeT,
     TypeVar,
     Union,
-    UnionType,
     _channel_type_factory,
     _xt_to_xe,
     annotations,
