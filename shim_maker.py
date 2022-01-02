@@ -1,9 +1,11 @@
-import os
 from importlib import import_module
+import inspect
+import os
+import sys
 from typing import Iterable
 
 
-def fancy_list(prefix: str, to_join: Iterable[str], limit: int = 100, with_brackets: bool = False):
+def fancy_list(prefix: str, to_join: Iterable[str], limit: int = 100, with_brackets: bool = False) -> str:
     as_line = ", ".join(to_join)
     if with_brackets:
         if "," not in as_line:
@@ -21,7 +23,15 @@ def fancy_list(prefix: str, to_join: Iterable[str], limit: int = 100, with_brack
 
 def create_imports(module_name: str) -> str:
     subpckg = import_module(module_name)
-    members = [memb for memb in dir(subpckg) if not memb.startswith("__")]
+    members = [
+        memb for memb, val in inspect.getmembers(subpckg)
+        if (
+            not memb.startswith("__")
+            and memb not in ("TYPE_CHECKING",)
+            and not inspect.ismodule(val)  # skip imported modules
+            and getattr(val, "__module__", module_name) == module_name  # skip types imported from other modules
+        )
+    ]
     imports = fancy_list(f"from {module_name} import ", members)
 
     try:
@@ -36,8 +46,7 @@ def create_imports(module_name: str) -> str:
     return imports + "\n"
 
 
-def shim_folder(path, shim_path):
-    pypath = path.strip("/").replace("/", ".")
+def shim_folder(path: str, pypath: str, shim_path: str) -> None:
     for fn in os.listdir(path):
         if fn in ("__init__.py", "__main__.py", "py.typed"):
             with open(f"{path}/{fn}", "r", encoding="utf-8") as f:
@@ -54,14 +63,19 @@ def shim_folder(path, shim_path):
                 f.write(imports)
 
         elif os.path.isdir(f"{path}/{fn}"):
+            os.makedirs(f"{shim_path}/{fn}", exist_ok=True)
             if fn not in os.listdir(shim_path):
                 os.mkdir(f"{shim_path}/{fn}")
-            shim_folder(f"{path}/{fn}", f"{shim_path}/{fn}")
+            shim_folder(f"{path}/{fn}", f"{pypath}.{fn}", f"{shim_path}/{fn}")
 
 
-try:
-    os.mkdir("discord")
-except Exception:
-    pass
+def shim(path: str, shim_path: str) -> None:
+    os.makedirs("discord", exist_ok=True)
+    shim_folder(path, path.rstrip("/").split("/")[-1], shim_path)
 
-shim_folder('disnake', 'discord')
+
+if len(sys.argv) != 2:
+    print(f"Usage: {sys.argv[0]} <module path>", file=sys.stderr)
+    exit(1)
+
+shim(sys.argv[1], "discord")
