@@ -29,7 +29,7 @@ def create_imports(module_name: str) -> str:
         if (
             not memb.startswith("__")
             and memb not in ("TYPE_CHECKING",)
-            and not inspect.ismodule(val)  # skip imported modules
+            and (not inspect.ismodule(val) or val.__name__.startswith(root_module_name))  # skip imported external modules
             and getattr(val, "__module__", module_name).startswith(root_module_name)  # skip types imported from external modules
         )
     ]
