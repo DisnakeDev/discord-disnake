@@ -42,7 +42,9 @@ def create_imports(module_name: str) -> str:
 
     if public_members:
         new_all = fancy_list("__all__ = ", public_members, with_brackets=True)
-        return imports + "\n\n" + new_all + "\n"
+        imports += "\n\n" + new_all
+
+    imports += f"\n\nfrom {module_name} import __dict__ as __original_dict__\nlocals().update(__original_dict__)"
 
     return imports + "\n"
 
