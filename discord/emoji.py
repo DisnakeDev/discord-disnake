@@ -1,20 +1,3 @@
-from disnake.emoji import (
-    Any,
-    Asset,
-    AssetMixin,
-    Emoji,
-    Iterator,
-    List,
-    MISSING,
-    Optional,
-    PartialEmoji,
-    SnowflakeList,
-    TYPE_CHECKING,
-    Tuple,
-    User,
-    _EmojiTag,
-    annotations,
-    snowflake_time,
-)
+from disnake.emoji import Emoji
 
 __all__ = ("Emoji",)

@@ -1,5 +1,3 @@
-from disnake.reaction import (
-    Any, Optional, Reaction, ReactionIterator, TYPE_CHECKING, Union, annotations
-)
+from disnake.reaction import Reaction
 
 __all__ = ("Reaction",)

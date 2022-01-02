@@ -1,3 +1,3 @@
-from disnake.object import Hashable, Object, SupportsInt, TYPE_CHECKING, Union, annotations, utils
+from disnake.object import Object
 
 __all__ = ("Object",)

@@ -6,11 +6,7 @@ from disnake.types.embed import (
     EmbedImage,
     EmbedProvider,
     EmbedThumbnail,
-    EmbedType,
     EmbedVideo,
-    List,
-    Literal,
-    TypedDict,
     _EmbedFieldOptional,
     _EmbedFooterOptional,
 )

@@ -1,25 +1,3 @@
-from disnake.embeds import (
-    Any,
-    Colour,
-    Dict,
-    E,
-    Embed,
-    EmbedProxy,
-    EmptyEmbed,
-    File,
-    Final,
-    List,
-    MISSING,
-    Mapping,
-    Protocol,
-    TYPE_CHECKING,
-    Type,
-    TypeVar,
-    Union,
-    _EmptyEmbed,
-    annotations,
-    datetime,
-    utils,
-)
+from disnake.embeds import E, Embed, EmbedProxy, EmptyEmbed, _EmptyEmbed
 
 __all__ = ("Embed",)

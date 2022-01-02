@@ -1,26 +1,3 @@
-from disnake.user import (
-    Any,
-    Asset,
-    BU,
-    BaseUser,
-    ClientUser,
-    Colour,
-    DefaultAvatar,
-    Dict,
-    List,
-    MISSING,
-    Optional,
-    PublicUserFlags,
-    TYPE_CHECKING,
-    Type,
-    TypeVar,
-    Union,
-    User,
-    _UserTag,
-    _bytes_to_base64_data,
-    annotations,
-    disnake,
-    snowflake_time,
-)
+from disnake.user import BU, BaseUser, ClientUser, User, _UserTag
 
 __all__ = ("User", "ClientUser")

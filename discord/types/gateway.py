@@ -1,1 +1,1 @@
-from disnake.types.gateway import Gateway, GatewayBot, SessionStartLimit, TypedDict
+from disnake.types.gateway import Gateway, GatewayBot, SessionStartLimit

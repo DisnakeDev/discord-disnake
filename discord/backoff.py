@@ -1,15 +1,3 @@
-from disnake.backoff import (
-    Callable,
-    ExponentialBackoff,
-    Generic,
-    Literal,
-    T,
-    TypeVar,
-    Union,
-    annotations,
-    overload,
-    random,
-    time,
-)
+from disnake.backoff import ExponentialBackoff, T
 
 __all__ = ("ExponentialBackoff",)

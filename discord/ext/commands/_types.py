@@ -1,16 +1,1 @@
-from disnake.ext.commands._types import (
-    Any,
-    Callable,
-    Check,
-    Coro,
-    CoroFunc,
-    Coroutine,
-    Error,
-    Hook,
-    MaybeCoro,
-    T,
-    TYPE_CHECKING,
-    TypeVar,
-    Union,
-    _BaseCommand,
-)
+from disnake.ext.commands._types import T, _BaseCommand

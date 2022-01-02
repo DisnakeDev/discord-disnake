@@ -1,14 +1,3 @@
 from disnake.types.appinfo import (
-    AppInfo,
-    BaseAppInfo,
-    List,
-    Optional,
-    PartialAppInfo,
-    Snowflake,
-    Team,
-    TypedDict,
-    User,
-    _AppInfoOptional,
-    _PartialAppInfoOptional,
-    annotations,
+    AppInfo, BaseAppInfo, PartialAppInfo, _AppInfoOptional, _PartialAppInfoOptional
 )

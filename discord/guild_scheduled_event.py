@@ -1,25 +1,3 @@
-from disnake.guild_scheduled_event import (
-    Any,
-    Dict,
-    GuildScheduledEvent,
-    GuildScheduledEventEntityType,
-    GuildScheduledEventMetadata,
-    GuildScheduledEventPrivacyLevel,
-    GuildScheduledEventStatus,
-    Hashable,
-    List,
-    MISSING,
-    Member,
-    Optional,
-    TYPE_CHECKING,
-    Union,
-    User,
-    _get_as_snowflake,
-    annotations,
-    cached_slot_property,
-    datetime,
-    parse_time,
-    try_enum,
-)
+from disnake.guild_scheduled_event import GuildScheduledEvent, GuildScheduledEventMetadata
 
 __all__ = ("GuildScheduledEventMetadata", "GuildScheduledEvent")

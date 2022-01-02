@@ -1,3 +1,1 @@
-from disnake.types.welcome_screen import (
-    List, Optional, Snowflake, TypedDict, WelcomeScreen, WelcomeScreenChannel, annotations
-)
+from disnake.types.welcome_screen import WelcomeScreen, WelcomeScreenChannel

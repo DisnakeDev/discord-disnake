@@ -1,30 +1,3 @@
-from disnake.ext.commands.cog import (
-    Any,
-    Callable,
-    ClassVar,
-    Cog,
-    CogMeta,
-    CogT,
-    Dict,
-    FuncT,
-    Generator,
-    InvokableApplicationCommand,
-    InvokableMessageCommand,
-    InvokableSlashCommand,
-    InvokableUserCommand,
-    List,
-    MISSING,
-    Optional,
-    TYPE_CHECKING,
-    Tuple,
-    Type,
-    TypeVar,
-    Union,
-    _BaseCommand,
-    _cog_special_method,
-    annotations,
-    disnake,
-    inspect,
-)
+from disnake.ext.commands.cog import Cog, CogMeta, CogT, FuncT, _cog_special_method
 
 __all__ = ("CogMeta", "Cog")

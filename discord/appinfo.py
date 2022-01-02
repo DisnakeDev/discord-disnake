@@ -1,13 +1,3 @@
-from disnake.appinfo import (
-    AppInfo,
-    ApplicationFlags,
-    Asset,
-    List,
-    Optional,
-    PartialAppInfo,
-    TYPE_CHECKING,
-    annotations,
-    utils,
-)
+from disnake.appinfo import AppInfo, PartialAppInfo
 
 __all__ = ("AppInfo", "PartialAppInfo")

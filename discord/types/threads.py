@@ -1,16 +1,8 @@
 from disnake.types.threads import (
-    List,
-    Literal,
-    Optional,
-    Snowflake,
     Thread,
-    ThreadArchiveDurationLiteral,
     ThreadMember,
     ThreadMetadata,
     ThreadPaginationPayload,
-    ThreadType,
-    TypedDict,
     _ThreadMetadataOptional,
     _ThreadOptional,
-    annotations,
 )

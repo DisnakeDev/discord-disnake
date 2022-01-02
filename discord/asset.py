@@ -1,22 +1,3 @@
-from disnake.asset import (
-    Any,
-    Asset,
-    AssetMixin,
-    DiscordException,
-    InvalidArgument,
-    Literal,
-    MISSING,
-    Optional,
-    TYPE_CHECKING,
-    Tuple,
-    Union,
-    VALID_ASSET_FORMATS,
-    VALID_STATIC_FORMATS,
-    annotations,
-    io,
-    os,
-    utils,
-    yarl,
-)
+from disnake.asset import Asset, AssetMixin, VALID_ASSET_FORMATS, VALID_STATIC_FORMATS
 
 __all__ = ("Asset",)

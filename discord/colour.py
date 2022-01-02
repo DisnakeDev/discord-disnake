@@ -1,5 +1,3 @@
-from disnake.colour import (
-    Any, CT, Color, Colour, Optional, Tuple, Type, TypeVar, Union, colorsys, random
-)
+from disnake.colour import CT, Color, Colour
 
 __all__ = ("Colour", "Color")

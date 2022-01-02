@@ -1,18 +1,9 @@
 from disnake.types.components import (
     ActionRow,
     ButtonComponent,
-    ButtonStyle,
-    Component,
-    ComponentType,
-    List,
-    Literal,
-    PartialEmoji,
     SelectMenu,
     SelectOption,
-    TypedDict,
-    Union,
     _ButtonComponentOptional,
     _SelectMenuOptional,
     _SelectOptionsOptional,
-    annotations,
 )

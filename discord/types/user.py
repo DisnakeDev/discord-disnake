@@ -1,3 +1,1 @@
-from disnake.types.user import (
-    Literal, Optional, PartialUser, PremiumType, Snowflake, TypedDict, User
-)
+from disnake.types.user import PartialUser, User

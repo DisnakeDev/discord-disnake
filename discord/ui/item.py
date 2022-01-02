@@ -1,24 +1,3 @@
-from disnake.ui.item import (
-    Any,
-    Callable,
-    Coroutine,
-    DecoratedItem,
-    Dict,
-    Generic,
-    I,
-    I_co,
-    Item,
-    ItemCallbackType,
-    MessageInteraction,
-    Optional,
-    Protocol,
-    TYPE_CHECKING,
-    Tuple,
-    Type,
-    TypeVar,
-    V,
-    annotations,
-    overload,
-)
+from disnake.ui.item import DecoratedItem, I, I_co, Item, V
 
 __all__ = ("Item",)

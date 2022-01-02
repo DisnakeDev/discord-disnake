@@ -1,27 +1,5 @@
 from disnake.ext.commands.cooldowns import (
-    Any,
-    BucketType,
-    C,
-    Callable,
-    Cooldown,
-    CooldownMapping,
-    Deque,
-    Dict,
-    DynamicCooldownMapping,
-    Enum,
-    MC,
-    MaxConcurrency,
-    MaxConcurrencyReached,
-    Optional,
-    PrivateChannel,
-    TYPE_CHECKING,
-    Type,
-    TypeVar,
-    _Semaphore,
-    annotations,
-    asyncio,
-    deque,
-    time,
+    BucketType, C, Cooldown, CooldownMapping, DynamicCooldownMapping, MC, MaxConcurrency, _Semaphore
 )
 
 __all__ = ("BucketType", "Cooldown", "CooldownMapping", "DynamicCooldownMapping", "MaxConcurrency")

@@ -1,3 +1,3 @@
-from disnake.file import File, Optional, TYPE_CHECKING, Union, annotations, io, os
+from disnake.file import File
 
 __all__ = ("File",)

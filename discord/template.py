@@ -1,16 +1,3 @@
-from disnake.template import (
-    Any,
-    Guild,
-    MISSING,
-    Optional,
-    TYPE_CHECKING,
-    Template,
-    VoiceRegion,
-    _FriendlyHttpAttributeErrorHelper,
-    _PartialTemplateState,
-    _bytes_to_base64_data,
-    annotations,
-    parse_time,
-)
+from disnake.template import Template, _FriendlyHttpAttributeErrorHelper, _PartialTemplateState
 
 __all__ = ("Template",)

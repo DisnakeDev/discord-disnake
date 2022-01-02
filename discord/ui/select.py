@@ -1,29 +1,3 @@
-from disnake.ui.select import (
-    Callable,
-    ComponentType,
-    DecoratedItem,
-    Emoji,
-    Item,
-    ItemCallbackType,
-    List,
-    MISSING,
-    MessageInteraction,
-    Optional,
-    PartialEmoji,
-    S,
-    Select,
-    SelectMenu,
-    SelectOption,
-    TYPE_CHECKING,
-    Tuple,
-    Type,
-    TypeVar,
-    Union,
-    V,
-    annotations,
-    inspect,
-    os,
-    select,
-)
+from disnake.ui.select import S, Select, V, select
 
 __all__ = ("Select", "select")

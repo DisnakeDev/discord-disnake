@@ -1,12 +1,5 @@
 from disnake.types.voice import (
     GuildVoiceState,
-    List,
-    Literal,
-    MemberWithUser,
-    Optional,
-    Snowflake,
-    SupportedModes,
-    TypedDict,
     VoiceIdentify,
     VoiceReady,
     VoiceRegion,
