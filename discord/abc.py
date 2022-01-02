@@ -28,6 +28,7 @@ from disnake.abc import (
     _Undefined,
     _undefined,
     try_enum_to_int,
+    utils,
 )
 
 __all__ = ("Snowflake", "User", "PrivateChannel", "GuildChannel", "Messageable", "Connectable")

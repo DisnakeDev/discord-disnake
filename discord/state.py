@@ -57,6 +57,7 @@ from disnake.state import (
     application_command_factory,
     logging_coroutine,
     try_enum,
+    utils,
 )
 
 from disnake.state import __dict__ as __original_dict__

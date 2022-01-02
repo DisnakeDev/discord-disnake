@@ -13,6 +13,7 @@ from disnake.ext.commands.bot_base import (
     _DefaultRepr,
     _default,
     _is_submodule,
+    errors,
     when_mentioned,
     when_mentioned_or,
 )

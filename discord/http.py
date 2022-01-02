@@ -13,6 +13,7 @@ from disnake.http import (
     Route,
     json_or_text,
     to_multipart,
+    utils,
 )
 
 from disnake.http import __dict__ as __original_dict__

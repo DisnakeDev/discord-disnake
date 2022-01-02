@@ -12,6 +12,7 @@ from disnake.gateway import (
     SpeakingState,
     VoiceKeepAliveHandler,
     WebSocketClosure,
+    utils,
 )
 
 __all__ = (

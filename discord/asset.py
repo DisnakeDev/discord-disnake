@@ -6,6 +6,7 @@ from disnake.asset import (
     MISSING,
     VALID_ASSET_FORMATS,
     VALID_STATIC_FORMATS,
+    utils,
 )
 
 __all__ = ("Asset",)

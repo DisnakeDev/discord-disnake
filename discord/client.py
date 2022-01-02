@@ -65,6 +65,7 @@ from disnake.client import (
     _sticker_factory,
     _threaded_channel_factory,
     create_activity,
+    utils,
 )
 
 __all__ = ("Client",)

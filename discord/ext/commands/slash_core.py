@@ -70,6 +70,7 @@ from disnake.ext.commands.slash_core import (
     call_param_func,
     expand_params,
     slash_command,
+    utils,
 )
 
 __all__ = ("InvokableSlashCommand", "SubCommandGroup", "SubCommand", "slash_command")

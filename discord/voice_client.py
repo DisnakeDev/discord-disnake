@@ -13,6 +13,8 @@ from disnake.voice_client import (
     VoiceKeepAliveHandler,
     VoiceProtocol,
     has_nacl,
+    opus,
+    utils,
 )
 
 __all__ = ("VoiceProtocol", "VoiceClient")

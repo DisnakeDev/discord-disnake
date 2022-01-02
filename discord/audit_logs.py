@@ -29,6 +29,9 @@ from disnake.audit_logs import (
     _transform_privacy_level,
     _transform_snowflake,
     _transform_type,
+    abc,
+    enums,
+    utils,
 )
 
 __all__ = ("AuditLogDiff", "AuditLogChanges", "AuditLogEntry")

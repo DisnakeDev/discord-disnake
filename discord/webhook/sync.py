@@ -18,6 +18,7 @@ from disnake.webhook.sync import (
     _context,
     _get_webhook_adapter,
     handle_message_parameters,
+    utils,
 )
 
 __all__ = ("SyncWebhook", "SyncWebhookMessage")

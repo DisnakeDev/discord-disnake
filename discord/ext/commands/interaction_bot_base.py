@@ -22,6 +22,7 @@ from disnake.ext.commands.interaction_bot_base import (
     T,
     _app_commands_diff,
     _show_diff,
+    errors,
     message_command,
     slash_command,
     user_command,

@@ -27,6 +27,7 @@ from disnake.interactions.base import (
     async_context,
     handle_message_parameters,
     try_enum,
+    utils,
 )
 
 __all__ = ("Interaction", "InteractionMessage", "InteractionResponse")

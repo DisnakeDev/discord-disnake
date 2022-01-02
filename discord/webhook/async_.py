@@ -27,6 +27,7 @@ from disnake.webhook.async_ import (
     handle_message_parameters,
     to_multipart,
     try_enum,
+    utils,
 )
 
 __all__ = ("Webhook", "WebhookMessage", "PartialWebhookChannel", "PartialWebhookGuild")

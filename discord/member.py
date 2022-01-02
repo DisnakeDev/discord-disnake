@@ -14,6 +14,7 @@ from disnake.member import (
     create_activity,
     flatten_user,
     try_enum,
+    utils,
 )
 
 __all__ = ("VoiceState", "Member")

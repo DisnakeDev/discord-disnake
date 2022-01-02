@@ -53,7 +53,9 @@ from disnake.guild import (
     _guild_channel_factory,
     _integration_factory,
     _threaded_guild_channel_factory,
+    abc,
     try_enum,
+    utils,
 )
 
 __all__ = ("Guild",)

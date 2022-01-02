@@ -33,6 +33,7 @@ from disnake.channel import (
     _threaded_guild_channel_factory,
     try_enum,
     try_enum_to_int,
+    utils,
 )
 
 __all__ = (

@@ -1,4 +1,4 @@
-from disnake.team import Asset, BaseUser, Team, TeamMember, TeamMembershipState, try_enum
+from disnake.team import Asset, BaseUser, Team, TeamMember, TeamMembershipState, try_enum, utils
 
 __all__ = ("Team", "TeamMember")
 

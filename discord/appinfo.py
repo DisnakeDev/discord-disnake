@@ -1,4 +1,4 @@
-from disnake.appinfo import AppInfo, ApplicationFlags, Asset, PartialAppInfo
+from disnake.appinfo import AppInfo, ApplicationFlags, Asset, PartialAppInfo, utils
 
 __all__ = ("AppInfo", "PartialAppInfo")
 

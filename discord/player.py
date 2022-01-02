@@ -13,6 +13,7 @@ from disnake.player import (
     OpusEncoder,
     PCMAudio,
     PCMVolumeTransformer,
+    utils,
 )
 
 __all__ = (
