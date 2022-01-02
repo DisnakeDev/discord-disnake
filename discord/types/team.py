@@ -1,1 +1,1 @@
-from disnake.types.team import Team, TeamMember
+from disnake.types.team import PartialUser, Team, TeamMember

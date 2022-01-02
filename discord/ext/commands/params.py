@@ -1,13 +1,19 @@
 from disnake.ext.commands.params import (
     CONVERTER_MAPPING,
     CallableT,
+    ChannelType,
+    CommandInteraction,
     ConverterMethod,
     Injection,
+    Option,
+    OptionChoice,
+    OptionType,
     Param,
     ParamInfo,
     T,
     TChoice,
     TypeT,
+    _channel_type_factory,
     _xt_to_xe,
     call_param_func,
     collect_nested_params,
@@ -18,6 +24,7 @@ from disnake.ext.commands.params import (
     inject,
     isolate_self,
     issubclass_,
+    maybe_coroutine,
     option_enum,
     param,
     register_injection,
@@ -25,6 +32,7 @@ from disnake.ext.commands.params import (
     run_injections,
     safe_call,
     signature,
+    try_enum_to_int,
 )
 
 __all__ = (

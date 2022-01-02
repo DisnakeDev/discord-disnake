@@ -1,5 +1,17 @@
 from disnake.ext.commands.bot import (
-    AutoShardedBot, AutoShardedInteractionBot, Bot, CFT, CXT, InteractionBot, T
+    AutoShardedBot,
+    AutoShardedInteractionBot,
+    Bot,
+    BotBase,
+    CFT,
+    CXT,
+    Context,
+    InteractionBot,
+    InteractionBotBase,
+    MISSING,
+    T,
+    when_mentioned,
+    when_mentioned_or,
 )
 
 __all__ = (

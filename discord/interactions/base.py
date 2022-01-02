@@ -1,5 +1,32 @@
 from disnake.interactions.base import (
-    Interaction, InteractionMessage, InteractionResponse, _InteractionMessageState, async_context
+    Attachment,
+    ChannelType,
+    ClientException,
+    ClientUser,
+    Guild,
+    HTTPException,
+    Interaction,
+    InteractionMessage,
+    InteractionNotResponded,
+    InteractionResponded,
+    InteractionResponse,
+    InteractionResponseType,
+    InteractionTimedOut,
+    InteractionType,
+    MISSING,
+    Member,
+    Message,
+    NotFound,
+    Object,
+    OptionChoice,
+    PartialMessageable,
+    Permissions,
+    User,
+    Webhook,
+    _InteractionMessageState,
+    async_context,
+    handle_message_parameters,
+    try_enum,
 )
 
 __all__ = ("Interaction", "InteractionMessage", "InteractionResponse")

@@ -8,6 +8,7 @@ from disnake.types.activity import (
     ActivityTimestamps,
     ClientStatus,
     PartialPresenceUpdate,
+    PartialUser,
     SendableActivity,
     _ActivityEmojiOptional,
     _BaseActivity,

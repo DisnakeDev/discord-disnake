@@ -1,5 +1,17 @@
 from disnake.activity import (
-    Activity, BaseActivity, CustomActivity, Game, Spotify, Streaming, create_activity
+    Activity,
+    ActivityType,
+    Asset,
+    BaseActivity,
+    Colour,
+    CustomActivity,
+    Game,
+    PartialEmoji,
+    Spotify,
+    Streaming,
+    _get_as_snowflake,
+    create_activity,
+    try_enum,
 )
 
 __all__ = ("BaseActivity", "Activity", "Streaming", "Game", "Spotify", "CustomActivity")

@@ -1,3 +1,3 @@
-from disnake.embeds import E, Embed, EmbedProxy, EmptyEmbed, _EmptyEmbed
+from disnake.embeds import Colour, E, Embed, EmbedProxy, EmptyEmbed, File, MISSING, _EmptyEmbed
 
 __all__ = ("Embed",)

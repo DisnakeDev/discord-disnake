@@ -8,6 +8,7 @@ from disnake.flags import (
     MessageFlags,
     PublicUserFlags,
     SystemChannelFlags,
+    UserFlags,
     alias_flag_value,
     fill_with_flags,
     flag_value,

@@ -7,6 +7,7 @@ from disnake.types.sticker import (
     StandardSticker,
     StickerItem,
     StickerPack,
+    User,
     _CreateGuildStickerOptional,
     _GuildStickerOptional,
 )

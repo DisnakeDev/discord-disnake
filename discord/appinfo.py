@@ -1,3 +1,3 @@
-from disnake.appinfo import AppInfo, PartialAppInfo
+from disnake.appinfo import AppInfo, ApplicationFlags, Asset, PartialAppInfo
 
 __all__ = ("AppInfo", "PartialAppInfo")

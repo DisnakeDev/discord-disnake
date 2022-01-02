@@ -1,3 +1,3 @@
-from disnake.reaction import Reaction
+from disnake.reaction import Reaction, ReactionIterator
 
 __all__ = ("Reaction",)

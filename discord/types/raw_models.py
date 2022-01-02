@@ -1,8 +1,10 @@
 from disnake.types.raw_models import (
     BulkMessageDeleteEvent,
     IntegrationDeleteEvent,
+    Member,
     MessageDeleteEvent,
     MessageUpdateEvent,
+    PartialEmoji,
     ReactionActionEvent,
     ReactionClearEmojiEvent,
     ReactionClearEvent,

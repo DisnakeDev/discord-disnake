@@ -5,5 +5,6 @@ from disnake.types.integration import (
     IntegrationApplication,
     PartialIntegration,
     StreamIntegration,
+    User,
     _IntegrationApplicationOptional,
 )

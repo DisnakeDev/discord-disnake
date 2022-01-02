@@ -1,10 +1,14 @@
 from disnake.iterators import (
     ArchivedThreadIterator,
+    AuditLogEntry,
     AuditLogIterator,
     GuildIterator,
     HistoryIterator,
     MemberIterator,
+    NoMoreItems,
+    OLDEST_OBJECT,
     OT,
+    Object,
     ReactionIterator,
     T,
     _AsyncIterator,
@@ -12,6 +16,9 @@ from disnake.iterators import (
     _FilteredAsyncIterator,
     _MappedAsyncIterator,
     _identity,
+    maybe_coroutine,
+    snowflake_time,
+    time_snowflake,
 )
 
 __all__ = (

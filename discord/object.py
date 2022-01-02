@@ -1,3 +1,3 @@
-from disnake.object import Object
+from disnake.object import Hashable, Object
 
 __all__ = ("Object",)

@@ -1,3 +1,3 @@
-from disnake.oggparse import OggError, OggPage, OggStream
+from disnake.oggparse import DiscordException, OggError, OggPage, OggStream
 
 __all__ = ("OggError", "OggPage", "OggStream")

@@ -2,6 +2,7 @@ from disnake.utils import (
     CachedSlotProperty,
     DISCORD_EPOCH,
     HAS_ORJSON,
+    InvalidArgument,
     MISSING,
     PY_310,
     SequenceProxy,
