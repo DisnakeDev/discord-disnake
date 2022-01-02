@@ -1,4 +1,3 @@
-from disnake.mixins import *
-from disnake.mixins import __dict__ as __original_dict__
+from disnake.mixins import EqualityComparable, Hashable
 
-locals().update(__original_dict__)
+__all__ = ("EqualityComparable", "Hashable")

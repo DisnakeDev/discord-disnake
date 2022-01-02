@@ -1,4 +1,31 @@
-from disnake.integrations import *
-from disnake.integrations import __dict__ as __original_dict__
+from disnake.integrations import (
+    Any,
+    BotIntegration,
+    Dict,
+    ExpireBehaviour,
+    Integration,
+    IntegrationAccount,
+    IntegrationApplication,
+    InvalidArgument,
+    MISSING,
+    Optional,
+    StreamIntegration,
+    TYPE_CHECKING,
+    Tuple,
+    Type,
+    User,
+    _get_as_snowflake,
+    _integration_factory,
+    annotations,
+    datetime,
+    parse_time,
+    try_enum,
+)
 
-locals().update(__original_dict__)
+__all__ = (
+    "IntegrationAccount",
+    "IntegrationApplication",
+    "Integration",
+    "StreamIntegration",
+    "BotIntegration",
+)

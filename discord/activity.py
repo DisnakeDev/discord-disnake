@@ -1,4 +1,27 @@
-from disnake.activity import *
-from disnake.activity import __dict__ as __original_dict__
+from disnake.activity import (
+    Activity,
+    ActivityType,
+    ActivityTypes,
+    Any,
+    Asset,
+    BaseActivity,
+    Colour,
+    CustomActivity,
+    Dict,
+    Game,
+    List,
+    Optional,
+    PartialEmoji,
+    Spotify,
+    Streaming,
+    TYPE_CHECKING,
+    Union,
+    _get_as_snowflake,
+    annotations,
+    create_activity,
+    datetime,
+    overload,
+    try_enum,
+)
 
-locals().update(__original_dict__)
+__all__ = ("BaseActivity", "Activity", "Streaming", "Game", "Spotify", "CustomActivity")

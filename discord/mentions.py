@@ -1,4 +1,15 @@
-from disnake.mentions import *
-from disnake.mentions import __dict__ as __original_dict__
+from disnake.mentions import (
+    A,
+    AllowedMentions,
+    Any,
+    List,
+    TYPE_CHECKING,
+    Type,
+    TypeVar,
+    Union,
+    _FakeBool,
+    annotations,
+    default,
+)
 
-locals().update(__original_dict__)
+__all__ = ("AllowedMentions")

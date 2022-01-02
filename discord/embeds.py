@@ -1,4 +1,25 @@
-from disnake.embeds import *
-from disnake.embeds import __dict__ as __original_dict__
+from disnake.embeds import (
+    Any,
+    Colour,
+    Dict,
+    E,
+    Embed,
+    EmbedProxy,
+    EmptyEmbed,
+    File,
+    Final,
+    List,
+    MISSING,
+    Mapping,
+    Protocol,
+    TYPE_CHECKING,
+    Type,
+    TypeVar,
+    Union,
+    _EmptyEmbed,
+    annotations,
+    datetime,
+    utils,
+)
 
-locals().update(__original_dict__)
+__all__ = ("Embed")

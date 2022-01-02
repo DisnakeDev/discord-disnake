@@ -1,4 +1,5 @@
-from disnake.reaction import *
-from disnake.reaction import __dict__ as __original_dict__
+from disnake.reaction import (
+    Any, Optional, Reaction, ReactionIterator, TYPE_CHECKING, Union, annotations
+)
 
-locals().update(__original_dict__)
+__all__ = ("Reaction")

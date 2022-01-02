@@ -1,4 +1,33 @@
-from disnake.types.message import *
-from disnake.types.message import __dict__ as __original_dict__
-
-locals().update(__original_dict__)
+from disnake.types.message import (
+    AllowedMentionType,
+    AllowedMentions,
+    Attachment,
+    ChannelMention,
+    ChannelType,
+    Component,
+    Embed,
+    List,
+    Literal,
+    Member,
+    Message,
+    MessageActivity,
+    MessageActivityType,
+    MessageApplication,
+    MessageInteraction,
+    MessageReference,
+    MessageType,
+    Optional,
+    PartialEmoji,
+    Reaction,
+    Snowflake,
+    SnowflakeList,
+    StickerItem,
+    TypedDict,
+    Union,
+    User,
+    UserWithMember,
+    _AttachmentOptional,
+    _MessageApplicationOptional,
+    _MessageOptional,
+    annotations,
+)

@@ -1,4 +1,5 @@
-from disnake.colour import *
-from disnake.colour import __dict__ as __original_dict__
+from disnake.colour import (
+    Any, CT, Color, Colour, Optional, Tuple, Type, TypeVar, Union, colorsys, random
+)
 
-locals().update(__original_dict__)
+__all__ = ("Colour", "Color")

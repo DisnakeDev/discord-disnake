@@ -1,4 +1,37 @@
-from disnake.gateway import *
-from disnake.gateway import __dict__ as __original_dict__
+from disnake.gateway import (
+    BaseActivity,
+    ConnectionClosed,
+    DiscordClientWebSocketResponse,
+    DiscordVoiceWebSocket,
+    DiscordWebSocket,
+    EventListener,
+    GatewayRatelimiter,
+    InvalidArgument,
+    KeepAliveHandler,
+    ReconnectWebSocket,
+    SpeakingState,
+    VoiceKeepAliveHandler,
+    WebSocketClosure,
+    _log,
+    aiohttp,
+    asyncio,
+    concurrent,
+    deque,
+    logging,
+    namedtuple,
+    struct,
+    sys,
+    threading,
+    time,
+    traceback,
+    utils,
+    zlib,
+)
 
-locals().update(__original_dict__)
+__all__ = (
+    "DiscordWebSocket",
+    "KeepAliveHandler",
+    "VoiceKeepAliveHandler",
+    "DiscordVoiceWebSocket",
+    "ReconnectWebSocket",
+)

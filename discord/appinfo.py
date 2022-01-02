@@ -1,4 +1,13 @@
-from disnake.appinfo import *
-from disnake.appinfo import __dict__ as __original_dict__
+from disnake.appinfo import (
+    AppInfo,
+    ApplicationFlags,
+    Asset,
+    List,
+    Optional,
+    PartialAppInfo,
+    TYPE_CHECKING,
+    annotations,
+    utils,
+)
 
-locals().update(__original_dict__)
+__all__ = ("AppInfo", "PartialAppInfo")

@@ -1,4 +1,32 @@
-from disnake.sticker import *
-from disnake.sticker import __dict__ as __original_dict__
+from disnake.sticker import (
+    Asset,
+    AssetMixin,
+    GuildSticker,
+    Hashable,
+    InvalidData,
+    List,
+    Literal,
+    MISSING,
+    Optional,
+    StandardSticker,
+    Sticker,
+    StickerFormatType,
+    StickerItem,
+    StickerPack,
+    StickerType,
+    TYPE_CHECKING,
+    Tuple,
+    Type,
+    Union,
+    _StickerTag,
+    _sticker_factory,
+    annotations,
+    cached_slot_property,
+    find,
+    get,
+    snowflake_time,
+    try_enum,
+    unicodedata,
+)
 
-locals().update(__original_dict__)
+__all__ = ("StickerPack", "StickerItem", "Sticker", "StandardSticker", "GuildSticker")

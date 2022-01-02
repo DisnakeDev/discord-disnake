@@ -1,4 +1,15 @@
-from disnake.team import *
-from disnake.team import __dict__ as __original_dict__
+from disnake.team import (
+    Asset,
+    BaseUser,
+    List,
+    Optional,
+    TYPE_CHECKING,
+    Team,
+    TeamMember,
+    TeamMembershipState,
+    annotations,
+    try_enum,
+    utils,
+)
 
-locals().update(__original_dict__)
+__all__ = ("Team", "TeamMember")

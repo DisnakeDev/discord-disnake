@@ -1,4 +1,22 @@
-from disnake.ui.item import *
-from disnake.ui.item import __dict__ as __original_dict__
+from disnake.ui.item import (
+    Any,
+    Callable,
+    Coroutine,
+    DecoratedItem,
+    Dict,
+    Generic,
+    I,
+    I_co,
+    Item,
+    Optional,
+    Protocol,
+    TYPE_CHECKING,
+    Tuple,
+    Type,
+    TypeVar,
+    V,
+    annotations,
+    overload,
+)
 
-locals().update(__original_dict__)
+__all__ = ("Item")

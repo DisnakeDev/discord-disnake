@@ -1,4 +1,16 @@
-from disnake.template import *
-from disnake.template import __dict__ as __original_dict__
+from disnake.template import (
+    Any,
+    Guild,
+    MISSING,
+    Optional,
+    TYPE_CHECKING,
+    Template,
+    VoiceRegion,
+    _FriendlyHttpAttributeErrorHelper,
+    _PartialTemplateState,
+    _bytes_to_base64_data,
+    annotations,
+    parse_time,
+)
 
-locals().update(__original_dict__)
+__all__ = ("Template")

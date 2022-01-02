@@ -1,4 +1,20 @@
-from disnake.partial_emoji import *
-from disnake.partial_emoji import __dict__ as __original_dict__
+from disnake.partial_emoji import (
+    Any,
+    Asset,
+    AssetMixin,
+    Dict,
+    InvalidArgument,
+    Optional,
+    PE,
+    PartialEmoji,
+    TYPE_CHECKING,
+    Type,
+    TypeVar,
+    Union,
+    _EmojiTag,
+    annotations,
+    re,
+    utils,
+)
 
-locals().update(__original_dict__)
+__all__ = ("PartialEmoji")

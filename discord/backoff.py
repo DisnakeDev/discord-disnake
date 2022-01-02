@@ -1,4 +1,15 @@
-from disnake.backoff import *
-from disnake.backoff import __dict__ as __original_dict__
+from disnake.backoff import (
+    Callable,
+    ExponentialBackoff,
+    Generic,
+    Literal,
+    T,
+    TypeVar,
+    Union,
+    annotations,
+    overload,
+    random,
+    time,
+)
 
-locals().update(__original_dict__)
+__all__ = ("ExponentialBackoff")

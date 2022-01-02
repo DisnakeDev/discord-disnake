@@ -1,4 +1,34 @@
-from disnake.ui.view import *
-from disnake.ui.view import __dict__ as __original_dict__
+from disnake.ui.view import (
+    ActionRowComponent,
+    Any,
+    ButtonComponent,
+    Callable,
+    ClassVar,
+    Component,
+    Dict,
+    Item,
+    Iterator,
+    List,
+    Optional,
+    SelectComponent,
+    Sequence,
+    TYPE_CHECKING,
+    Tuple,
+    View,
+    ViewStore,
+    _ViewWeights,
+    _component_factory,
+    _component_to_item,
+    _walk_all_components,
+    annotations,
+    asyncio,
+    groupby,
+    os,
+    partial,
+    sys,
+    time,
+    traceback,
+    try_enum_to_int,
+)
 
-locals().update(__original_dict__)
+__all__ = ("View")

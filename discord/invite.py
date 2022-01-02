@@ -1,4 +1,26 @@
-from disnake.invite import *
-from disnake.invite import __dict__ as __original_dict__
+from disnake.invite import (
+    Asset,
+    ChannelType,
+    Hashable,
+    I,
+    Invite,
+    InviteTarget,
+    List,
+    Object,
+    Optional,
+    PartialAppInfo,
+    PartialInviteChannel,
+    PartialInviteGuild,
+    TYPE_CHECKING,
+    Type,
+    TypeVar,
+    Union,
+    VerificationLevel,
+    _get_as_snowflake,
+    annotations,
+    parse_time,
+    snowflake_time,
+    try_enum,
+)
 
-locals().update(__original_dict__)
+__all__ = ("PartialInviteChannel", "PartialInviteGuild", "Invite")

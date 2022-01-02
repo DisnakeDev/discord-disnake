@@ -1,4 +1,21 @@
-from disnake.types.raw_models import *
-from disnake.types.raw_models import __dict__ as __original_dict__
-
-locals().update(__original_dict__)
+from disnake.types.raw_models import (
+    BulkMessageDeleteEvent,
+    IntegrationDeleteEvent,
+    List,
+    Member,
+    MessageDeleteEvent,
+    MessageUpdateEvent,
+    PartialEmoji,
+    ReactionActionEvent,
+    ReactionClearEmojiEvent,
+    ReactionClearEvent,
+    Snowflake,
+    TypedDict,
+    TypingEvent,
+    _IntegrationDeleteEventOptional,
+    _MessageEventOptional,
+    _ReactionActionEventOptional,
+    _ReactionClearEmojiEventOptional,
+    _ReactionClearEventOptional,
+    _TypingEventOptional,
+)

@@ -1,4 +1,3 @@
-from disnake.file import *
-from disnake.file import __dict__ as __original_dict__
+from disnake.file import File, Optional, TYPE_CHECKING, Union, annotations, io, os
 
-locals().update(__original_dict__)
+__all__ = ("File")

@@ -1,4 +1,25 @@
-from disnake.ui.button import *
-from disnake.ui.button import __dict__ as __original_dict__
+from disnake.ui.button import (
+    B,
+    Button,
+    ButtonComponent,
+    ButtonStyle,
+    Callable,
+    ComponentType,
+    DecoratedItem,
+    Item,
+    Optional,
+    PartialEmoji,
+    TYPE_CHECKING,
+    Tuple,
+    Type,
+    TypeVar,
+    Union,
+    V,
+    _EmojiTag,
+    annotations,
+    button,
+    inspect,
+    os,
+)
 
-locals().update(__original_dict__)
+__all__ = ("Button", "button")

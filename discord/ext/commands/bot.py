@@ -1,4 +1,30 @@
-from disnake.ext.commands.bot import *
-from disnake.ext.commands.bot import __dict__ as __original_dict__
+from disnake.ext.commands.bot import (
+    Any,
+    AutoShardedBot,
+    AutoShardedInteractionBot,
+    Bot,
+    BotBase,
+    CFT,
+    CXT,
+    Context,
+    InteractionBot,
+    InteractionBotBase,
+    MISSING,
+    T,
+    TYPE_CHECKING,
+    TypeVar,
+    annotations,
+    disnake,
+    when_mentioned,
+    when_mentioned_or,
+)
 
-locals().update(__original_dict__)
+__all__ = (
+    "when_mentioned",
+    "when_mentioned_or",
+    "BotBase",
+    "Bot",
+    "InteractionBot",
+    "AutoShardedBot",
+    "AutoShardedInteractionBot",
+)

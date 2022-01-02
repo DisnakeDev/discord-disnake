@@ -1,4 +1,24 @@
-from disnake.types.activity import *
-from disnake.types.activity import __dict__ as __original_dict__
-
-locals().update(__original_dict__)
+from disnake.types.activity import (
+    Activity,
+    ActivityAssets,
+    ActivityButton,
+    ActivityEmoji,
+    ActivityParty,
+    ActivitySecrets,
+    ActivityTimestamps,
+    ActivityType,
+    ClientStatus,
+    List,
+    Literal,
+    Optional,
+    PartialPresenceUpdate,
+    PartialUser,
+    SendableActivity,
+    Snowflake,
+    StatusType,
+    TypedDict,
+    _ActivityEmojiOptional,
+    _BaseActivity,
+    _SendableActivityOptional,
+    annotations,
+)

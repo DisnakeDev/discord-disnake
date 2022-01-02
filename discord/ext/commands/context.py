@@ -1,4 +1,24 @@
-from disnake.ext.commands.context import *
-from disnake.ext.commands.context import __dict__ as __original_dict__
+from disnake.ext.commands.context import (
+    Any,
+    BotT,
+    CogT,
+    Context,
+    Dict,
+    Generic,
+    GuildContext,
+    List,
+    MISSING,
+    Message,
+    Optional,
+    P,
+    T,
+    TYPE_CHECKING,
+    TypeVar,
+    Union,
+    annotations,
+    disnake,
+    inspect,
+    re,
+)
 
-locals().update(__original_dict__)
+__all__ = ("Context", "GuildContext")

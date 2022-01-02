@@ -1,4 +1,16 @@
-from disnake.oggparse import *
-from disnake.oggparse import __dict__ as __original_dict__
+from disnake.oggparse import (
+    ClassVar,
+    DiscordException,
+    Generator,
+    IO,
+    OggError,
+    OggPage,
+    OggStream,
+    Optional,
+    TYPE_CHECKING,
+    Tuple,
+    annotations,
+    struct,
+)
 
-locals().update(__original_dict__)
+__all__ = ("OggError", "OggPage", "OggStream")

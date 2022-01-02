@@ -1,4 +1,19 @@
-from disnake.ext.commands.help import *
-from disnake.ext.commands.help import __dict__ as __original_dict__
+from disnake.ext.commands.help import (
+    Command,
+    CommandError,
+    DefaultHelpCommand,
+    Group,
+    HelpCommand,
+    MinimalHelpCommand,
+    Paginator,
+    TYPE_CHECKING,
+    _HelpCommandImpl,
+    _not_overriden,
+    copy,
+    disnake,
+    functools,
+    itertools,
+    re,
+)
 
-locals().update(__original_dict__)
+__all__ = ("Paginator", "HelpCommand", "DefaultHelpCommand", "MinimalHelpCommand")

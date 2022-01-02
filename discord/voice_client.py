@@ -1,4 +1,34 @@
-from disnake.voice_client import *
-from disnake.voice_client import __dict__ as __original_dict__
+from disnake.voice_client import (
+    Any,
+    AudioPlayer,
+    AudioSource,
+    Callable,
+    ClientException,
+    ConnectionClosed,
+    DiscordVoiceWebSocket,
+    DiscordWebSocket,
+    ExponentialBackoff,
+    KeepAliveHandler,
+    List,
+    MISSING,
+    Optional,
+    ReconnectWebSocket,
+    TYPE_CHECKING,
+    Tuple,
+    VoiceClient,
+    VoiceKeepAliveHandler,
+    VoiceProtocol,
+    _log,
+    annotations,
+    asyncio,
+    has_nacl,
+    logging,
+    nacl,
+    opus,
+    socket,
+    struct,
+    threading,
+    utils,
+)
 
-locals().update(__original_dict__)
+__all__ = ("VoiceProtocol", "VoiceClient")

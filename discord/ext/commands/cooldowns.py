@@ -1,4 +1,27 @@
-from disnake.ext.commands.cooldowns import *
-from disnake.ext.commands.cooldowns import __dict__ as __original_dict__
+from disnake.ext.commands.cooldowns import (
+    Any,
+    BucketType,
+    C,
+    Callable,
+    Cooldown,
+    CooldownMapping,
+    Deque,
+    Dict,
+    DynamicCooldownMapping,
+    Enum,
+    MC,
+    MaxConcurrency,
+    MaxConcurrencyReached,
+    Optional,
+    PrivateChannel,
+    TYPE_CHECKING,
+    Type,
+    TypeVar,
+    _Semaphore,
+    annotations,
+    asyncio,
+    deque,
+    time,
+)
 
-locals().update(__original_dict__)
+__all__ = ("BucketType", "Cooldown", "CooldownMapping", "DynamicCooldownMapping", "MaxConcurrency")

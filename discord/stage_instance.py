@@ -1,4 +1,14 @@
-from disnake.stage_instance import *
-from disnake.stage_instance import __dict__ as __original_dict__
+from disnake.stage_instance import (
+    Hashable,
+    InvalidArgument,
+    MISSING,
+    Optional,
+    StageInstance,
+    StagePrivacyLevel,
+    TYPE_CHECKING,
+    annotations,
+    cached_slot_property,
+    try_enum,
+)
 
-locals().update(__original_dict__)
+__all__ = ("StageInstance")

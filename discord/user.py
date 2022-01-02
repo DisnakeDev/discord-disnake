@@ -1,4 +1,26 @@
-from disnake.user import *
-from disnake.user import __dict__ as __original_dict__
+from disnake.user import (
+    Any,
+    Asset,
+    BU,
+    BaseUser,
+    ClientUser,
+    Colour,
+    DefaultAvatar,
+    Dict,
+    List,
+    MISSING,
+    Optional,
+    PublicUserFlags,
+    TYPE_CHECKING,
+    Type,
+    TypeVar,
+    Union,
+    User,
+    _UserTag,
+    _bytes_to_base64_data,
+    annotations,
+    disnake,
+    snowflake_time,
+)
 
-locals().update(__original_dict__)
+__all__ = ("User", "ClientUser")

@@ -1,4 +1,13 @@
-from disnake.types.widget import *
-from disnake.types.widget import __dict__ as __original_dict__
-
-locals().update(__original_dict__)
+from disnake.types.widget import (
+    Activity,
+    List,
+    Optional,
+    Snowflake,
+    TypedDict,
+    User,
+    Widget,
+    WidgetChannel,
+    WidgetMember,
+    WidgetSettings,
+    _WidgetOptional,
+)

@@ -1,4 +1,39 @@
-from disnake.iterators import *
-from disnake.iterators import __dict__ as __original_dict__
+from disnake.iterators import (
+    Any,
+    ArchivedThreadIterator,
+    AsyncIterator,
+    AuditLogEntry,
+    AuditLogIterator,
+    Awaitable,
+    Callable,
+    GuildIterator,
+    HistoryIterator,
+    List,
+    MemberIterator,
+    NoMoreItems,
+    OLDEST_OBJECT,
+    OT,
+    Object,
+    Optional,
+    ReactionIterator,
+    T,
+    TYPE_CHECKING,
+    TypeVar,
+    Union,
+    _AsyncIterator,
+    _ChunkedAsyncIterator,
+    _FilteredAsyncIterator,
+    _Func,
+    _MappedAsyncIterator,
+    _identity,
+    annotations,
+    asyncio,
+    datetime,
+    maybe_coroutine,
+    snowflake_time,
+    time_snowflake,
+)
 
-locals().update(__original_dict__)
+__all__ = (
+    "ReactionIterator", "HistoryIterator", "AuditLogIterator", "GuildIterator", "MemberIterator"
+)

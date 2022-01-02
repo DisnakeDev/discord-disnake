@@ -1,4 +1,18 @@
-from disnake.types.components import *
-from disnake.types.components import __dict__ as __original_dict__
-
-locals().update(__original_dict__)
+from disnake.types.components import (
+    ActionRow,
+    ButtonComponent,
+    ButtonStyle,
+    Component,
+    ComponentType,
+    List,
+    Literal,
+    PartialEmoji,
+    SelectMenu,
+    SelectOption,
+    TypedDict,
+    Union,
+    _ButtonComponentOptional,
+    _SelectMenuOptional,
+    _SelectOptionsOptional,
+    annotations,
+)

@@ -1,4 +1,40 @@
-from disnake.webhook.sync import *
-from disnake.webhook.sync import __dict__ as __original_dict__
+from disnake.webhook.sync import (
+    Any,
+    BaseWebhook,
+    DeferredLock,
+    Dict,
+    DiscordServerError,
+    Forbidden,
+    HTTPException,
+    InvalidArgument,
+    List,
+    Literal,
+    MISSING,
+    Message,
+    NotFound,
+    Optional,
+    PartialMessageable,
+    Route,
+    SyncWebhook,
+    SyncWebhookMessage,
+    TYPE_CHECKING,
+    Tuple,
+    Union,
+    WebhookAdapter,
+    _WebhookContext,
+    _WebhookState,
+    _context,
+    _get_webhook_adapter,
+    _log,
+    annotations,
+    handle_message_parameters,
+    logging,
+    overload,
+    re,
+    threading,
+    time,
+    urlquote,
+    utils,
+)
 
-locals().update(__original_dict__)
+__all__ = ("SyncWebhook", "SyncWebhookMessage")

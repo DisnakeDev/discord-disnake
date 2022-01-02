@@ -1,4 +1,5 @@
-from disnake.context_managers import *
-from disnake.context_managers import __dict__ as __original_dict__
+from disnake.context_managers import (
+    Optional, TYPE_CHECKING, Type, TypeVar, Typing, _typing_done_callback, annotations, asyncio
+)
 
-locals().update(__original_dict__)
+__all__ = ("Typing")

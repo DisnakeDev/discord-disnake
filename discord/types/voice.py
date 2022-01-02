@@ -1,4 +1,17 @@
-from disnake.types.voice import *
-from disnake.types.voice import __dict__ as __original_dict__
-
-locals().update(__original_dict__)
+from disnake.types.voice import (
+    GuildVoiceState,
+    List,
+    Literal,
+    MemberWithUser,
+    Optional,
+    Snowflake,
+    SupportedModes,
+    TypedDict,
+    VoiceIdentify,
+    VoiceReady,
+    VoiceRegion,
+    VoiceServerUpdate,
+    VoiceState,
+    _PartialVoiceStateOptional,
+    _VoiceState,
+)

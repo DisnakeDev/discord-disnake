@@ -1,4 +1,30 @@
-from disnake.raw_models import *
-from disnake.raw_models import __dict__ as __original_dict__
+from disnake.raw_models import (
+    List,
+    Optional,
+    RawBulkMessageDeleteEvent,
+    RawGuildScheduledEventUserActionEvent,
+    RawIntegrationDeleteEvent,
+    RawMessageDeleteEvent,
+    RawMessageUpdateEvent,
+    RawReactionActionEvent,
+    RawReactionClearEmojiEvent,
+    RawReactionClearEvent,
+    RawTypingEvent,
+    Set,
+    TYPE_CHECKING,
+    _RawReprMixin,
+    annotations,
+    datetime,
+)
 
-locals().update(__original_dict__)
+__all__ = (
+    "RawMessageDeleteEvent",
+    "RawBulkMessageDeleteEvent",
+    "RawMessageUpdateEvent",
+    "RawReactionActionEvent",
+    "RawReactionClearEvent",
+    "RawReactionClearEmojiEvent",
+    "RawIntegrationDeleteEvent",
+    "RawGuildScheduledEventUserActionEvent",
+    "RawTypingEvent",
+)

@@ -1,4 +1,19 @@
-from disnake.interactions.message import *
-from disnake.interactions.message import __dict__ as __original_dict__
+from disnake.interactions.message import (
+    ActionRow,
+    Button,
+    ComponentType,
+    Interaction,
+    List,
+    Message,
+    MessageInteraction,
+    MessageInteractionData,
+    Optional,
+    SelectMenu,
+    TYPE_CHECKING,
+    Union,
+    annotations,
+    cached_slot_property,
+    try_enum,
+)
 
-locals().update(__original_dict__)
+__all__ = ("MessageInteraction", "MessageInteractionData")
