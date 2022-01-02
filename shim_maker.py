@@ -67,8 +67,6 @@ def shim_folder(path: str, pypath: str, shim_path: str) -> None:
 
         elif os.path.isdir(f"{path}/{fn}"):
             os.makedirs(f"{shim_path}/{fn}", exist_ok=True)
-            if fn not in os.listdir(shim_path):
-                os.mkdir(f"{shim_path}/{fn}")
             shim_folder(f"{path}/{fn}", f"{pypath}.{fn}", f"{shim_path}/{fn}")
 
 
