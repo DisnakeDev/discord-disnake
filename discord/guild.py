@@ -78,4 +78,4 @@ from disnake.guild import (
     utils,
 )
 
-__all__ = ("Guild")
+__all__ = ("Guild",)

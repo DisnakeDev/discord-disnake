@@ -21,4 +21,4 @@ from disnake.ui.item import (
     overload,
 )
 
-__all__ = ("Item")
+__all__ = ("Item",)

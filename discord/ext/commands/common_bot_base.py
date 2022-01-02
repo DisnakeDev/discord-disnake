@@ -30,4 +30,4 @@ from disnake.ext.commands.common_bot_base import (
     types,
 )
 
-__all__ = ("CommonBotBase")
+__all__ = ("CommonBotBase",)

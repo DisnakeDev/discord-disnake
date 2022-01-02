@@ -92,4 +92,4 @@ from disnake.client import (
     utils,
 )
 
-__all__ = ("Client")
+__all__ = ("Client",)

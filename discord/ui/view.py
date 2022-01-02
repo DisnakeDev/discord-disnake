@@ -32,4 +32,4 @@ from disnake.ui.view import (
     try_enum_to_int,
 )
 
-__all__ = ("View")
+__all__ = ("View",)

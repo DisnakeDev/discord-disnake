@@ -5,8 +5,13 @@ from typing import Iterable
 
 def fancy_list(prefix: str, to_join: Iterable[str], limit: int = 100, with_brackets: bool = False):
     as_line = ", ".join(to_join)
-    if len(prefix) + len(as_line) + int(with_brackets) * 2 <= limit:
-        return prefix + as_line if not with_brackets else f"{prefix}({as_line})"
+    if with_brackets:
+        if "," not in as_line:
+            as_line += ","
+        if len(prefix) + len(as_line) + 2 <= limit:
+            return f"{prefix}({as_line})"
+    elif len(prefix) + len(as_line) <= limit:
+        return prefix + as_line
 
     if 4 + len(as_line) <= limit:
         return prefix + "(\n    " + as_line + "\n)"

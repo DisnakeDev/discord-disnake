@@ -12,4 +12,4 @@ from disnake.mentions import (
     default,
 )
 
-__all__ = ("AllowedMentions")
+__all__ = ("AllowedMentions",)

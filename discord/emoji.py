@@ -17,4 +17,4 @@ from disnake.emoji import (
     snowflake_time,
 )
 
-__all__ = ("Emoji")
+__all__ = ("Emoji",)

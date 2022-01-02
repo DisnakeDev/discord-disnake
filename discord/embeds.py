@@ -22,4 +22,4 @@ from disnake.embeds import (
     utils,
 )
 
-__all__ = ("Embed")
+__all__ = ("Embed",)

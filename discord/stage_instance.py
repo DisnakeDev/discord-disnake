@@ -11,4 +11,4 @@ from disnake.stage_instance import (
     try_enum,
 )
 
-__all__ = ("StageInstance")
+__all__ = ("StageInstance",)

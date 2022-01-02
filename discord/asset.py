@@ -19,4 +19,4 @@ from disnake.asset import (
     yarl,
 )
 
-__all__ = ("Asset")
+__all__ = ("Asset",)

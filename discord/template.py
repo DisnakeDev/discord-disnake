@@ -13,4 +13,4 @@ from disnake.template import (
     parse_time,
 )
 
-__all__ = ("Template")
+__all__ = ("Template",)

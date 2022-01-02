@@ -17,4 +17,4 @@ from disnake.partial_emoji import (
     utils,
 )
 
-__all__ = ("PartialEmoji")
+__all__ = ("PartialEmoji",)

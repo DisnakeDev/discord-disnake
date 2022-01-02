@@ -12,4 +12,4 @@ from disnake.backoff import (
     time,
 )
 
-__all__ = ("ExponentialBackoff")
+__all__ = ("ExponentialBackoff",)
