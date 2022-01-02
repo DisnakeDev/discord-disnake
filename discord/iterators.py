@@ -24,3 +24,6 @@ from disnake.iterators import (
 __all__ = (
     "ReactionIterator", "HistoryIterator", "AuditLogIterator", "GuildIterator", "MemberIterator"
 )
+
+from disnake.iterators import __dict__ as __original_dict__
+locals().update(__original_dict__)

@@ -28,3 +28,6 @@ from disnake.ext.commands.interaction_bot_base import (
 )
 
 __all__ = ("InteractionBotBase",)
+
+from disnake.ext.commands.interaction_bot_base import __dict__ as __original_dict__
+locals().update(__original_dict__)

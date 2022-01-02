@@ -38,3 +38,6 @@ from disnake.ext.commands.params import (
 __all__ = (
     "ParamInfo", "Param", "param", "inject", "option_enum", "register_injection", "converter_method"
 )
+
+from disnake.ext.commands.params import __dict__ as __original_dict__
+locals().update(__original_dict__)

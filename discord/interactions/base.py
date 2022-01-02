@@ -30,3 +30,6 @@ from disnake.interactions.base import (
 )
 
 __all__ = ("Interaction", "InteractionMessage", "InteractionResponse")
+
+from disnake.interactions.base import __dict__ as __original_dict__
+locals().update(__original_dict__)

@@ -3,3 +3,6 @@ from disnake.emoji import (
 )
 
 __all__ = ("Emoji",)
+
+from disnake.emoji import __dict__ as __original_dict__
+locals().update(__original_dict__)

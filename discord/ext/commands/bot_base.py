@@ -18,3 +18,6 @@ from disnake.ext.commands.bot_base import (
 )
 
 __all__ = ("when_mentioned", "when_mentioned_or", "BotBase")
+
+from disnake.ext.commands.bot_base import __dict__ as __original_dict__
+locals().update(__original_dict__)

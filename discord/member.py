@@ -17,3 +17,6 @@ from disnake.member import (
 )
 
 __all__ = ("VoiceState", "Member")
+
+from disnake.member import __dict__ as __original_dict__
+locals().update(__original_dict__)

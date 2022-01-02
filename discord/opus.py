@@ -37,3 +37,6 @@ from disnake.opus import (
 )
 
 __all__ = ("Encoder", "OpusError", "OpusNotLoaded")
+
+from disnake.opus import __dict__ as __original_dict__
+locals().update(__original_dict__)

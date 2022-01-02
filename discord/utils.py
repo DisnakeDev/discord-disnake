@@ -82,3 +82,6 @@ __all__ = (
     "as_chunks",
     "format_dt",
 )
+
+from disnake.utils import __dict__ as __original_dict__
+locals().update(__original_dict__)

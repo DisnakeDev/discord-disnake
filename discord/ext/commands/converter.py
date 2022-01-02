@@ -126,3 +126,6 @@ __all__ = (
     "Greedy",
     "run_converters",
 )
+
+from disnake.ext.commands.converter import __dict__ as __original_dict__
+locals().update(__original_dict__)

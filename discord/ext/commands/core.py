@@ -134,3 +134,6 @@ __all__ = (
     "has_guild_permissions",
     "bot_has_guild_permissions",
 )
+
+from disnake.ext.commands.core import __dict__ as __original_dict__
+locals().update(__original_dict__)

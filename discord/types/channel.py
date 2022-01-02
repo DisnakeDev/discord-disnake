@@ -22,3 +22,6 @@ from disnake.types.channel import (
     _ThreadChannelOptional,
     _VoiceChannelOptional,
 )
+
+from disnake.types.channel import __dict__ as __original_dict__
+locals().update(__original_dict__)

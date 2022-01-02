@@ -13,3 +13,6 @@ from disnake.permissions import (
 )
 
 __all__ = ("Permissions", "PermissionOverwrite")
+
+from disnake.permissions import __dict__ as __original_dict__
+locals().update(__original_dict__)
