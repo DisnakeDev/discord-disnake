@@ -23,13 +23,14 @@ def fancy_list(prefix: str, to_join: Iterable[str], limit: int = 100, with_brack
 
 def create_imports(module_name: str) -> str:
     subpckg = import_module(module_name)
+    root_module_name = module_name.split(".")[0] + "."
     members = [
         memb for memb, val in inspect.getmembers(subpckg)
         if (
             not memb.startswith("__")
             and memb not in ("TYPE_CHECKING",)
             and not inspect.ismodule(val)  # skip imported modules
-            and getattr(val, "__module__", module_name) == module_name  # skip types imported from other modules
+            and getattr(val, "__module__", module_name).startswith(root_module_name)  # skip types imported from external modules
         )
     ]
     imports = fancy_list(f"from {module_name} import ", members)
