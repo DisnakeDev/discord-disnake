@@ -1,16 +1,13 @@
 from disnake.enums import (
     ActivityType,
-    Any,
     ApplicationCommandType,
     AuditLogAction,
     AuditLogActionCategory,
     ButtonStyle,
     ChannelType,
-    ClassVar,
     ComponentType,
     ContentFilter,
     DefaultAvatar,
-    Dict,
     Enum,
     EnumMeta,
     ExpireBehavior,
@@ -21,13 +18,10 @@ from disnake.enums import (
     InteractionResponseType,
     InteractionType,
     InviteTarget,
-    List,
     MessageType,
     NSFWLevel,
-    NamedTuple,
     NotificationLevel,
     OptionType,
-    Optional,
     PartyType,
     SpeakingState,
     StagePrivacyLevel,
@@ -35,11 +29,8 @@ from disnake.enums import (
     StickerFormatType,
     StickerType,
     T,
-    TYPE_CHECKING,
     TeamMembershipState,
     ThreadArchiveDuration,
-    Type,
-    TypeVar,
     UserFlags,
     VerificationLevel,
     VideoQualityMode,
@@ -51,10 +42,8 @@ from disnake.enums import (
     _is_descriptor,
     create_unknown_value,
     enum_if_int,
-    total_ordering,
     try_enum,
     try_enum_to_int,
-    types,
 )
 
 __all__ = (
@@ -94,3 +83,6 @@ __all__ = (
     "GuildScheduledEventPrivacyLevel",
     "ThreadArchiveDuration",
 )
+
+from disnake.enums import __dict__ as __original_dict__
+locals().update(__original_dict__)

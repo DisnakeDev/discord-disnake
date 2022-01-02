@@ -1,5 +1,4 @@
 from disnake.ext.commands.errors import (
-    Any,
     ArgumentParsingError,
     BadArgument,
     BadBoolArgument,
@@ -12,7 +11,6 @@ from disnake.ext.commands.errors import (
     BotMissingAnyRole,
     BotMissingPermissions,
     BotMissingRole,
-    Callable,
     ChannelNotFound,
     ChannelNotReadable,
     CheckAnyFailure,
@@ -37,7 +35,6 @@ from disnake.ext.commands.errors import (
     GuildNotFound,
     GuildStickerNotFound,
     InvalidEndOfQuotedStringError,
-    List,
     MaxConcurrencyReached,
     MemberNotFound,
     MessageNotFound,
@@ -52,21 +49,15 @@ from disnake.ext.commands.errors import (
     NoPrivateMessage,
     NotOwner,
     ObjectNotFound,
-    Optional,
     PartialEmojiConversionFailure,
     PrivateMessageOnly,
     RoleNotFound,
-    TYPE_CHECKING,
     ThreadNotFound,
     TooManyArguments,
     TooManyFlags,
-    Tuple,
-    Type,
     UnexpectedQuoteError,
-    Union,
     UserInputError,
     UserNotFound,
-    annotations,
 )
 
 __all__ = (
@@ -128,3 +119,6 @@ __all__ = (
     "TooManyFlags",
     "MissingRequiredFlag",
 )
+
+from disnake.ext.commands.errors import __dict__ as __original_dict__
+locals().update(__original_dict__)

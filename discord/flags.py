@@ -1,29 +1,17 @@
 from disnake.flags import (
-    Any,
     ApplicationFlags,
     BF,
     BaseFlags,
-    Callable,
-    ClassVar,
-    Dict,
     FV,
     Intents,
-    Iterator,
-    List,
     MemberCacheFlags,
     MessageFlags,
-    Optional,
     PublicUserFlags,
     SystemChannelFlags,
-    Tuple,
-    Type,
-    TypeVar,
     UserFlags,
     alias_flag_value,
-    annotations,
     fill_with_flags,
     flag_value,
-    overload,
 )
 
 __all__ = (
@@ -34,3 +22,6 @@ __all__ = (
     "MemberCacheFlags",
     "ApplicationFlags",
 )
+
+from disnake.flags import __dict__ as __original_dict__
+locals().update(__original_dict__)

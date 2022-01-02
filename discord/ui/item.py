@@ -1,24 +1,6 @@
-from disnake.ui.item import (
-    Any,
-    Callable,
-    Coroutine,
-    DecoratedItem,
-    Dict,
-    Generic,
-    I,
-    I_co,
-    Item,
-    ItemCallbackType,
-    MessageInteraction,
-    Optional,
-    Protocol,
-    TYPE_CHECKING,
-    Tuple,
-    Type,
-    TypeVar,
-    V,
-    annotations,
-    overload,
-)
+from disnake.ui.item import DecoratedItem, I, I_co, Item, MessageInteraction, V
 
 __all__ = ("Item",)
+
+from disnake.ui.item import __dict__ as __original_dict__
+locals().update(__original_dict__)

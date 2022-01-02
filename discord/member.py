@@ -1,39 +1,23 @@
 from disnake.member import (
-    ActivityTypes,
-    Any,
     Asset,
     BaseUser,
     Colour,
-    Dict,
-    List,
-    Literal,
     M,
     MISSING,
     Member,
     Object,
-    Optional,
     Permissions,
     Status,
-    TYPE_CHECKING,
-    Tuple,
-    Type,
-    TypeVar,
-    Union,
     User,
     VoiceState,
     _UserTag,
-    annotations,
-    attrgetter,
     create_activity,
-    datetime,
-    disnake,
     flatten_user,
-    inspect,
-    itertools,
-    overload,
-    sys,
     try_enum,
     utils,
 )
 
 __all__ = ("VoiceState", "Member")
+
+from disnake.member import __dict__ as __original_dict__
+locals().update(__original_dict__)

@@ -1,36 +1,24 @@
 from disnake.ext.commands.bot_base import (
-    Any,
     BotBase,
     CFT,
     CXT,
-    Callable,
     CommonBotBase,
     Context,
     DefaultHelpCommand,
     GroupMixin,
     HelpCommand,
-    List,
     MISSING,
-    Optional,
     StringView,
     T,
-    TYPE_CHECKING,
-    Type,
-    TypeVar,
-    Union,
     _DefaultRepr,
     _default,
     _is_submodule,
-    annotations,
-    asyncio,
-    collections,
-    disnake,
     errors,
-    inspect,
-    sys,
-    traceback,
     when_mentioned,
     when_mentioned_or,
 )
 
 __all__ = ("when_mentioned", "when_mentioned_or", "BotBase")
+
+from disnake.ext.commands.bot_base import __dict__ as __original_dict__
+locals().update(__original_dict__)

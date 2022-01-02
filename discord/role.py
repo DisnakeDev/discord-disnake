@@ -1,25 +1,20 @@
 from disnake.role import (
-    Any,
     Asset,
     Colour,
-    Dict,
     Hashable,
     InvalidArgument,
-    List,
     MISSING,
-    Optional,
     PartialEmoji,
     Permissions,
     R,
     Role,
     RoleTags,
-    TYPE_CHECKING,
-    TypeVar,
-    Union,
     _bytes_to_base64_data,
     _get_as_snowflake,
-    annotations,
     snowflake_time,
 )
 
 __all__ = ("RoleTags", "Role")
+
+from disnake.role import __dict__ as __original_dict__
+locals().update(__original_dict__)

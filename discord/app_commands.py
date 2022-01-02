@@ -1,44 +1,28 @@
 from disnake.app_commands import (
-    ABC,
-    Any,
     ApplicationCommand,
     ApplicationCommandPermissions,
     ApplicationCommandType,
     ChannelType,
-    ChoiceValue,
-    Choices,
     ConfigWarning,
-    Dict,
     GuildApplicationCommandPermissions,
     InvalidArgument,
-    Iterable,
-    List,
-    Mapping,
     MessageCommand,
     Option,
     OptionChoice,
     OptionType,
-    Optional,
     PartialGuildAppCmdPerms,
     PartialGuildApplicationCommandPermissions,
     Role,
     SlashCommand,
-    TYPE_CHECKING,
-    Union,
     UnresolvedGuildApplicationCommandPermissions,
     User,
     UserCommand,
     _get_and_cast,
     _get_as_snowflake,
-    annotations,
     application_command_factory,
-    cast,
     enum_if_int,
-    math,
-    re,
     try_enum,
     try_enum_to_int,
-    warnings,
 )
 
 __all__ = (
@@ -55,3 +39,6 @@ __all__ = (
     "PartialGuildAppCmdPerms",
     "UnresolvedGuildApplicationCommandPermissions",
 )
+
+from disnake.app_commands import __dict__ as __original_dict__
+locals().update(__original_dict__)

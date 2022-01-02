@@ -6,11 +6,10 @@ from disnake.types.embed import (
     EmbedImage,
     EmbedProvider,
     EmbedThumbnail,
-    EmbedType,
     EmbedVideo,
-    List,
-    Literal,
-    TypedDict,
     _EmbedFieldOptional,
     _EmbedFooterOptional,
 )
+
+from disnake.types.embed import __dict__ as __original_dict__
+locals().update(__original_dict__)

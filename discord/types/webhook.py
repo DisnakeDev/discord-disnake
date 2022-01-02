@@ -1,17 +1,14 @@
 from disnake.types.webhook import (
     FollowerWebhook,
-    Literal,
-    Optional,
     PartialChannel,
     PartialWebhook,
-    Snowflake,
     SourceGuild,
-    TypedDict,
     User,
     Webhook,
-    WebhookType,
     _FollowerWebhookOptional,
     _FullWebhook,
     _WebhookOptional,
-    annotations,
 )
+
+from disnake.types.webhook import __dict__ as __original_dict__
+locals().update(__original_dict__)

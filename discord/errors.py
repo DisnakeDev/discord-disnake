@@ -1,8 +1,6 @@
 from disnake.errors import (
-    Any,
     ClientException,
     ConnectionClosed,
-    Dict,
     DiscordException,
     DiscordServerError,
     Forbidden,
@@ -14,17 +12,11 @@ from disnake.errors import (
     InteractionTimedOut,
     InvalidArgument,
     InvalidData,
-    List,
     LoginFailure,
     NoMoreItems,
     NotFound,
-    Optional,
     PrivilegedIntentsRequired,
-    TYPE_CHECKING,
-    Tuple,
-    Union,
     _flatten_error_dict,
-    annotations,
 )
 
 __all__ = (
@@ -46,3 +38,6 @@ __all__ = (
     "InteractionResponded",
     "InteractionNotResponded",
 )
+
+from disnake.errors import __dict__ as __original_dict__
+locals().update(__original_dict__)

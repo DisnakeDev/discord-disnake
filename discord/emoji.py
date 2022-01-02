@@ -1,20 +1,8 @@
 from disnake.emoji import (
-    Any,
-    Asset,
-    AssetMixin,
-    Emoji,
-    Iterator,
-    List,
-    MISSING,
-    Optional,
-    PartialEmoji,
-    SnowflakeList,
-    TYPE_CHECKING,
-    Tuple,
-    User,
-    _EmojiTag,
-    annotations,
-    snowflake_time,
+    Asset, AssetMixin, Emoji, MISSING, PartialEmoji, SnowflakeList, User, _EmojiTag, snowflake_time
 )
 
 __all__ = ("Emoji",)
+
+from disnake.emoji import __dict__ as __original_dict__
+locals().update(__original_dict__)

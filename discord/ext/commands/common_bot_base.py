@@ -1,33 +1,8 @@
 from disnake.ext.commands.common_bot_base import (
-    Any,
-    CFT,
-    Callable,
-    Cog,
-    CogT,
-    CommonBotBase,
-    Dict,
-    FuncT,
-    Generic,
-    List,
-    MISSING,
-    Mapping,
-    Optional,
-    Set,
-    TYPE_CHECKING,
-    TypeVar,
-    Union,
-    _is_submodule,
-    annotations,
-    asyncio,
-    collections,
-    disnake,
-    errors,
-    importlib,
-    logging,
-    os,
-    sys,
-    time,
-    types,
+    CFT, Cog, CogT, CommonBotBase, FuncT, MISSING, _is_submodule, errors
 )
 
 __all__ = ("CommonBotBase",)
+
+from disnake.ext.commands.common_bot_base import __dict__ as __original_dict__
+locals().update(__original_dict__)

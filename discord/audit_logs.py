@@ -1,28 +1,15 @@
 from disnake.audit_logs import (
-    Any,
     Asset,
     AuditLogChanges,
     AuditLogDiff,
     AuditLogEntry,
-    Callable,
-    ClassVar,
     Colour,
-    Dict,
-    Generator,
     Hashable,
     Invite,
-    List,
     Object,
-    Optional,
     PermissionOverwrite,
     Permissions,
     T,
-    TYPE_CHECKING,
-    Transformer,
-    Tuple,
-    Type,
-    TypeVar,
-    Union,
     _AuditLogProxyMemberDisconnect,
     _AuditLogProxyMemberMoveOrMessageDelete,
     _AuditLogProxyMemberPrune,
@@ -43,10 +30,11 @@ from disnake.audit_logs import (
     _transform_snowflake,
     _transform_type,
     abc,
-    annotations,
-    cast,
     enums,
     utils,
 )
 
 __all__ = ("AuditLogDiff", "AuditLogChanges", "AuditLogEntry")
+
+from disnake.audit_logs import __dict__ as __original_dict__
+locals().update(__original_dict__)

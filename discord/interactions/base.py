@@ -1,10 +1,8 @@
 from disnake.interactions.base import (
-    Any,
     Attachment,
     ChannelType,
     ClientException,
     ClientUser,
-    Dict,
     Guild,
     HTTPException,
     Interaction,
@@ -15,30 +13,24 @@ from disnake.interactions.base import (
     InteractionResponseType,
     InteractionTimedOut,
     InteractionType,
-    Iterable,
-    List,
     MISSING,
-    Mapping,
     Member,
     Message,
     NotFound,
     Object,
     OptionChoice,
-    Optional,
     PartialMessageable,
     Permissions,
-    TYPE_CHECKING,
-    Tuple,
-    Union,
     User,
     Webhook,
     _InteractionMessageState,
-    annotations,
     async_context,
-    asyncio,
     handle_message_parameters,
     try_enum,
     utils,
 )
 
 __all__ = ("Interaction", "InteractionMessage", "InteractionResponse")
+
+from disnake.interactions.base import __dict__ as __original_dict__
+locals().update(__original_dict__)

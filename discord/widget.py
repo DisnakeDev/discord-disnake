@@ -1,19 +1,13 @@
 from disnake.widget import (
-    Any,
     BaseActivity,
     BaseUser,
     Invite,
-    List,
-    Optional,
     Spotify,
     Status,
-    TYPE_CHECKING,
-    Union,
     Widget,
     WidgetChannel,
     WidgetMember,
     _get_as_snowflake,
-    annotations,
     create_activity,
     resolve_invite,
     snowflake_time,
@@ -21,3 +15,6 @@ from disnake.widget import (
 )
 
 __all__ = ("WidgetChannel", "WidgetMember", "Widget")
+
+from disnake.widget import __dict__ as __original_dict__
+locals().update(__original_dict__)

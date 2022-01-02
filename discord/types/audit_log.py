@@ -1,27 +1,12 @@
 from disnake.types.audit_log import (
     AuditEntryInfo,
     AuditLog,
-    AuditLogChange,
     AuditLogEntry,
-    AuditLogEvent,
-    ChannelType,
-    DefaultMessageNotificationLevel,
-    ExplicitContentFilterLevel,
-    IntegrationExpireBehavior,
-    List,
-    Literal,
-    MFALevel,
-    Optional,
     PartialIntegration,
     PermissionOverwrite,
     Role,
-    Snowflake,
     Thread,
-    TypedDict,
-    Union,
     User,
-    VerificationLevel,
-    VideoQualityMode,
     Webhook,
     _AuditLogChange_AssetHash,
     _AuditLogChange_Bool,
@@ -39,6 +24,7 @@ from disnake.types.audit_log import (
     _AuditLogChange_VerificationLevel,
     _AuditLogChange_VideoQualityMode,
     _AuditLogEntryOptional,
-    annotations,
-    datetime,
 )
+
+from disnake.types.audit_log import __dict__ as __original_dict__
+locals().update(__original_dict__)

@@ -3,7 +3,7 @@ from setuptools import setup
 
 
 version = ""
-with open("disnake/__init__.py", encoding="utf-8") as f:
+with open("discord/__init__.py", encoding="utf-8") as f:
     version = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]', f.read(), re.MULTILINE).group(1)  # type: ignore
 
 if not version:

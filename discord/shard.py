@@ -1,12 +1,9 @@
 from disnake.shard import (
-    Any,
     AutoShardedClient,
     AutoShardedConnectionState,
-    Callable,
     Client,
     ClientException,
     ConnectionClosed,
-    Dict,
     DiscordVoiceWebSocket,
     DiscordWebSocket,
     EventItem,
@@ -15,23 +12,15 @@ from disnake.shard import (
     GatewayNotFound,
     HTTPException,
     KeepAliveHandler,
-    List,
-    Optional,
     PrivilegedIntentsRequired,
     ReconnectWebSocket,
     Shard,
     ShardInfo,
     Status,
-    TYPE_CHECKING,
-    Tuple,
-    Type,
-    TypeVar,
     VoiceKeepAliveHandler,
-    _log,
-    aiohttp,
-    annotations,
-    asyncio,
-    logging,
 )
 
 __all__ = ("AutoShardedClient", "ShardInfo")
+
+from disnake.shard import __dict__ as __original_dict__
+locals().update(__original_dict__)

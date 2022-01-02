@@ -3,24 +3,16 @@ from disnake.ui.button import (
     Button,
     ButtonComponent,
     ButtonStyle,
-    Callable,
     ComponentType,
     DecoratedItem,
     Item,
-    ItemCallbackType,
-    Optional,
     PartialEmoji,
-    TYPE_CHECKING,
-    Tuple,
-    Type,
-    TypeVar,
-    Union,
     V,
     _EmojiTag,
-    annotations,
     button,
-    inspect,
-    os,
 )
 
 __all__ = ("Button", "button")
+
+from disnake.ui.button import __dict__ as __original_dict__
+locals().update(__original_dict__)

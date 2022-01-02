@@ -1,5 +1,4 @@
 from disnake.ext.commands.ctx_menus_core import (
-    Any,
     ArgumentParsingError,
     BadArgument,
     BadBoolArgument,
@@ -12,7 +11,6 @@ from disnake.ext.commands.ctx_menus_core import (
     BotMissingAnyRole,
     BotMissingPermissions,
     BotMissingRole,
-    Callable,
     ChannelNotFound,
     ChannelNotReadable,
     CheckAnyFailure,
@@ -23,7 +21,6 @@ from disnake.ext.commands.ctx_menus_core import (
     CommandOnCooldown,
     CommandRegistrationError,
     ConversionError,
-    Coroutine,
     DisabledCommand,
     EmojiNotFound,
     ExpectedClosingQuoteError,
@@ -54,27 +51,23 @@ from disnake.ext.commands.ctx_menus_core import (
     NoPrivateMessage,
     NotOwner,
     ObjectNotFound,
-    Optional,
     PartialEmojiConversionFailure,
     PrivateMessageOnly,
     RoleNotFound,
-    Sequence,
-    TYPE_CHECKING,
     ThreadNotFound,
     TooManyArguments,
     TooManyFlags,
-    TypeVar,
     UnexpectedQuoteError,
-    Union,
     UserCommand,
     UserInputError,
     UserNotFound,
     _get_overridden_method,
-    annotations,
-    asyncio,
     message_command,
     safe_call,
     user_command,
 )
 
 __all__ = ("InvokableUserCommand", "InvokableMessageCommand", "user_command", "message_command")
+
+from disnake.ext.commands.ctx_menus_core import __dict__ as __original_dict__
+locals().update(__original_dict__)

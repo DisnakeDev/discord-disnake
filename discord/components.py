@@ -1,29 +1,21 @@
 from disnake.components import (
     ActionRow,
-    Any,
     Button,
     ButtonStyle,
     C,
-    ClassVar,
     Component,
     ComponentType,
-    Dict,
-    List,
     MISSING,
-    Optional,
     PartialEmoji,
     SelectMenu,
     SelectOption,
-    TYPE_CHECKING,
-    Tuple,
-    Type,
-    TypeVar,
-    Union,
     _EmojiTag,
     _component_factory,
-    annotations,
     get_slots,
     try_enum,
 )
 
 __all__ = ("Component", "ActionRow", "Button", "SelectMenu", "SelectOption")
+
+from disnake.components import __dict__ as __original_dict__
+locals().update(__original_dict__)

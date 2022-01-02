@@ -1,22 +1,15 @@
 from disnake.asset import (
-    Any,
     Asset,
     AssetMixin,
     DiscordException,
     InvalidArgument,
-    Literal,
     MISSING,
-    Optional,
-    TYPE_CHECKING,
-    Tuple,
-    Union,
     VALID_ASSET_FORMATS,
     VALID_STATIC_FORMATS,
-    annotations,
-    io,
-    os,
     utils,
-    yarl,
 )
 
 __all__ = ("Asset",)
+
+from disnake.asset import __dict__ as __original_dict__
+locals().update(__original_dict__)

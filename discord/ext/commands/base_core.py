@@ -1,6 +1,4 @@
 from disnake.ext.commands.base_core import (
-    ABC,
-    Any,
     AppCommandT,
     ApplicationCommand,
     ApplicationCommandType,
@@ -17,7 +15,6 @@ from disnake.ext.commands.base_core import (
     BotMissingPermissions,
     BotMissingRole,
     BucketType,
-    Callable,
     ChannelNotFound,
     ChannelNotReadable,
     CheckAnyFailure,
@@ -30,7 +27,6 @@ from disnake.ext.commands.base_core import (
     CommandRegistrationError,
     ConversionError,
     CooldownMapping,
-    Dict,
     DisabledCommand,
     EmojiNotFound,
     ErrorT,
@@ -46,8 +42,6 @@ from disnake.ext.commands.base_core import (
     HookT,
     InvalidEndOfQuotedStringError,
     InvokableApplicationCommand,
-    List,
-    Mapping,
     MaxConcurrency,
     MaxConcurrencyReached,
     MemberNotFound,
@@ -63,27 +57,20 @@ from disnake.ext.commands.base_core import (
     NoPrivateMessage,
     NotOwner,
     ObjectNotFound,
-    Optional,
     P,
     PartialEmojiConversionFailure,
     PrivateMessageOnly,
     RoleNotFound,
     T,
-    TYPE_CHECKING,
     ThreadNotFound,
     TooManyArguments,
     TooManyFlags,
-    TypeVar,
     UnexpectedQuoteError,
     UnresolvedGuildApplicationCommandPermissions,
     UserInputError,
     UserNotFound,
     _get_overridden_method,
-    annotations,
     async_all,
-    asyncio,
-    datetime,
-    functools,
     guild_permissions,
     maybe_coroutine,
     warn_deprecated,
@@ -91,3 +78,6 @@ from disnake.ext.commands.base_core import (
 )
 
 __all__ = ("InvokableApplicationCommand", "guild_permissions")
+
+from disnake.ext.commands.base_core import __dict__ as __original_dict__
+locals().update(__original_dict__)

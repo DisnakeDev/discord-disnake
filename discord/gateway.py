@@ -12,20 +12,7 @@ from disnake.gateway import (
     SpeakingState,
     VoiceKeepAliveHandler,
     WebSocketClosure,
-    _log,
-    aiohttp,
-    asyncio,
-    concurrent,
-    deque,
-    logging,
-    namedtuple,
-    struct,
-    sys,
-    threading,
-    time,
-    traceback,
     utils,
-    zlib,
 )
 
 __all__ = (
@@ -35,3 +22,6 @@ __all__ = (
     "DiscordVoiceWebSocket",
     "ReconnectWebSocket",
 )
+
+from disnake.gateway import __dict__ as __original_dict__
+locals().update(__original_dict__)

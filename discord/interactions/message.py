@@ -3,17 +3,15 @@ from disnake.interactions.message import (
     Button,
     ComponentType,
     Interaction,
-    List,
     Message,
     MessageInteraction,
     MessageInteractionData,
-    Optional,
     SelectMenu,
-    TYPE_CHECKING,
-    Union,
-    annotations,
     cached_slot_property,
     try_enum,
 )
 
 __all__ = ("MessageInteraction", "MessageInteractionData")
+
+from disnake.interactions.message import __dict__ as __original_dict__
+locals().update(__original_dict__)

@@ -4,29 +4,23 @@ from disnake.sticker import (
     GuildSticker,
     Hashable,
     InvalidData,
-    List,
-    Literal,
     MISSING,
-    Optional,
     StandardSticker,
     Sticker,
     StickerFormatType,
     StickerItem,
     StickerPack,
     StickerType,
-    TYPE_CHECKING,
-    Tuple,
-    Type,
-    Union,
     _StickerTag,
     _sticker_factory,
-    annotations,
     cached_slot_property,
     find,
     get,
     snowflake_time,
     try_enum,
-    unicodedata,
 )
 
 __all__ = ("StickerPack", "StickerItem", "Sticker", "StandardSticker", "GuildSticker")
+
+from disnake.sticker import __dict__ as __original_dict__
+locals().update(__original_dict__)
