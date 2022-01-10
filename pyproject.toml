@@ -1,0 +1,10 @@
+[tool.black]
+line_length = 100
+
+[tool.isort]
+profile= "black"
+py_version = 38
+line_length = 100
+combine_as_imports = true
+filter_files = true
+known_first_party = ["disnake"]

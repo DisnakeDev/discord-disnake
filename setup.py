@@ -1,10 +1,23 @@
 import re
+
 from setuptools import setup
 
-
 requirements = []
-with open("requirements.txt", "r", encoding="utf-8") as f:
-    requirements = f.readlines()
+versions = []
+with open("version.txt", "r") as f:
+    for line in f:
+        if line.startswith("#"):
+            continue
+        if not (ver := line.strip()):
+            continue
+        versions.append(ver)
+        if len(versions) == 2:
+            break
+    read_version, sub_version = versions
+
+
+requirements.append("disnake" + "==" + read_version)
+
 
 version = ""
 with open("discord/__init__.py", encoding="utf-8") as f:
@@ -13,18 +26,30 @@ with open("discord/__init__.py", encoding="utf-8") as f:
 if not version:
     raise RuntimeError("version is not set")
 
+if read_version != version:
+    raise RuntimeError(f"version.txt is {read_version}, but __init__.py is {version}")
+
+version += "." + sub_version
+if version.strip(".").count(".") != 3:
+    raise RuntimeError(
+        'Fourth digit of version must be configured properly. Current configured version is "{}"'.format(
+            version
+        )
+    )
+
+
 readme = ""
 with open("README.md", encoding="utf-8") as f:
     readme = f.read()
 
 packages = [
     "discord",
+    "discord.ext.commands",
+    "discord.ext.tasks",
+    "discord.interactions",
     "discord.types",
     "discord.ui",
     "discord.webhook",
-    "discord.interactions",
-    "discord.ext.commands",
-    "discord.ext.tasks",
 ]
 
 setup(
@@ -32,6 +57,7 @@ setup(
     author="Rapptz, EQUENOS",
     url="https://github.com/DisnakeDev/discord-disnake",
     project_urls={
+        "Homepage:": "https://disnake.dev/",
         "Documentation": "https://docs.disnake.dev/en/latest",
         "Issue tracker": "https://github.com/DisnakeDev/discord-disnake/issues",
     },
