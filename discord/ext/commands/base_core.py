@@ -52,10 +52,10 @@ from disnake.ext.commands.base_core import (
     MissingRequiredArgument,
     MissingRequiredFlag,
     MissingRole,
-    NSFWChannelRequired,
     NoEntryPointError,
     NoPrivateMessage,
     NotOwner,
+    NSFWChannelRequired,
     ObjectNotFound,
     P,
     PartialEmojiConversionFailure,
@@ -69,6 +69,7 @@ from disnake.ext.commands.base_core import (
     UnresolvedGuildApplicationCommandPermissions,
     UserInputError,
     UserNotFound,
+    __dict__ as __original_dict__,
     _get_overridden_method,
     async_all,
     guild_permissions,
@@ -79,5 +80,6 @@ from disnake.ext.commands.base_core import (
 
 __all__ = ("InvokableApplicationCommand", "guild_permissions")
 
-from disnake.ext.commands.base_core import __dict__ as __original_dict__
 locals().update(__original_dict__)
+
+del __original_dict__
