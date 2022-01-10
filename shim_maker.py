@@ -1,11 +1,17 @@
-from importlib import import_module
 import inspect
 import os
+import pathlib
 import sys
-from typing import Iterable
+from importlib import import_module
+from typing import Iterable, List, Optional, Tuple
+import isort
+
+ISORT_CONFIG = pathlib.Path(".isort.cfg")
 
 
-def fancy_list(prefix: str, to_join: Iterable[str], limit: int = 100, with_brackets: bool = False) -> str:
+def fancy_list(
+    prefix: str, to_join: Iterable[str], limit: int = 100, with_brackets: bool = False
+) -> str:
     as_line = ", ".join(to_join)
     if with_brackets:
         if "," not in as_line:
@@ -21,32 +27,48 @@ def fancy_list(prefix: str, to_join: Iterable[str], limit: int = 100, with_brack
     return prefix + "(\n    " + ",\n    ".join(to_join) + ",\n)"
 
 
-def create_imports(module_name: str) -> str:
+def sort_imports(imports: str) -> str:
+    return isort.api.sort_code_string(imports, file_path=ISORT_CONFIG)
+
+
+def create_file(module_name: str) -> Tuple[str, str]:
+    """Creates a docstring and imports for a module."""
     subpckg = import_module(module_name)
     root_module_name = module_name.split(".")[0] + "."
-    members = [
-        memb for memb, val in inspect.getmembers(subpckg)
+    docstring = None
+    members = []
+    for memb, val in inspect.getmembers(subpckg):
+        if memb == "__doc__":
+            docstring = val
+
         if (
             not memb.startswith("__")
             and memb not in ("TYPE_CHECKING",)
-            and (not inspect.ismodule(val) or val.__name__.startswith(root_module_name))  # skip imported external modules
-            and getattr(val, "__module__", module_name).startswith(root_module_name)  # skip types imported from external modules
-        )
-    ]
+            and (
+                not inspect.ismodule(val) or val.__name__.startswith(root_module_name)
+            )  # skip imported external modules
+            and getattr(val, "__module__", module_name).startswith(
+                root_module_name
+            )  # skip types imported from external modules
+        ):
+            members.append(memb)
+
     imports = fancy_list(f"from {module_name} import ", members)
 
+    imports += f"\nfrom {module_name} import __dict__ as __original_dict__\n\n"
+
     try:
-        public_members = [f"\"{memb}\"" for memb in subpckg.__all__]
+        public_members = [f'"{memb}"' for memb in subpckg.__all__]
     except AttributeError:
         public_members = None
 
     if public_members:
         new_all = fancy_list("__all__ = ", public_members, with_brackets=True)
-        imports += "\n\n" + new_all
+        imports +=  new_all + "\n\n"
 
-    imports += f"\n\nfrom {module_name} import __dict__ as __original_dict__\nlocals().update(__original_dict__)"
+    imports += "locals().update(__original_dict__)"
 
-    return imports + "\n"
+    return docstring, sort_imports(imports).strip()
 
 
 def shim_folder(path: str, pypath: str, shim_path: str) -> None:
@@ -61,9 +83,13 @@ def shim_folder(path: str, pypath: str, shim_path: str) -> None:
             pass
 
         elif fn.endswith(".py"):
-            imports = create_imports(f"{pypath}.{fn[:-3]}")
+
+            docstring, imports = create_file(f"{pypath}.{fn[:-3]}")
+
             with open(f"{shim_path}/{fn}", "w", encoding="utf-8") as f:
-                f.write(imports)
+                if docstring:
+                    f.write('"""\n' + docstring.strip() + '\n"""\n\n')
+                f.write(imports + "\n")
 
         elif os.path.isdir(f"{path}/{fn}"):
             os.makedirs(f"{shim_path}/{fn}", exist_ok=True)
