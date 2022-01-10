@@ -66,7 +66,7 @@ def create_file(module_name: str) -> Tuple[str, str]:
         new_all = fancy_list("__all__ = ", public_members, with_brackets=True)
         imports +=  new_all + "\n\n"
 
-    imports += "locals().update(__original_dict__)"
+    imports += "locals().update(__original_dict__)\n\ndel __original_dict__\n"
 
     return docstring, sort_imports(imports).strip()
 
