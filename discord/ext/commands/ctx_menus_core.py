@@ -46,10 +46,10 @@ from disnake.ext.commands.ctx_menus_core import (
     MissingRequiredArgument,
     MissingRequiredFlag,
     MissingRole,
-    NSFWChannelRequired,
     NoEntryPointError,
     NoPrivateMessage,
     NotOwner,
+    NSFWChannelRequired,
     ObjectNotFound,
     PartialEmojiConversionFailure,
     PrivateMessageOnly,
@@ -61,6 +61,7 @@ from disnake.ext.commands.ctx_menus_core import (
     UserCommand,
     UserInputError,
     UserNotFound,
+    __dict__ as __original_dict__,
     _get_overridden_method,
     message_command,
     safe_call,
@@ -69,5 +70,6 @@ from disnake.ext.commands.ctx_menus_core import (
 
 __all__ = ("InvokableUserCommand", "InvokableMessageCommand", "user_command", "message_command")
 
-from disnake.ext.commands.ctx_menus_core import __dict__ as __original_dict__
 locals().update(__original_dict__)
+
+del __original_dict__

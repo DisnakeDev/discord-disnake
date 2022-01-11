@@ -17,6 +17,7 @@ from disnake.app_commands import (
     UnresolvedGuildApplicationCommandPermissions,
     User,
     UserCommand,
+    __dict__ as __original_dict__,
     _get_and_cast,
     _get_as_snowflake,
     application_command_factory,
@@ -40,5 +41,6 @@ __all__ = (
     "UnresolvedGuildApplicationCommandPermissions",
 )
 
-from disnake.app_commands import __dict__ as __original_dict__
 locals().update(__original_dict__)
+
+del __original_dict__

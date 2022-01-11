@@ -1,8 +1,9 @@
 from disnake.ext.commands.interaction_bot_base import (
-    ApplicationCommand,
-    ApplicationCommandType,
     CFT,
     CXT,
+    MISSING,
+    ApplicationCommand,
+    ApplicationCommandType,
     Cog,
     CommandRegistrationError,
     CommonBotBase,
@@ -13,13 +14,13 @@ from disnake.ext.commands.interaction_bot_base import (
     InvokableMessageCommand,
     InvokableSlashCommand,
     InvokableUserCommand,
-    MISSING,
     Option,
     PartialGuildApplicationCommandPermissions,
     SubCommand,
     SubCommandGroup,
     SyncWarning,
     T,
+    __dict__ as __original_dict__,
     _app_commands_diff,
     _show_diff,
     errors,
@@ -30,5 +31,6 @@ from disnake.ext.commands.interaction_bot_base import (
 
 __all__ = ("InteractionBotBase",)
 
-from disnake.ext.commands.interaction_bot_base import __dict__ as __original_dict__
 locals().update(__original_dict__)
+
+del __original_dict__

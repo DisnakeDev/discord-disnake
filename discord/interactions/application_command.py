@@ -1,4 +1,5 @@
 from disnake.interactions.application_command import (
+    MISSING,
     AppCmdDataOptionT,
     AppCmdInter,
     AppCommandInter,
@@ -15,7 +16,6 @@ from disnake.interactions.application_command import (
     Guild,
     GuildCommandInteraction,
     Interaction,
-    MISSING,
     Member,
     Message,
     MessageCommandInteraction,
@@ -23,6 +23,7 @@ from disnake.interactions.application_command import (
     Role,
     User,
     UserCommandInteraction,
+    __dict__ as __original_dict__,
     _threaded_channel_factory,
     try_enum,
 )
@@ -44,5 +45,6 @@ __all__ = (
     "AppCmdInter",
 )
 
-from disnake.interactions.application_command import __dict__ as __original_dict__
 locals().update(__original_dict__)
+
+del __original_dict__

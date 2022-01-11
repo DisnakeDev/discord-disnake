@@ -7,11 +7,13 @@ from disnake.interactions.message import (
     MessageInteraction,
     MessageInteractionData,
     SelectMenu,
+    __dict__ as __original_dict__,
     cached_slot_property,
     try_enum,
 )
 
 __all__ = ("MessageInteraction", "MessageInteractionData")
 
-from disnake.interactions.message import __dict__ as __original_dict__
 locals().update(__original_dict__)
+
+del __original_dict__
