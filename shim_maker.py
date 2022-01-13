@@ -1,5 +1,7 @@
 import inspect
 import pathlib
+import subprocess
+import sys
 from importlib import import_module
 from typing import Iterable, List, Optional, Tuple
 
@@ -8,22 +10,11 @@ import isort
 ISORT_CONFIG = pathlib.Path("pyproject.toml")
 
 
-def fancy_list(
-    prefix: str, to_join: Iterable[str], limit: int = 100, with_brackets: bool = False
-) -> str:
-    as_line = ", ".join(to_join)
-    if with_brackets:
-        if "," not in as_line:
-            as_line += ","
-        if len(prefix) + len(as_line) + 2 <= limit:
-            return f"{prefix}({as_line})"
-    elif len(prefix) + len(as_line) <= limit:
-        return prefix + as_line
-
-    if 4 + len(as_line) <= limit:
-        return prefix + "(\n    " + as_line + "\n)"
-
-    return prefix + "(\n    " + ",\n    ".join(to_join) + ",\n)"
+def fancy_list(prefix: str, to_join: Iterable[str]) -> str:
+    prefix = prefix.rstrip()
+    if len(to_join) > 1:
+        return prefix + " (\n    " + ",\n    ".join(to_join) + ",\n)"
+    return prefix + " (" + f",\n{' ' * 4}".join(to_join) + ",)"
 
 
 def sort_imports(imports: str) -> str:
@@ -60,7 +51,7 @@ def create_file(module_name: str) -> Tuple[Optional[str], str]:
         public_members = None
 
     if public_members:
-        new_all = fancy_list("__all__ = ", public_members, with_brackets=True)
+        new_all = fancy_list("__all__ = ", public_members)
         code += "\n\n" + new_all
 
     code += f"\n\n# isort: split\nfrom {module_name} import __dict__ as __original_dict__\nlocals().update(__original_dict__)"
@@ -79,16 +70,16 @@ def shim_folder(path: pathlib.Path, pypath: str, shim_path: pathlib.Path) -> Lis
 
         if fn.name in ("__init__.py", "__main__.py", "py.typed") and "tasks" != fn.parent.name:
             with open(path / mod, "r", encoding="utf-8") as fr:
+                formatted = sort_imports(fr.read())
                 try:
                     with open(shim_path / mod, "r", encoding="utf-8") as fw:
-                        if fw.read() == fr.read():
+                        if formatted == fw.read():
                             continue
                 except FileNotFoundError:
                     pass
-                fr.seek(0)
                 print("Updating file: ", shim_path / mod)
                 with open(shim_path / mod, "w", encoding="utf-8") as fw:
-                    fw.write(fr.read())
+                    fw.write(formatted)
             modified.append(shim_path / mod)
 
         elif fn.suffix == ".py":
@@ -102,6 +93,7 @@ def shim_folder(path: pathlib.Path, pypath: str, shim_path: pathlib.Path) -> Lis
                     existing = f.read()
             except FileNotFoundError:
                 existing = None
+
             if existing != to_write:
                 print("Updating file: ", shim_path / mod)
                 with open(shim_path / mod, "w", encoding="utf-8") as f:
