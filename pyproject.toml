@@ -8,3 +8,10 @@ line_length = 100
 combine_as_imports = true
 filter_files = true
 known_first_party = ["disnake"]
+
+[tool.taskipy.tasks]
+black = { cmd = "task lint black", help = "Run black" }
+isort = { cmd = "task lint isort", help = "Run isort" }
+generate = { cmd= "python shim_maker.py", help = "Generate a new version of the shim" }
+lint = { cmd = "pre-commit run --all-files", help = "Checks all files for linting errors" }
+precommit = { cmd = "pre-commit install --install-hooks", help = "Installs the precommit hook" }

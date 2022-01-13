@@ -108,7 +108,7 @@ def shim_folder(path: pathlib.Path, pypath: str, shim_path: pathlib.Path) -> Lis
     return modified
 
 
-def shim(path: pathlib.Path, shim_path: pathlib.Path) -> None:
+def shim(path: pathlib.Path, shim_path: pathlib.Path) -> List[pathlib.Path]:
     shim_path.mkdir(parents=True, exist_ok=True)
     return shim_folder(path, path.stem, shim_path)
 
@@ -119,12 +119,14 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("path", help="Path to the disnake module.")
     parser.add_argument(
-        "-s",
-        "--shim",
+        "shim",
         help="Name of the shim module.",
+        nargs="?",
         default="discord",
     )
+    parser.add_argument("--files", help=argparse.SUPPRESS, dest="files", nargs="*", default=None)
     args = parser.parse_args()
+
     try:
         path = pathlib.Path(args.path)
     except ValueError:
@@ -142,7 +144,16 @@ def main():
     shim_dir = shim_dir.resolve()
 
     edited = shim(path, shim_dir)
-    return edited or None
+    if args.files:
+        for edited_file in edited:
+            if str(edited_file) in args.files:
+                args.files.remove(str(edited_file))
+
+        if args.files:
+            print(f"The following files were not found: {','.join(args.files)}")
+            return 1
+
+    return edited or 0
 
 
 if __name__ == "__main__":
@@ -153,4 +164,5 @@ if __name__ == "__main__":
         print(len(res), "files modified.")
     else:
         print("No changes were made.")
+
     sys.exit(bool(res))
