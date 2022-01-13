@@ -31,7 +31,6 @@ from disnake.ui.view import (
     SelectComponent,
     View,
     ViewStore,
-    __dict__ as __original_dict__,
     _component_factory,
     _component_to_item,
     _ViewWeights,
@@ -41,6 +40,7 @@ from disnake.ui.view import (
 
 __all__ = ("View",)
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.ui.view import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

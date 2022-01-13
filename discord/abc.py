@@ -49,7 +49,6 @@ from disnake.abc import (
     User,
     VoiceClient,
     VoiceProtocol,
-    __dict__ as __original_dict__,
     _Overwrites,
     _Undefined,
     _undefined,
@@ -59,6 +58,7 @@ from disnake.abc import (
 
 __all__ = ("Snowflake", "User", "PrivateChannel", "GuildChannel", "Messageable", "Connectable")
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.abc import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

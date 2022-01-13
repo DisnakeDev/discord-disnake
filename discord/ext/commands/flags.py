@@ -35,7 +35,6 @@ from disnake.ext.commands.flags import (
     MissingRequiredFlag,
     StringView,
     TooManyFlags,
-    __dict__ as __original_dict__,
     convert_flag,
     flag,
     get_flags,
@@ -49,6 +48,7 @@ from disnake.ext.commands.flags import (
 
 __all__ = ("Flag", "flag", "FlagConverter")
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.ext.commands.flags import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

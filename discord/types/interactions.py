@@ -44,7 +44,6 @@ from disnake.types.interactions import (
     PartialGuildApplicationCommandPermissions,
     Role,
     User,
-    __dict__ as __original_dict__,
     _ApplicationCommandInteractionDataOption,
     _ApplicationCommandInteractionDataOptional,
     _ApplicationCommandInteractionDataOptionBoolean,
@@ -61,6 +60,7 @@ from disnake.types.interactions import (
     _InteractionResponseOptional,
 )
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.types.interactions import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

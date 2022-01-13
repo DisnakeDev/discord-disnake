@@ -29,12 +29,12 @@ from disnake.types.components import (
     PartialEmoji,
     SelectMenu,
     SelectOption,
-    __dict__ as __original_dict__,
     _ButtonComponentOptional,
     _SelectMenuOptional,
     _SelectOptionsOptional,
 )
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.types.components import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

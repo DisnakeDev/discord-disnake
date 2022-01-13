@@ -36,7 +36,6 @@ from disnake.sticker import (
     StickerItem,
     StickerPack,
     StickerType,
-    __dict__ as __original_dict__,
     _sticker_factory,
     _StickerTag,
     cached_slot_property,
@@ -48,6 +47,7 @@ from disnake.sticker import (
 
 __all__ = ("StickerPack", "StickerItem", "Sticker", "StandardSticker", "GuildSticker")
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.sticker import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

@@ -48,7 +48,6 @@ from disnake.opus import (
     OpusError,
     OpusNotLoaded,
     SignalCtl,
-    __dict__ as __original_dict__,
     _err_lt,
     _err_ne,
     _lib,
@@ -67,6 +66,7 @@ from disnake.opus import (
 
 __all__ = ("Encoder", "OpusError", "OpusNotLoaded")
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.opus import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

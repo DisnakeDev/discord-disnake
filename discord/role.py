@@ -34,7 +34,6 @@ from disnake.role import (
     R,
     Role,
     RoleTags,
-    __dict__ as __original_dict__,
     _bytes_to_base64_data,
     _get_as_snowflake,
     snowflake_time,
@@ -42,6 +41,7 @@ from disnake.role import (
 
 __all__ = ("RoleTags", "Role")
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.role import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

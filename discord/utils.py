@@ -40,7 +40,6 @@ from disnake.utils import (
     SnowflakeList,
     T,
     T_co,
-    __dict__ as __original_dict__,
     _achunk,
     _bytes_to_base64_data,
     _cached_property,
@@ -109,6 +108,7 @@ __all__ = (
     "format_dt",
 )
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.utils import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

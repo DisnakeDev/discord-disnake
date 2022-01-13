@@ -31,11 +31,11 @@ from disnake.types.voice import (
     VoiceRegion,
     VoiceServerUpdate,
     VoiceState,
-    __dict__ as __original_dict__,
     _PartialVoiceStateOptional,
     _VoiceState,
 )
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.types.voice import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

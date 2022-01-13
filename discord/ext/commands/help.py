@@ -31,13 +31,13 @@ from disnake.ext.commands.help import (
     HelpCommand,
     MinimalHelpCommand,
     Paginator,
-    __dict__ as __original_dict__,
     _HelpCommandImpl,
     _not_overriden,
 )
 
 __all__ = ("Paginator", "HelpCommand", "DefaultHelpCommand", "MinimalHelpCommand")
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.ext.commands.help import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

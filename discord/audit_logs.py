@@ -35,7 +35,6 @@ from disnake.audit_logs import (
     PermissionOverwrite,
     Permissions,
     T,
-    __dict__ as __original_dict__,
     _AuditLogProxyMemberDisconnect,
     _AuditLogProxyMemberMoveOrMessageDelete,
     _AuditLogProxyMemberPrune,
@@ -62,6 +61,7 @@ from disnake.audit_logs import (
 
 __all__ = ("AuditLogDiff", "AuditLogChanges", "AuditLogEntry")
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.audit_logs import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

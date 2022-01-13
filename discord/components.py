@@ -34,7 +34,6 @@ from disnake.components import (
     PartialEmoji,
     SelectMenu,
     SelectOption,
-    __dict__ as __original_dict__,
     _component_factory,
     _EmojiTag,
     get_slots,
@@ -43,6 +42,7 @@ from disnake.components import (
 
 __all__ = ("Component", "ActionRow", "Button", "SelectMenu", "SelectOption")
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.components import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

@@ -33,7 +33,6 @@ from disnake.types.audit_log import (
     Thread,
     User,
     Webhook,
-    __dict__ as __original_dict__,
     _AuditLogChange_AssetHash,
     _AuditLogChange_Bool,
     _AuditLogChange_ChannelType,
@@ -52,6 +51,7 @@ from disnake.types.audit_log import (
     _AuditLogEntryOptional,
 )
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.types.audit_log import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

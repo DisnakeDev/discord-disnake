@@ -31,13 +31,13 @@ from disnake.embeds import (
     EmbedProxy,
     EmptyEmbed,
     File,
-    __dict__ as __original_dict__,
     _EmptyEmbed,
     utils,
 )
 
 __all__ = ("Embed",)
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.embeds import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

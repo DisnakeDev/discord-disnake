@@ -35,7 +35,6 @@ from disnake.invite import (
     PartialInviteChannel,
     PartialInviteGuild,
     VerificationLevel,
-    __dict__ as __original_dict__,
     _get_as_snowflake,
     parse_time,
     snowflake_time,
@@ -44,6 +43,7 @@ from disnake.invite import (
 
 __all__ = ("PartialInviteChannel", "PartialInviteGuild", "Invite")
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.invite import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

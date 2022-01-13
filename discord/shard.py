@@ -43,11 +43,11 @@ from disnake.shard import (
     ShardInfo,
     Status,
     VoiceKeepAliveHandler,
-    __dict__ as __original_dict__,
 )
 
 __all__ = ("AutoShardedClient", "ShardInfo")
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.shard import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

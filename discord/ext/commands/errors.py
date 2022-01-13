@@ -83,7 +83,6 @@ from disnake.ext.commands.errors import (
     UnexpectedQuoteError,
     UserInputError,
     UserNotFound,
-    __dict__ as __original_dict__,
 )
 
 __all__ = (
@@ -146,6 +145,7 @@ __all__ = (
     "MissingRequiredFlag",
 )
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.ext.commands.errors import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

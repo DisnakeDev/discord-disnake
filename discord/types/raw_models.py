@@ -34,7 +34,6 @@ from disnake.types.raw_models import (
     ReactionClearEmojiEvent,
     ReactionClearEvent,
     TypingEvent,
-    __dict__ as __original_dict__,
     _IntegrationDeleteEventOptional,
     _MessageEventOptional,
     _ReactionActionEventOptional,
@@ -43,6 +42,7 @@ from disnake.types.raw_models import (
     _TypingEventOptional,
 )
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.types.raw_models import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

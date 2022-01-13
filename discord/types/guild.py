@@ -40,13 +40,13 @@ from disnake.types.guild import (
     UnavailableGuild,
     User,
     WelcomeScreen,
-    __dict__ as __original_dict__,
     _BaseGuildPreview,
     _GuildOptional,
     _RolePositionRequired,
     _UnavailableGuildOptional,
 )
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.types.guild import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

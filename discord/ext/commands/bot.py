@@ -35,7 +35,6 @@ from disnake.ext.commands.bot import (
     InteractionBot,
     InteractionBotBase,
     T,
-    __dict__ as __original_dict__,
     when_mentioned,
     when_mentioned_or,
 )
@@ -50,6 +49,7 @@ __all__ = (
     "AutoShardedInteractionBot",
 )
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.ext.commands.bot import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

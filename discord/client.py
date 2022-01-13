@@ -85,7 +85,6 @@ from disnake.client import (
     VoiceRegion,
     Webhook,
     Widget,
-    __dict__ as __original_dict__,
     _cancel_tasks,
     _cleanup_loop,
     _sticker_factory,
@@ -96,6 +95,7 @@ from disnake.client import (
 
 __all__ = ("Client",)
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.client import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

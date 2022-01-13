@@ -31,13 +31,13 @@ from disnake.emoji import (
     PartialEmoji,
     SnowflakeList,
     User,
-    __dict__ as __original_dict__,
     _EmojiTag,
     snowflake_time,
 )
 
 __all__ = ("Emoji",)
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.emoji import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

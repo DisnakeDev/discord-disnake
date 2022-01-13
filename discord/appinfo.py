@@ -23,17 +23,11 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.appinfo import (
-    AppInfo,
-    ApplicationFlags,
-    Asset,
-    PartialAppInfo,
-    __dict__ as __original_dict__,
-    utils,
-)
+from disnake.appinfo import AppInfo, ApplicationFlags, Asset, PartialAppInfo, utils
 
 __all__ = ("AppInfo", "PartialAppInfo")
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.appinfo import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

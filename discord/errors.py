@@ -41,7 +41,6 @@ from disnake.errors import (
     NoMoreItems,
     NotFound,
     PrivilegedIntentsRequired,
-    __dict__ as __original_dict__,
     _flatten_error_dict,
 )
 
@@ -65,6 +64,7 @@ __all__ = (
     "InteractionNotResponded",
 )
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.errors import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

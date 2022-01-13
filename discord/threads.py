@@ -32,7 +32,6 @@ from disnake.threads import (
     Thread,
     ThreadArchiveDuration,
     ThreadMember,
-    __dict__ as __original_dict__,
     _get_as_snowflake,
     parse_time,
     snowflake_time,
@@ -42,6 +41,7 @@ from disnake.threads import (
 
 __all__ = ("Thread", "ThreadMember")
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.threads import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

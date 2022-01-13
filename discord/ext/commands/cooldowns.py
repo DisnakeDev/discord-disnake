@@ -34,12 +34,12 @@ from disnake.ext.commands.cooldowns import (
     MaxConcurrency,
     MaxConcurrencyReached,
     PrivateChannel,
-    __dict__ as __original_dict__,
     _Semaphore,
 )
 
 __all__ = ("BucketType", "Cooldown", "CooldownMapping", "DynamicCooldownMapping", "MaxConcurrency")
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.ext.commands.cooldowns import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

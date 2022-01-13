@@ -30,13 +30,13 @@ from disnake.ext.commands.common_bot_base import (
     CogT,
     CommonBotBase,
     FuncT,
-    __dict__ as __original_dict__,
     _is_submodule,
     errors,
 )
 
 __all__ = ("CommonBotBase",)
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.ext.commands.common_bot_base import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

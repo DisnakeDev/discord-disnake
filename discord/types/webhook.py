@@ -30,12 +30,12 @@ from disnake.types.webhook import (
     SourceGuild,
     User,
     Webhook,
-    __dict__ as __original_dict__,
     _FollowerWebhookOptional,
     _FullWebhook,
     _WebhookOptional,
 )
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.types.webhook import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

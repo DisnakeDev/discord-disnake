@@ -38,7 +38,6 @@ from disnake.player import (
     OpusEncoder,
     PCMAudio,
     PCMVolumeTransformer,
-    __dict__ as __original_dict__,
     utils,
 )
 
@@ -51,6 +50,7 @@ __all__ = (
     "PCMVolumeTransformer",
 )
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.player import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

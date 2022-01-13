@@ -32,11 +32,11 @@ from disnake.types.embed import (
     EmbedProvider,
     EmbedThumbnail,
     EmbedVideo,
-    __dict__ as __original_dict__,
     _EmbedFieldOptional,
     _EmbedFooterOptional,
 )
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.types.embed import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

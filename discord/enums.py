@@ -61,7 +61,6 @@ from disnake.enums import (
     VideoQualityMode,
     VoiceRegion,
     WebhookType,
-    __dict__ as __original_dict__,
     _create_value_cls,
     _EnumValueBase,
     _EnumValueComparable,
@@ -110,6 +109,7 @@ __all__ = (
     "ThreadArchiveDuration",
 )
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.enums import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

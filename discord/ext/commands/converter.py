@@ -112,7 +112,6 @@ from disnake.ext.commands.converter import (
     UserInputError,
     UserNotFound,
     VoiceChannelConverter,
-    __dict__ as __original_dict__,
     _actual_conversion,
     _convert_to_bool,
     _get_from_guilds,
@@ -153,6 +152,7 @@ __all__ = (
     "run_converters",
 )
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.ext.commands.converter import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

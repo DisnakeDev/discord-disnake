@@ -34,7 +34,6 @@ from disnake.activity import (
     PartialEmoji,
     Spotify,
     Streaming,
-    __dict__ as __original_dict__,
     _get_as_snowflake,
     create_activity,
     try_enum,
@@ -42,6 +41,7 @@ from disnake.activity import (
 
 __all__ = ("BaseActivity", "Activity", "Streaming", "Game", "Spotify", "CustomActivity")
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.activity import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

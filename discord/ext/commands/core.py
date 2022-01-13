@@ -102,7 +102,6 @@ from disnake.ext.commands.core import (
     UnexpectedQuoteError,
     UserInputError,
     UserNotFound,
-    __dict__ as __original_dict__,
     _BaseCommand,
     _CaseInsensitiveDict,
     after_invoke,
@@ -161,6 +160,7 @@ __all__ = (
     "bot_has_guild_permissions",
 )
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.ext.commands.core import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

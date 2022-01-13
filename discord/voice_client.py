@@ -52,7 +52,6 @@ from disnake.voice_client import (
     VoiceClient,
     VoiceKeepAliveHandler,
     VoiceProtocol,
-    __dict__ as __original_dict__,
     has_nacl,
     opus,
     utils,
@@ -60,6 +59,7 @@ from disnake.voice_client import (
 
 __all__ = ("VoiceProtocol", "VoiceClient")
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.voice_client import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

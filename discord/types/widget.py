@@ -30,10 +30,10 @@ from disnake.types.widget import (
     WidgetChannel,
     WidgetMember,
     WidgetSettings,
-    __dict__ as __original_dict__,
     _WidgetOptional,
 )
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.types.widget import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

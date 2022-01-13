@@ -33,7 +33,6 @@ from disnake.integrations import (
     InvalidArgument,
     StreamIntegration,
     User,
-    __dict__ as __original_dict__,
     _get_as_snowflake,
     _integration_factory,
     parse_time,
@@ -48,6 +47,7 @@ __all__ = (
     "BotIntegration",
 )
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.integrations import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

@@ -46,7 +46,6 @@ from disnake.webhook.async_ import (
     Webhook,
     WebhookMessage,
     WebhookType,
-    __dict__ as __original_dict__,
     _FriendlyHttpAttributeErrorHelper,
     _WebhookState,
     async_context,
@@ -58,6 +57,7 @@ from disnake.webhook.async_ import (
 
 __all__ = ("Webhook", "WebhookMessage", "PartialWebhookChannel", "PartialWebhookGuild")
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.webhook.async_ import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

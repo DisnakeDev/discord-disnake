@@ -29,13 +29,13 @@ from disnake.partial_emoji import (
     AssetMixin,
     InvalidArgument,
     PartialEmoji,
-    __dict__ as __original_dict__,
     _EmojiTag,
     utils,
 )
 
 __all__ = ("PartialEmoji",)
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.partial_emoji import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

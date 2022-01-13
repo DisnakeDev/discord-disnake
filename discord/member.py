@@ -35,7 +35,6 @@ from disnake.member import (
     Status,
     User,
     VoiceState,
-    __dict__ as __original_dict__,
     _UserTag,
     create_activity,
     flatten_user,
@@ -45,6 +44,7 @@ from disnake.member import (
 
 __all__ = ("VoiceState", "Member")
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.member import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

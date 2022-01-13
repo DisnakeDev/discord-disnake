@@ -23,10 +23,11 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.backoff import ExponentialBackoff, T, __dict__ as __original_dict__
+from disnake.backoff import ExponentialBackoff, T
 
 __all__ = ("ExponentialBackoff",)
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.backoff import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

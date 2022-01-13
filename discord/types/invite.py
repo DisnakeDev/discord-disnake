@@ -33,13 +33,13 @@ from disnake.types.invite import (
     PartialChannel,
     PartialUser,
     VanityInvite,
-    __dict__ as __original_dict__,
     _GatewayInviteCreateOptional,
     _GatewayInviteDeleteOptional,
     _InviteMetadata,
     _InviteOptional,
 )
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.types.invite import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

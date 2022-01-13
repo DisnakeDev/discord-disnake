@@ -23,8 +23,9 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.ext.commands._types import T, __dict__ as __original_dict__, _BaseCommand
+from disnake.ext.commands._types import T, _BaseCommand
+
+# isort: split
+from disnake.ext.commands._types import __dict__ as __original_dict__
 
 locals().update(__original_dict__)
-
-del __original_dict__

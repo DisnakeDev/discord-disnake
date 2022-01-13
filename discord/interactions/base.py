@@ -48,7 +48,6 @@ from disnake.interactions.base import (
     Permissions,
     User,
     Webhook,
-    __dict__ as __original_dict__,
     _InteractionMessageState,
     async_context,
     handle_message_parameters,
@@ -58,6 +57,7 @@ from disnake.interactions.base import (
 
 __all__ = ("Interaction", "InteractionMessage", "InteractionResponse")
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.interactions.base import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

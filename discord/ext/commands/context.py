@@ -23,20 +23,11 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.ext.commands.context import (
-    MISSING,
-    BotT,
-    CogT,
-    Context,
-    GuildContext,
-    Message,
-    P,
-    T,
-    __dict__ as __original_dict__,
-)
+from disnake.ext.commands.context import MISSING, BotT, CogT, Context, GuildContext, Message, P, T
 
 __all__ = ("Context", "GuildContext")
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.ext.commands.context import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

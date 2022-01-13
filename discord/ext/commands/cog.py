@@ -33,13 +33,13 @@ from disnake.ext.commands.cog import (
     InvokableMessageCommand,
     InvokableSlashCommand,
     InvokableUserCommand,
-    __dict__ as __original_dict__,
     _BaseCommand,
     _cog_special_method,
 )
 
 __all__ = ("CogMeta", "Cog")
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.ext.commands.cog import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

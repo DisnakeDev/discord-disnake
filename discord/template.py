@@ -28,7 +28,6 @@ from disnake.template import (
     Guild,
     Template,
     VoiceRegion,
-    __dict__ as __original_dict__,
     _bytes_to_base64_data,
     _FriendlyHttpAttributeErrorHelper,
     _PartialTemplateState,
@@ -37,6 +36,7 @@ from disnake.template import (
 
 __all__ = ("Template",)
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.template import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

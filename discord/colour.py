@@ -23,10 +23,11 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.colour import CT, Color, Colour, __dict__ as __original_dict__
+from disnake.colour import CT, Color, Colour
 
 __all__ = ("Colour", "Color")
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.colour import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

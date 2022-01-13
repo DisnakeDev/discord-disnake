@@ -40,7 +40,6 @@ from disnake.types.channel import (
     ThreadMember,
     ThreadMetadata,
     VoiceChannel,
-    __dict__ as __original_dict__,
     _BaseChannel,
     _BaseGuildChannel,
     _StageChannelOptional,
@@ -49,6 +48,7 @@ from disnake.types.channel import (
     _VoiceChannelOptional,
 )
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.types.channel import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

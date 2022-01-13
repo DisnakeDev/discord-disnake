@@ -32,7 +32,6 @@ from disnake.guild_scheduled_event import (
     Hashable,
     Member,
     User,
-    __dict__ as __original_dict__,
     _get_as_snowflake,
     cached_slot_property,
     parse_time,
@@ -41,6 +40,7 @@ from disnake.guild_scheduled_event import (
 
 __all__ = ("GuildScheduledEventMetadata", "GuildScheduledEvent")
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.guild_scheduled_event import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

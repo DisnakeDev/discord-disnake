@@ -74,7 +74,6 @@ from disnake.guild import (
     VoiceRegion,
     VoiceState,
     Widget,
-    __dict__ as __original_dict__,
     _guild_channel_factory,
     _GuildLimit,
     _integration_factory,
@@ -86,6 +85,7 @@ from disnake.guild import (
 
 __all__ = ("Guild",)
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.guild import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

@@ -23,16 +23,11 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.oggparse import (
-    DiscordException,
-    OggError,
-    OggPage,
-    OggStream,
-    __dict__ as __original_dict__,
-)
+from disnake.oggparse import DiscordException, OggError, OggPage, OggStream
 
 __all__ = ("OggError", "OggPage", "OggStream")
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.oggparse import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

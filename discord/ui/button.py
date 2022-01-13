@@ -33,13 +33,13 @@ from disnake.ui.button import (
     Item,
     PartialEmoji,
     V,
-    __dict__ as __original_dict__,
     _EmojiTag,
     button,
 )
 
 __all__ = ("Button", "button")
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.ui.button import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

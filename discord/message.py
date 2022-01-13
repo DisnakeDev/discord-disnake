@@ -48,7 +48,6 @@ from disnake.message import (
     StickerItem,
     Thread,
     User,
-    __dict__ as __original_dict__,
     _component_factory,
     _edit_handler,
     convert_emoji_reaction,
@@ -68,6 +67,7 @@ __all__ = (
     "DeletedReferencedMessage",
 )
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.message import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

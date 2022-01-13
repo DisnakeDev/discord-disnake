@@ -36,7 +36,6 @@ from disnake.iterators import (
     Object,
     ReactionIterator,
     T,
-    __dict__ as __original_dict__,
     _AsyncIterator,
     _ChunkedAsyncIterator,
     _FilteredAsyncIterator,
@@ -51,6 +50,7 @@ __all__ = (
     "ReactionIterator", "HistoryIterator", "AuditLogIterator", "GuildIterator", "MemberIterator"
 )
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.iterators import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

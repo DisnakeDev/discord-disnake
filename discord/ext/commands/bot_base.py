@@ -35,7 +35,6 @@ from disnake.ext.commands.bot_base import (
     HelpCommand,
     StringView,
     T,
-    __dict__ as __original_dict__,
     _default,
     _DefaultRepr,
     _is_submodule,
@@ -46,6 +45,7 @@ from disnake.ext.commands.bot_base import (
 
 __all__ = ("when_mentioned", "when_mentioned_or", "BotBase")
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.ext.commands.bot_base import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

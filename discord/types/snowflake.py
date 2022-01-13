@@ -23,8 +23,8 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
+
+# isort: split
 from disnake.types.snowflake import __dict__ as __original_dict__
 
 locals().update(__original_dict__)
-
-del __original_dict__

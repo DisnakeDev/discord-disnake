@@ -50,7 +50,6 @@ from disnake.channel import (
     VocalGuildChannel,
     VoiceChannel,
     VoiceRegion,
-    __dict__ as __original_dict__,
     _channel_factory,
     _channel_type_factory,
     _guild_channel_factory,
@@ -74,6 +73,7 @@ __all__ = (
     "PartialMessageable",
 )
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.channel import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)

@@ -20,7 +20,6 @@ from disnake.ext.commands.interaction_bot_base import (
     SubCommandGroup,
     SyncWarning,
     T,
-    __dict__ as __original_dict__,
     _app_commands_diff,
     _show_diff,
     errors,
@@ -31,6 +30,7 @@ from disnake.ext.commands.interaction_bot_base import (
 
 __all__ = ("InteractionBotBase",)
 
-locals().update(__original_dict__)
+# isort: split
+from disnake.ext.commands.interaction_bot_base import __dict__ as __original_dict__
 
-del __original_dict__
+locals().update(__original_dict__)
