@@ -62,48 +62,41 @@ def create_file(module_name: str) -> Tuple[Optional[str], str]:
 def shim_folder(path: pathlib.Path, pypath: str, shim_path: pathlib.Path) -> List[pathlib.Path]:
     modified = []
     for fn in path.iterdir():
-        mod = fn.relative_to(path)
+        shim_mod = shim_path / fn.relative_to(path)
 
-        if not (shim_path / mod).parent.exists():
-            (shim_path / mod).parent.mkdir(exist_ok=True, parents=True)
-            print("Created directory: ", (shim_path / mod))
+        if not (shim_mod).parent.exists():
+            (shim_mod).parent.mkdir(exist_ok=True, parents=True)
+            print("Created directory: ", (shim_mod))
 
         if fn.name in ("__init__.py", "__main__.py", "py.typed") and "tasks" != fn.parent.name:
-            with open(path / mod, "r", encoding="utf-8") as fr:
-                formatted = sort_imports(fr.read())
-                try:
-                    with open(shim_path / mod, "r", encoding="utf-8") as fw:
-                        if formatted == fw.read():
-                            continue
-                except FileNotFoundError:
-                    pass
-                print("Updating file: ", shim_path / mod)
-                with open(shim_path / mod, "w", encoding="utf-8") as fw:
-                    fw.write(formatted)
-            modified.append(shim_path / mod)
+            data = sort_imports(fn.read_text(encoding="utf-8"))
+            if shim_mod.is_file() and data == shim_mod.read_text(encoding="utf-8"):
+                continue
+            print("Updating file: ", shim_mod)
+            shim_mod.write_text(data, encoding="utf-8")
+            modified.append(shim_mod)
 
         elif fn.suffix == ".py":
-            docstring, imports = create_file(f"{pypath}.{mod.stem}")
+            docstring, imports = create_file(f"{pypath}.{fn.stem}")
+
             to_write = ""
             if docstring:
                 to_write += '"""\n' + docstring.strip() + '\n"""\n\n'
             to_write += imports
-            try:
-                with open(shim_path / mod) as f:
-                    existing = f.read()
-            except FileNotFoundError:
+
+            if shim_mod.is_file():
+                existing = shim_mod.read_text(encoding="utf-8")
+            else:
                 existing = None
 
             if existing != to_write:
-                print("Updating file: ", shim_path / mod)
-                with open(shim_path / mod, "w", encoding="utf-8") as f:
-                    f.write(to_write)
-
-                modified.append(shim_path / mod)
+                print("Updating file: ", shim_mod)
+                shim_mod.write_text(to_write, encoding="utf-8")
+                modified.append(shim_mod)
 
         elif fn.is_dir():
-            (shim_path / mod).mkdir(parents=True, exist_ok=True)
-            modified.extend(shim_folder(fn, f"{pypath}.{fn.stem}", shim_path / mod))
+            (shim_mod).mkdir(parents=True, exist_ok=True)
+            modified.extend(shim_folder(fn, f"{pypath}.{fn.stem}", shim_mod))
 
     return modified
 
