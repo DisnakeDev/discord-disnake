@@ -23,20 +23,23 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.user import (
-    BU,
-    MISSING,
-    Asset,
-    BaseUser,
-    ClientUser,
-    Colour,
-    DefaultAvatar,
-    PublicUserFlags,
-    User,
-    _bytes_to_base64_data,
-    _UserTag,
-    snowflake_time,
-)
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.user import (
+        BU,
+        MISSING,
+        Asset,
+        BaseUser,
+        ClientUser,
+        Colour,
+        DefaultAvatar,
+        PublicUserFlags,
+        User,
+        _bytes_to_base64_data,
+        _UserTag,
+        snowflake_time,
+    )
 
 __all__ = (
     "User",

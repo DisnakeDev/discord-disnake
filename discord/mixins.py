@@ -23,7 +23,10 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.mixins import EqualityComparable, Hashable
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.mixins import EqualityComparable, Hashable
 
 __all__ = (
     "EqualityComparable",

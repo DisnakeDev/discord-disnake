@@ -22,21 +22,24 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.guild_scheduled_event import (
-    MISSING,
-    GuildScheduledEvent,
-    GuildScheduledEventEntityType,
-    GuildScheduledEventMetadata,
-    GuildScheduledEventPrivacyLevel,
-    GuildScheduledEventStatus,
-    Hashable,
-    Member,
-    User,
-    _get_as_snowflake,
-    cached_slot_property,
-    parse_time,
-    try_enum,
-)
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.guild_scheduled_event import (
+        MISSING,
+        GuildScheduledEvent,
+        GuildScheduledEventEntityType,
+        GuildScheduledEventMetadata,
+        GuildScheduledEventPrivacyLevel,
+        GuildScheduledEventStatus,
+        Hashable,
+        Member,
+        User,
+        _get_as_snowflake,
+        cached_slot_property,
+        parse_time,
+        try_enum,
+    )
 
 __all__ = (
     "GuildScheduledEventMetadata",

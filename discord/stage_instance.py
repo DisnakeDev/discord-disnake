@@ -23,15 +23,18 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.stage_instance import (
-    MISSING,
-    Hashable,
-    InvalidArgument,
-    StageInstance,
-    StagePrivacyLevel,
-    cached_slot_property,
-    try_enum,
-)
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.stage_instance import (
+        MISSING,
+        Hashable,
+        InvalidArgument,
+        StageInstance,
+        StagePrivacyLevel,
+        cached_slot_property,
+        try_enum,
+    )
 
 __all__ = ("StageInstance",)
 

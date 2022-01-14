@@ -23,14 +23,17 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.ext.commands.view import (
-    ExpectedClosingQuoteError,
-    InvalidEndOfQuotedStringError,
-    StringView,
-    UnexpectedQuoteError,
-    _all_quotes,
-    _quotes,
-)
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.ext.commands.view import (
+        ExpectedClosingQuoteError,
+        InvalidEndOfQuotedStringError,
+        StringView,
+        UnexpectedQuoteError,
+        _all_quotes,
+        _quotes,
+    )
 
 # isort: split
 from disnake.ext.commands.view import __dict__ as __original_dict__

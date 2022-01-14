@@ -23,7 +23,10 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.types.template import CreateTemplate, Guild, Template, User
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.types.template import CreateTemplate, Guild, Template, User
 
 # isort: split
 from disnake.types.template import __dict__ as __original_dict__

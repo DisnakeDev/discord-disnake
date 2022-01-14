@@ -23,21 +23,24 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.flags import (
-    BF,
-    FV,
-    ApplicationFlags,
-    BaseFlags,
-    Intents,
-    MemberCacheFlags,
-    MessageFlags,
-    PublicUserFlags,
-    SystemChannelFlags,
-    UserFlags,
-    alias_flag_value,
-    fill_with_flags,
-    flag_value,
-)
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.flags import (
+        BF,
+        FV,
+        ApplicationFlags,
+        BaseFlags,
+        Intents,
+        MemberCacheFlags,
+        MessageFlags,
+        PublicUserFlags,
+        SystemChannelFlags,
+        UserFlags,
+        alias_flag_value,
+        fill_with_flags,
+        flag_value,
+    )
 
 __all__ = (
     "SystemChannelFlags",

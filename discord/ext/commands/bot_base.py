@@ -23,25 +23,28 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.ext.commands.bot_base import (
-    CFT,
-    CXT,
-    MISSING,
-    BotBase,
-    CommonBotBase,
-    Context,
-    DefaultHelpCommand,
-    GroupMixin,
-    HelpCommand,
-    StringView,
-    T,
-    _default,
-    _DefaultRepr,
-    _is_submodule,
-    errors,
-    when_mentioned,
-    when_mentioned_or,
-)
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.ext.commands.bot_base import (
+        CFT,
+        CXT,
+        MISSING,
+        BotBase,
+        CommonBotBase,
+        Context,
+        DefaultHelpCommand,
+        GroupMixin,
+        HelpCommand,
+        StringView,
+        T,
+        _default,
+        _DefaultRepr,
+        _is_submodule,
+        errors,
+        when_mentioned,
+        when_mentioned_or,
+    )
 
 __all__ = (
     "when_mentioned",

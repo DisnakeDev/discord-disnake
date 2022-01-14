@@ -23,21 +23,24 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.types.invite import (
-    GatewayInviteCreate,
-    GatewayInviteDelete,
-    IncompleteInvite,
-    Invite,
-    InviteGuild,
-    PartialAppInfo,
-    PartialChannel,
-    PartialUser,
-    VanityInvite,
-    _GatewayInviteCreateOptional,
-    _GatewayInviteDeleteOptional,
-    _InviteMetadata,
-    _InviteOptional,
-)
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.types.invite import (
+        GatewayInviteCreate,
+        GatewayInviteDelete,
+        IncompleteInvite,
+        Invite,
+        InviteGuild,
+        PartialAppInfo,
+        PartialChannel,
+        PartialUser,
+        VanityInvite,
+        _GatewayInviteCreateOptional,
+        _GatewayInviteDeleteOptional,
+        _InviteMetadata,
+        _InviteOptional,
+    )
 
 # isort: split
 from disnake.types.invite import __dict__ as __original_dict__

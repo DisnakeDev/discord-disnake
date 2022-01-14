@@ -23,21 +23,24 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.role import (
-    MISSING,
-    Asset,
-    Colour,
-    Hashable,
-    InvalidArgument,
-    PartialEmoji,
-    Permissions,
-    R,
-    Role,
-    RoleTags,
-    _bytes_to_base64_data,
-    _get_as_snowflake,
-    snowflake_time,
-)
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.role import (
+        MISSING,
+        Asset,
+        Colour,
+        Hashable,
+        InvalidArgument,
+        PartialEmoji,
+        Permissions,
+        R,
+        Role,
+        RoleTags,
+        _bytes_to_base64_data,
+        _get_as_snowflake,
+        snowflake_time,
+    )
 
 __all__ = (
     "RoleTags",

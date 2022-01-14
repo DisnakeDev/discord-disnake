@@ -23,16 +23,19 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.types.integration import (
-    BaseIntegration,
-    BotIntegration,
-    IntegrationAccount,
-    IntegrationApplication,
-    PartialIntegration,
-    StreamIntegration,
-    User,
-    _IntegrationApplicationOptional,
-)
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.types.integration import (
+        BaseIntegration,
+        BotIntegration,
+        IntegrationAccount,
+        IntegrationApplication,
+        PartialIntegration,
+        StreamIntegration,
+        User,
+        _IntegrationApplicationOptional,
+    )
 
 # isort: split
 from disnake.types.integration import __dict__ as __original_dict__

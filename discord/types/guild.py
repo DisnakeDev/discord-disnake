@@ -23,28 +23,31 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.types.guild import (
-    Ban,
-    ChannelPositionUpdate,
-    Emoji,
-    Guild,
-    GuildPreview,
-    GuildPrune,
-    GuildVoiceState,
-    InviteGuild,
-    Member,
-    PartialPresenceUpdate,
-    Role,
-    RolePositionUpdate,
-    Thread,
-    UnavailableGuild,
-    User,
-    WelcomeScreen,
-    _BaseGuildPreview,
-    _GuildOptional,
-    _RolePositionRequired,
-    _UnavailableGuildOptional,
-)
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.types.guild import (
+        Ban,
+        ChannelPositionUpdate,
+        Emoji,
+        Guild,
+        GuildPreview,
+        GuildPrune,
+        GuildVoiceState,
+        InviteGuild,
+        Member,
+        PartialPresenceUpdate,
+        Role,
+        RolePositionUpdate,
+        Thread,
+        UnavailableGuild,
+        User,
+        WelcomeScreen,
+        _BaseGuildPreview,
+        _GuildOptional,
+        _RolePositionRequired,
+        _UnavailableGuildOptional,
+    )
 
 # isort: split
 from disnake.types.guild import __dict__ as __original_dict__

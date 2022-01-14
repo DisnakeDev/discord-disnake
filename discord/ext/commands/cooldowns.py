@@ -23,19 +23,22 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.ext.commands.cooldowns import (
-    MC,
-    BucketType,
-    C,
-    Cooldown,
-    CooldownMapping,
-    DynamicCooldownMapping,
-    Enum,
-    MaxConcurrency,
-    MaxConcurrencyReached,
-    PrivateChannel,
-    _Semaphore,
-)
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.ext.commands.cooldowns import (
+        MC,
+        BucketType,
+        C,
+        Cooldown,
+        CooldownMapping,
+        DynamicCooldownMapping,
+        Enum,
+        MaxConcurrency,
+        MaxConcurrencyReached,
+        PrivateChannel,
+        _Semaphore,
+    )
 
 __all__ = (
     "BucketType",

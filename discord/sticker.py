@@ -23,27 +23,30 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.sticker import (
-    MISSING,
-    Asset,
-    AssetMixin,
-    GuildSticker,
-    Hashable,
-    InvalidData,
-    StandardSticker,
-    Sticker,
-    StickerFormatType,
-    StickerItem,
-    StickerPack,
-    StickerType,
-    _sticker_factory,
-    _StickerTag,
-    cached_slot_property,
-    find,
-    get,
-    snowflake_time,
-    try_enum,
-)
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.sticker import (
+        MISSING,
+        Asset,
+        AssetMixin,
+        GuildSticker,
+        Hashable,
+        InvalidData,
+        StandardSticker,
+        Sticker,
+        StickerFormatType,
+        StickerItem,
+        StickerPack,
+        StickerType,
+        _sticker_factory,
+        _StickerTag,
+        cached_slot_property,
+        find,
+        get,
+        snowflake_time,
+        try_enum,
+    )
 
 __all__ = (
     "StickerPack",

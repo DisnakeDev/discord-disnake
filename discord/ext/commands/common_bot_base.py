@@ -23,16 +23,19 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.ext.commands.common_bot_base import (
-    CFT,
-    MISSING,
-    Cog,
-    CogT,
-    CommonBotBase,
-    FuncT,
-    _is_submodule,
-    errors,
-)
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.ext.commands.common_bot_base import (
+        CFT,
+        MISSING,
+        Cog,
+        CogT,
+        CommonBotBase,
+        FuncT,
+        _is_submodule,
+        errors,
+    )
 
 __all__ = ("CommonBotBase",)
 

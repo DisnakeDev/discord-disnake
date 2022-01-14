@@ -23,21 +23,24 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.integrations import (
-    MISSING,
-    BotIntegration,
-    ExpireBehaviour,
-    Integration,
-    IntegrationAccount,
-    IntegrationApplication,
-    InvalidArgument,
-    StreamIntegration,
-    User,
-    _get_as_snowflake,
-    _integration_factory,
-    parse_time,
-    try_enum,
-)
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.integrations import (
+        MISSING,
+        BotIntegration,
+        ExpireBehaviour,
+        Integration,
+        IntegrationAccount,
+        IntegrationApplication,
+        InvalidArgument,
+        StreamIntegration,
+        User,
+        _get_as_snowflake,
+        _integration_factory,
+        parse_time,
+        try_enum,
+    )
 
 __all__ = (
     "IntegrationAccount",

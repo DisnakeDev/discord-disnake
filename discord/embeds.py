@@ -23,17 +23,20 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.embeds import (
-    MISSING,
-    Colour,
-    E,
-    Embed,
-    EmbedProxy,
-    EmptyEmbed,
-    File,
-    _EmptyEmbed,
-    utils,
-)
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.embeds import (
+        MISSING,
+        Colour,
+        E,
+        Embed,
+        EmbedProxy,
+        EmptyEmbed,
+        File,
+        _EmptyEmbed,
+        utils,
+    )
 
 __all__ = ("Embed",)
 

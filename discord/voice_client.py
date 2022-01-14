@@ -38,24 +38,27 @@ Some documentation to refer to:
 - Finally we can transmit data to endpoint:port.
 """
 
-from disnake.voice_client import (
-    MISSING,
-    AudioPlayer,
-    AudioSource,
-    ClientException,
-    ConnectionClosed,
-    DiscordVoiceWebSocket,
-    DiscordWebSocket,
-    ExponentialBackoff,
-    KeepAliveHandler,
-    ReconnectWebSocket,
-    VoiceClient,
-    VoiceKeepAliveHandler,
-    VoiceProtocol,
-    has_nacl,
-    opus,
-    utils,
-)
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.voice_client import (
+        MISSING,
+        AudioPlayer,
+        AudioSource,
+        ClientException,
+        ConnectionClosed,
+        DiscordVoiceWebSocket,
+        DiscordWebSocket,
+        ExponentialBackoff,
+        KeepAliveHandler,
+        ReconnectWebSocket,
+        VoiceClient,
+        VoiceKeepAliveHandler,
+        VoiceProtocol,
+        has_nacl,
+        opus,
+        utils,
+    )
 
 __all__ = (
     "VoiceProtocol",

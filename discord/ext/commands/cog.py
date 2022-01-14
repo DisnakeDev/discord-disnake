@@ -23,19 +23,22 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.ext.commands.cog import (
-    MISSING,
-    Cog,
-    CogMeta,
-    CogT,
-    FuncT,
-    InvokableApplicationCommand,
-    InvokableMessageCommand,
-    InvokableSlashCommand,
-    InvokableUserCommand,
-    _BaseCommand,
-    _cog_special_method,
-)
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.ext.commands.cog import (
+        MISSING,
+        Cog,
+        CogMeta,
+        CogT,
+        FuncT,
+        InvokableApplicationCommand,
+        InvokableMessageCommand,
+        InvokableSlashCommand,
+        InvokableUserCommand,
+        _BaseCommand,
+        _cog_special_method,
+    )
 
 __all__ = (
     "CogMeta",

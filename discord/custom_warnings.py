@@ -1,4 +1,7 @@
-from disnake.custom_warnings import ConfigWarning, DiscordWarning, SyncWarning
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.custom_warnings import ConfigWarning, DiscordWarning, SyncWarning
 
 __all__ = (
     "DiscordWarning",

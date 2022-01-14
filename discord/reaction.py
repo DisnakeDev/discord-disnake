@@ -23,7 +23,10 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.reaction import Reaction, ReactionIterator
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.reaction import Reaction, ReactionIterator
 
 __all__ = ("Reaction",)
 

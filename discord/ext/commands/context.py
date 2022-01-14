@@ -23,7 +23,19 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.ext.commands.context import MISSING, BotT, CogT, Context, GuildContext, Message, P, T
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.ext.commands.context import (
+        MISSING,
+        BotT,
+        CogT,
+        Context,
+        GuildContext,
+        Message,
+        P,
+        T,
+    )
 
 __all__ = (
     "Context",

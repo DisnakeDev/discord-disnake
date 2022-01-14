@@ -23,15 +23,18 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.partial_emoji import (
-    PE,
-    Asset,
-    AssetMixin,
-    InvalidArgument,
-    PartialEmoji,
-    _EmojiTag,
-    utils,
-)
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.partial_emoji import (
+        PE,
+        Asset,
+        AssetMixin,
+        InvalidArgument,
+        PartialEmoji,
+        _EmojiTag,
+        utils,
+    )
 
 __all__ = ("PartialEmoji",)
 

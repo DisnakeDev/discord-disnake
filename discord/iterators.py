@@ -23,28 +23,31 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.iterators import (
-    OLDEST_OBJECT,
-    OT,
-    ArchivedThreadIterator,
-    AuditLogEntry,
-    AuditLogIterator,
-    GuildIterator,
-    HistoryIterator,
-    MemberIterator,
-    NoMoreItems,
-    Object,
-    ReactionIterator,
-    T,
-    _AsyncIterator,
-    _ChunkedAsyncIterator,
-    _FilteredAsyncIterator,
-    _identity,
-    _MappedAsyncIterator,
-    maybe_coroutine,
-    snowflake_time,
-    time_snowflake,
-)
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.iterators import (
+        OLDEST_OBJECT,
+        OT,
+        ArchivedThreadIterator,
+        AuditLogEntry,
+        AuditLogIterator,
+        GuildIterator,
+        HistoryIterator,
+        MemberIterator,
+        NoMoreItems,
+        Object,
+        ReactionIterator,
+        T,
+        _AsyncIterator,
+        _ChunkedAsyncIterator,
+        _FilteredAsyncIterator,
+        _identity,
+        _MappedAsyncIterator,
+        maybe_coroutine,
+        snowflake_time,
+        time_snowflake,
+    )
 
 __all__ = (
     "ReactionIterator",

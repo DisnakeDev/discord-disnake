@@ -23,21 +23,24 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.ext.tasks.__init__ import (
-    ET,
-    FT,
-    LF,
-    MISSING,
-    ExponentialBackoff,
-    Loop,
-    SleepHandle,
-    T,
-    loop,
-)
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.ext.tasks import (
+        ET,
+        FT,
+        LF,
+        MISSING,
+        ExponentialBackoff,
+        Loop,
+        SleepHandle,
+        T,
+        loop,
+    )
 
 __all__ = ("loop",)
 
 # isort: split
-from disnake.ext.tasks.__init__ import __dict__ as __original_dict__
+from disnake.ext.tasks import __dict__ as __original_dict__
 
 locals().update(__original_dict__)

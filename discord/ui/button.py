@@ -23,19 +23,22 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.ui.button import (
-    B,
-    Button,
-    ButtonComponent,
-    ButtonStyle,
-    ComponentType,
-    DecoratedItem,
-    Item,
-    PartialEmoji,
-    V,
-    _EmojiTag,
-    button,
-)
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.ui.button import (
+        B,
+        Button,
+        ButtonComponent,
+        ButtonStyle,
+        ComponentType,
+        DecoratedItem,
+        Item,
+        PartialEmoji,
+        V,
+        _EmojiTag,
+        button,
+    )
 
 __all__ = (
     "Button",

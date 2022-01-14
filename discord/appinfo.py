@@ -23,7 +23,10 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.appinfo import AppInfo, ApplicationFlags, Asset, PartialAppInfo, utils
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.appinfo import AppInfo, ApplicationFlags, Asset, PartialAppInfo, utils
 
 __all__ = (
     "AppInfo",

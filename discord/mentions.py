@@ -23,7 +23,10 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.mentions import A, AllowedMentions, _FakeBool, default
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.mentions import A, AllowedMentions, _FakeBool, default
 
 __all__ = ("AllowedMentions",)
 

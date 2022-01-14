@@ -23,15 +23,18 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.types.appinfo import (
-    AppInfo,
-    BaseAppInfo,
-    PartialAppInfo,
-    Team,
-    User,
-    _AppInfoOptional,
-    _PartialAppInfoOptional,
-)
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.types.appinfo import (
+        AppInfo,
+        BaseAppInfo,
+        PartialAppInfo,
+        Team,
+        User,
+        _AppInfoOptional,
+        _PartialAppInfoOptional,
+    )
 
 # isort: split
 from disnake.types.appinfo import __dict__ as __original_dict__

@@ -23,17 +23,20 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.emoji import (
-    MISSING,
-    Asset,
-    AssetMixin,
-    Emoji,
-    PartialEmoji,
-    SnowflakeList,
-    User,
-    _EmojiTag,
-    snowflake_time,
-)
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.emoji import (
+        MISSING,
+        Asset,
+        AssetMixin,
+        Emoji,
+        PartialEmoji,
+        SnowflakeList,
+        User,
+        _EmojiTag,
+        snowflake_time,
+    )
 
 __all__ = ("Emoji",)
 

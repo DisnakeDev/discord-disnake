@@ -23,7 +23,10 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.oggparse import DiscordException, OggError, OggPage, OggStream
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.oggparse import DiscordException, OggError, OggPage, OggStream
 
 __all__ = (
     "OggError",

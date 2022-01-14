@@ -23,30 +23,33 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.types.channel import (
-    CategoryChannel,
-    DMChannel,
-    GroupDMChannel,
-    GuildDirectory,
-    NewsChannel,
-    PartialChannel,
-    PartialUser,
-    PermissionOverwrite,
-    StageChannel,
-    StageInstance,
-    StoreChannel,
-    TextChannel,
-    ThreadChannel,
-    ThreadMember,
-    ThreadMetadata,
-    VoiceChannel,
-    _BaseChannel,
-    _BaseGuildChannel,
-    _StageChannelOptional,
-    _TextChannelOptional,
-    _ThreadChannelOptional,
-    _VoiceChannelOptional,
-)
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.types.channel import (
+        CategoryChannel,
+        DMChannel,
+        GroupDMChannel,
+        GuildDirectory,
+        NewsChannel,
+        PartialChannel,
+        PartialUser,
+        PermissionOverwrite,
+        StageChannel,
+        StageInstance,
+        StoreChannel,
+        TextChannel,
+        ThreadChannel,
+        ThreadMember,
+        ThreadMetadata,
+        VoiceChannel,
+        _BaseChannel,
+        _BaseGuildChannel,
+        _StageChannelOptional,
+        _TextChannelOptional,
+        _ThreadChannelOptional,
+        _VoiceChannelOptional,
+    )
 
 # isort: split
 from disnake.types.channel import __dict__ as __original_dict__

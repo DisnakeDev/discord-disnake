@@ -23,16 +23,19 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.asset import (
-    MISSING,
-    VALID_ASSET_FORMATS,
-    VALID_STATIC_FORMATS,
-    Asset,
-    AssetMixin,
-    DiscordException,
-    InvalidArgument,
-    utils,
-)
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.asset import (
+        MISSING,
+        VALID_ASSET_FORMATS,
+        VALID_STATIC_FORMATS,
+        Asset,
+        AssetMixin,
+        DiscordException,
+        InvalidArgument,
+        utils,
+    )
 
 __all__ = ("Asset",)
 

@@ -23,7 +23,10 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.ext.commands._types import T, _BaseCommand
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.ext.commands._types import T, _BaseCommand
 
 # isort: split
 from disnake.ext.commands._types import __dict__ as __original_dict__

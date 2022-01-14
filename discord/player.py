@@ -23,23 +23,26 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.player import (
-    AT,
-    CREATE_NO_WINDOW,
-    FT,
-    MISSING,
-    AudioPlayer,
-    AudioSource,
-    ClientException,
-    FFmpegAudio,
-    FFmpegOpusAudio,
-    FFmpegPCMAudio,
-    OggStream,
-    OpusEncoder,
-    PCMAudio,
-    PCMVolumeTransformer,
-    utils,
-)
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.player import (
+        AT,
+        CREATE_NO_WINDOW,
+        FT,
+        MISSING,
+        AudioPlayer,
+        AudioSource,
+        ClientException,
+        FFmpegAudio,
+        FFmpegOpusAudio,
+        FFmpegPCMAudio,
+        OggStream,
+        OpusEncoder,
+        PCMAudio,
+        PCMVolumeTransformer,
+        utils,
+    )
 
 __all__ = (
     "AudioSource",

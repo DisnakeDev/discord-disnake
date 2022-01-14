@@ -23,7 +23,10 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.types.emoji import EditEmoji, Emoji, PartialEmoji, User
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.types.emoji import EditEmoji, Emoji, PartialEmoji, User
 
 # isort: split
 from disnake.types.emoji import __dict__ as __original_dict__

@@ -23,28 +23,31 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.webhook.sync import (
-    MISSING,
-    BaseWebhook,
-    DeferredLock,
-    DiscordServerError,
-    Forbidden,
-    HTTPException,
-    InvalidArgument,
-    Message,
-    NotFound,
-    PartialMessageable,
-    Route,
-    SyncWebhook,
-    SyncWebhookMessage,
-    WebhookAdapter,
-    _context,
-    _get_webhook_adapter,
-    _WebhookContext,
-    _WebhookState,
-    handle_message_parameters,
-    utils,
-)
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.webhook.sync import (
+        MISSING,
+        BaseWebhook,
+        DeferredLock,
+        DiscordServerError,
+        Forbidden,
+        HTTPException,
+        InvalidArgument,
+        Message,
+        NotFound,
+        PartialMessageable,
+        Route,
+        SyncWebhook,
+        SyncWebhookMessage,
+        WebhookAdapter,
+        _context,
+        _get_webhook_adapter,
+        _WebhookContext,
+        _WebhookState,
+        handle_message_parameters,
+        utils,
+    )
 
 __all__ = (
     "SyncWebhook",

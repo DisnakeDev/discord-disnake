@@ -23,17 +23,20 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.ext.commands.help import (
-    Command,
-    CommandError,
-    DefaultHelpCommand,
-    Group,
-    HelpCommand,
-    MinimalHelpCommand,
-    Paginator,
-    _HelpCommandImpl,
-    _not_overriden,
-)
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.ext.commands.help import (
+        Command,
+        CommandError,
+        DefaultHelpCommand,
+        Group,
+        HelpCommand,
+        MinimalHelpCommand,
+        Paginator,
+        _HelpCommandImpl,
+        _not_overriden,
+    )
 
 __all__ = (
     "Paginator",

@@ -23,18 +23,21 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.types.embed import (
-    Embed,
-    EmbedAuthor,
-    EmbedField,
-    EmbedFooter,
-    EmbedImage,
-    EmbedProvider,
-    EmbedThumbnail,
-    EmbedVideo,
-    _EmbedFieldOptional,
-    _EmbedFooterOptional,
-)
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.types.embed import (
+        Embed,
+        EmbedAuthor,
+        EmbedField,
+        EmbedFooter,
+        EmbedImage,
+        EmbedProvider,
+        EmbedThumbnail,
+        EmbedVideo,
+        _EmbedFieldOptional,
+        _EmbedFooterOptional,
+    )
 
 # isort: split
 from disnake.types.embed import __dict__ as __original_dict__

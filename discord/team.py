@@ -23,7 +23,10 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.team import Asset, BaseUser, Team, TeamMember, TeamMembershipState, try_enum, utils
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.team import Asset, BaseUser, Team, TeamMember, TeamMembershipState, try_enum, utils
 
 __all__ = (
     "Team",

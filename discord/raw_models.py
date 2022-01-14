@@ -23,18 +23,21 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.raw_models import (
-    RawBulkMessageDeleteEvent,
-    RawGuildScheduledEventUserActionEvent,
-    RawIntegrationDeleteEvent,
-    RawMessageDeleteEvent,
-    RawMessageUpdateEvent,
-    RawReactionActionEvent,
-    RawReactionClearEmojiEvent,
-    RawReactionClearEvent,
-    RawTypingEvent,
-    _RawReprMixin,
-)
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.raw_models import (
+        RawBulkMessageDeleteEvent,
+        RawGuildScheduledEventUserActionEvent,
+        RawIntegrationDeleteEvent,
+        RawMessageDeleteEvent,
+        RawMessageUpdateEvent,
+        RawReactionActionEvent,
+        RawReactionClearEmojiEvent,
+        RawReactionClearEvent,
+        RawTypingEvent,
+        _RawReprMixin,
+    )
 
 __all__ = (
     "RawMessageDeleteEvent",

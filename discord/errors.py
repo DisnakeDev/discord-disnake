@@ -23,26 +23,29 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.errors import (
-    ClientException,
-    ConnectionClosed,
-    DiscordException,
-    DiscordServerError,
-    Forbidden,
-    GatewayNotFound,
-    HTTPException,
-    InteractionException,
-    InteractionNotResponded,
-    InteractionResponded,
-    InteractionTimedOut,
-    InvalidArgument,
-    InvalidData,
-    LoginFailure,
-    NoMoreItems,
-    NotFound,
-    PrivilegedIntentsRequired,
-    _flatten_error_dict,
-)
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.errors import (
+        ClientException,
+        ConnectionClosed,
+        DiscordException,
+        DiscordServerError,
+        Forbidden,
+        GatewayNotFound,
+        HTTPException,
+        InteractionException,
+        InteractionNotResponded,
+        InteractionResponded,
+        InteractionTimedOut,
+        InvalidArgument,
+        InvalidData,
+        LoginFailure,
+        NoMoreItems,
+        NotFound,
+        PrivilegedIntentsRequired,
+        _flatten_error_dict,
+    )
 
 __all__ = (
     "DiscordException",

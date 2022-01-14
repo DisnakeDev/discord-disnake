@@ -23,7 +23,10 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.object import Hashable, Object, utils
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.object import Hashable, Object, utils
 
 __all__ = ("Object",)
 

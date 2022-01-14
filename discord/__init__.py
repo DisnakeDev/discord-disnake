@@ -75,3 +75,26 @@ class VersionInfo(NamedTuple):
 version_info: VersionInfo = VersionInfo(major=2, minor=3, micro=0, releaselevel="beta", serial=0)
 
 logging.getLogger(__name__).addHandler(logging.NullHandler())
+
+
+# Because the main library lazy loads some files, its important to re-export them here.
+# However, because they are lazily loaded, we don't want them showing up on intellisense
+# so should not be reaching when typechecking.
+from typing import TYPE_CHECKING
+
+if not TYPE_CHECKING:
+    from disnake import (
+        backoff,
+        context_managers,
+        ext,
+        gateway,
+        http,
+        iterators,
+        mixins,
+        oggparse,
+        state,
+        types,
+    )
+
+# doubly ensure that everything is overwritten. Most of the above exist just for typechecking.# isort: split
+from disnake import *

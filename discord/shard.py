@@ -23,27 +23,30 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.shard import (
-    AutoShardedClient,
-    AutoShardedConnectionState,
-    Client,
-    ClientException,
-    ConnectionClosed,
-    DiscordVoiceWebSocket,
-    DiscordWebSocket,
-    EventItem,
-    EventType,
-    ExponentialBackoff,
-    GatewayNotFound,
-    HTTPException,
-    KeepAliveHandler,
-    PrivilegedIntentsRequired,
-    ReconnectWebSocket,
-    Shard,
-    ShardInfo,
-    Status,
-    VoiceKeepAliveHandler,
-)
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.shard import (
+        AutoShardedClient,
+        AutoShardedConnectionState,
+        Client,
+        ClientException,
+        ConnectionClosed,
+        DiscordVoiceWebSocket,
+        DiscordWebSocket,
+        EventItem,
+        EventType,
+        ExponentialBackoff,
+        GatewayNotFound,
+        HTTPException,
+        KeepAliveHandler,
+        PrivilegedIntentsRequired,
+        ReconnectWebSocket,
+        Shard,
+        ShardInfo,
+        Status,
+        VoiceKeepAliveHandler,
+    )
 
 __all__ = (
     "AutoShardedClient",

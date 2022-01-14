@@ -23,22 +23,25 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.components import (
-    MISSING,
-    ActionRow,
-    Button,
-    ButtonStyle,
-    C,
-    Component,
-    ComponentType,
-    PartialEmoji,
-    SelectMenu,
-    SelectOption,
-    _component_factory,
-    _EmojiTag,
-    get_slots,
-    try_enum,
-)
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.components import (
+        MISSING,
+        ActionRow,
+        Button,
+        ButtonStyle,
+        C,
+        Component,
+        ComponentType,
+        PartialEmoji,
+        SelectMenu,
+        SelectOption,
+        _component_factory,
+        _EmojiTag,
+        get_slots,
+        try_enum,
+    )
 
 __all__ = (
     "Component",

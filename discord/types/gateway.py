@@ -23,7 +23,10 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.types.gateway import Gateway, GatewayBot, SessionStartLimit
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.types.gateway import Gateway, GatewayBot, SessionStartLimit
 
 # isort: split
 from disnake.types.gateway import __dict__ as __original_dict__

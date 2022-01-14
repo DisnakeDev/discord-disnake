@@ -23,15 +23,18 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.types.member import (
-    Member,
-    MemberWithUser,
-    Nickname,
-    PartialMember,
-    User,
-    UserWithMember,
-    _OptionalMemberWithUser,
-)
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.types.member import (
+        Member,
+        MemberWithUser,
+        Nickname,
+        PartialMember,
+        User,
+        UserWithMember,
+        _OptionalMemberWithUser,
+    )
 
 # isort: split
 from disnake.types.member import __dict__ as __original_dict__

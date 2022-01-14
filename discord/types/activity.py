@@ -23,22 +23,25 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.types.activity import (
-    Activity,
-    ActivityAssets,
-    ActivityButton,
-    ActivityEmoji,
-    ActivityParty,
-    ActivitySecrets,
-    ActivityTimestamps,
-    ClientStatus,
-    PartialPresenceUpdate,
-    PartialUser,
-    SendableActivity,
-    _ActivityEmojiOptional,
-    _BaseActivity,
-    _SendableActivityOptional,
-)
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.types.activity import (
+        Activity,
+        ActivityAssets,
+        ActivityButton,
+        ActivityEmoji,
+        ActivityParty,
+        ActivitySecrets,
+        ActivityTimestamps,
+        ClientStatus,
+        PartialPresenceUpdate,
+        PartialUser,
+        SendableActivity,
+        _ActivityEmojiOptional,
+        _BaseActivity,
+        _SendableActivityOptional,
+    )
 
 # isort: split
 from disnake.types.activity import __dict__ as __original_dict__

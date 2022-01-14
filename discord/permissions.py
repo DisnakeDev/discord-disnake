@@ -23,19 +23,22 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.permissions import (
-    PO,
-    BaseFlags,
-    P,
-    PermissionOverwrite,
-    Permissions,
-    _augment_from_permissions,
-    alias_flag_value,
-    fill_with_flags,
-    flag_value,
-    make_permission_alias,
-    permission_alias,
-)
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.permissions import (
+        PO,
+        BaseFlags,
+        P,
+        PermissionOverwrite,
+        Permissions,
+        _augment_from_permissions,
+        alias_flag_value,
+        fill_with_flags,
+        flag_value,
+        make_permission_alias,
+        permission_alias,
+    )
 
 __all__ = (
     "Permissions",

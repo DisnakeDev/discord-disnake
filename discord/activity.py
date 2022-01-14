@@ -23,21 +23,24 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.activity import (
-    Activity,
-    ActivityType,
-    Asset,
-    BaseActivity,
-    Colour,
-    CustomActivity,
-    Game,
-    PartialEmoji,
-    Spotify,
-    Streaming,
-    _get_as_snowflake,
-    create_activity,
-    try_enum,
-)
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.activity import (
+        Activity,
+        ActivityType,
+        Asset,
+        BaseActivity,
+        Colour,
+        CustomActivity,
+        Game,
+        PartialEmoji,
+        Spotify,
+        Streaming,
+        _get_as_snowflake,
+        create_activity,
+        try_enum,
+    )
 
 __all__ = (
     "BaseActivity",

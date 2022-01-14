@@ -23,26 +23,29 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.types.message import (
-    AllowedMentions,
-    Attachment,
-    ChannelMention,
-    Embed,
-    Member,
-    Message,
-    MessageActivity,
-    MessageApplication,
-    MessageInteraction,
-    MessageReference,
-    PartialEmoji,
-    Reaction,
-    StickerItem,
-    User,
-    UserWithMember,
-    _AttachmentOptional,
-    _MessageApplicationOptional,
-    _MessageOptional,
-)
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.types.message import (
+        AllowedMentions,
+        Attachment,
+        ChannelMention,
+        Embed,
+        Member,
+        Message,
+        MessageActivity,
+        MessageApplication,
+        MessageInteraction,
+        MessageReference,
+        PartialEmoji,
+        Reaction,
+        StickerItem,
+        User,
+        UserWithMember,
+        _AttachmentOptional,
+        _MessageApplicationOptional,
+        _MessageOptional,
+    )
 
 # isort: split
 from disnake.types.message import __dict__ as __original_dict__

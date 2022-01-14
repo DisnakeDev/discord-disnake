@@ -23,28 +23,31 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.ext.commands.flags import (
-    MISSING,
-    BadFlagArgument,
-    CommandError,
-    F,
-    Flag,
-    FlagConverter,
-    FlagsMeta,
-    MissingFlagArgument,
-    MissingRequiredFlag,
-    StringView,
-    TooManyFlags,
-    convert_flag,
-    flag,
-    get_flags,
-    maybe_coroutine,
-    resolve_annotation,
-    run_converters,
-    tuple_convert_all,
-    tuple_convert_flag,
-    validate_flag_name,
-)
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.ext.commands.flags import (
+        MISSING,
+        BadFlagArgument,
+        CommandError,
+        F,
+        Flag,
+        FlagConverter,
+        FlagsMeta,
+        MissingFlagArgument,
+        MissingRequiredFlag,
+        StringView,
+        TooManyFlags,
+        convert_flag,
+        flag,
+        get_flags,
+        maybe_coroutine,
+        resolve_annotation,
+        run_converters,
+        tuple_convert_all,
+        tuple_convert_flag,
+        validate_flag_name,
+    )
 
 __all__ = (
     "Flag",

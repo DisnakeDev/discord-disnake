@@ -23,7 +23,10 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.backoff import ExponentialBackoff, T
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.backoff import ExponentialBackoff, T
 
 __all__ = ("ExponentialBackoff",)
 

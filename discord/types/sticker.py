@@ -23,19 +23,22 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.types.sticker import (
-    BaseSticker,
-    CreateGuildSticker,
-    EditGuildSticker,
-    GuildSticker,
-    ListPremiumStickerPacks,
-    StandardSticker,
-    StickerItem,
-    StickerPack,
-    User,
-    _CreateGuildStickerOptional,
-    _GuildStickerOptional,
-)
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.types.sticker import (
+        BaseSticker,
+        CreateGuildSticker,
+        EditGuildSticker,
+        GuildSticker,
+        ListPremiumStickerPacks,
+        StandardSticker,
+        StickerItem,
+        StickerPack,
+        User,
+        _CreateGuildStickerOptional,
+        _GuildStickerOptional,
+    )
 
 # isort: split
 from disnake.types.sticker import __dict__ as __original_dict__

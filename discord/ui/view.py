@@ -23,20 +23,23 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.ui.view import (
-    ActionRowComponent,
-    ButtonComponent,
-    Component,
-    Item,
-    SelectComponent,
-    View,
-    ViewStore,
-    _component_factory,
-    _component_to_item,
-    _ViewWeights,
-    _walk_all_components,
-    try_enum_to_int,
-)
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.ui.view import (
+        ActionRowComponent,
+        ButtonComponent,
+        Component,
+        Item,
+        SelectComponent,
+        View,
+        ViewStore,
+        _component_factory,
+        _component_to_item,
+        _ViewWeights,
+        _walk_all_components,
+        try_enum_to_int,
+    )
 
 __all__ = ("View",)
 

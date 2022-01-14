@@ -23,16 +23,19 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.template import (
-    MISSING,
-    Guild,
-    Template,
-    VoiceRegion,
-    _bytes_to_base64_data,
-    _FriendlyHttpAttributeErrorHelper,
-    _PartialTemplateState,
-    parse_time,
-)
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.template import (
+        MISSING,
+        Guild,
+        Template,
+        VoiceRegion,
+        _bytes_to_base64_data,
+        _FriendlyHttpAttributeErrorHelper,
+        _PartialTemplateState,
+        parse_time,
+    )
 
 __all__ = ("Template",)
 

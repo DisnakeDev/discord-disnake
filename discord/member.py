@@ -23,24 +23,27 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.member import (
-    MISSING,
-    Asset,
-    BaseUser,
-    Colour,
-    M,
-    Member,
-    Object,
-    Permissions,
-    Status,
-    User,
-    VoiceState,
-    _UserTag,
-    create_activity,
-    flatten_user,
-    try_enum,
-    utils,
-)
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.member import (
+        MISSING,
+        Asset,
+        BaseUser,
+        Colour,
+        M,
+        Member,
+        Object,
+        Permissions,
+        Status,
+        User,
+        VoiceState,
+        _UserTag,
+        create_activity,
+        flatten_user,
+        try_enum,
+        utils,
+    )
 
 __all__ = (
     "VoiceState",

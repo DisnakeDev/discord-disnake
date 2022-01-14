@@ -23,21 +23,24 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.ui.select import (
-    MISSING,
-    ComponentType,
-    DecoratedItem,
-    Emoji,
-    Item,
-    MessageInteraction,
-    PartialEmoji,
-    S,
-    Select,
-    SelectMenu,
-    SelectOption,
-    V,
-    select,
-)
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.ui.select import (
+        MISSING,
+        ComponentType,
+        DecoratedItem,
+        Emoji,
+        Item,
+        MessageInteraction,
+        PartialEmoji,
+        S,
+        Select,
+        SelectMenu,
+        SelectOption,
+        V,
+        select,
+    )
 
 __all__ = (
     "Select",

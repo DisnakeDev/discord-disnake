@@ -23,21 +23,24 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.threads import (
-    MISSING,
-    ChannelType,
-    ClientException,
-    Hashable,
-    Messageable,
-    Thread,
-    ThreadArchiveDuration,
-    ThreadMember,
-    _get_as_snowflake,
-    parse_time,
-    snowflake_time,
-    try_enum,
-    try_enum_to_int,
-)
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.threads import (
+        MISSING,
+        ChannelType,
+        ClientException,
+        Hashable,
+        Messageable,
+        Thread,
+        ThreadArchiveDuration,
+        ThreadMember,
+        _get_as_snowflake,
+        parse_time,
+        snowflake_time,
+        try_enum,
+        try_enum_to_int,
+    )
 
 __all__ = (
     "Thread",

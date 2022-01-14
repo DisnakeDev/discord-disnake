@@ -23,24 +23,27 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.types.raw_models import (
-    BulkMessageDeleteEvent,
-    IntegrationDeleteEvent,
-    Member,
-    MessageDeleteEvent,
-    MessageUpdateEvent,
-    PartialEmoji,
-    ReactionActionEvent,
-    ReactionClearEmojiEvent,
-    ReactionClearEvent,
-    TypingEvent,
-    _IntegrationDeleteEventOptional,
-    _MessageEventOptional,
-    _ReactionActionEventOptional,
-    _ReactionClearEmojiEventOptional,
-    _ReactionClearEventOptional,
-    _TypingEventOptional,
-)
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.types.raw_models import (
+        BulkMessageDeleteEvent,
+        IntegrationDeleteEvent,
+        Member,
+        MessageDeleteEvent,
+        MessageUpdateEvent,
+        PartialEmoji,
+        ReactionActionEvent,
+        ReactionClearEmojiEvent,
+        ReactionClearEvent,
+        TypingEvent,
+        _IntegrationDeleteEventOptional,
+        _MessageEventOptional,
+        _ReactionActionEventOptional,
+        _ReactionClearEmojiEventOptional,
+        _ReactionClearEventOptional,
+        _TypingEventOptional,
+    )
 
 # isort: split
 from disnake.types.raw_models import __dict__ as __original_dict__

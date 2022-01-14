@@ -23,7 +23,10 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.ui.item import DecoratedItem, I, I_co, Item, MessageInteraction, V
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.ui.item import DecoratedItem, I, I_co, Item, MessageInteraction, V
 
 __all__ = ("Item",)
 

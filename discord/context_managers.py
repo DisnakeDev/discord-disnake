@@ -23,7 +23,10 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.context_managers import Typing, _typing_done_callback
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.context_managers import Typing, _typing_done_callback
 
 __all__ = ("Typing",)
 

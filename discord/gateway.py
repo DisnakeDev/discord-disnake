@@ -23,22 +23,25 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.gateway import (
-    BaseActivity,
-    ConnectionClosed,
-    DiscordClientWebSocketResponse,
-    DiscordVoiceWebSocket,
-    DiscordWebSocket,
-    EventListener,
-    GatewayRatelimiter,
-    InvalidArgument,
-    KeepAliveHandler,
-    ReconnectWebSocket,
-    SpeakingState,
-    VoiceKeepAliveHandler,
-    WebSocketClosure,
-    utils,
-)
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.gateway import (
+        BaseActivity,
+        ConnectionClosed,
+        DiscordClientWebSocketResponse,
+        DiscordVoiceWebSocket,
+        DiscordWebSocket,
+        EventListener,
+        GatewayRatelimiter,
+        InvalidArgument,
+        KeepAliveHandler,
+        ReconnectWebSocket,
+        SpeakingState,
+        VoiceKeepAliveHandler,
+        WebSocketClosure,
+        utils,
+    )
 
 __all__ = (
     "DiscordWebSocket",

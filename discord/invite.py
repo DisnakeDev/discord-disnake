@@ -23,23 +23,26 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from disnake.invite import (
-    Asset,
-    ChannelType,
-    Hashable,
-    I,
-    Invite,
-    InviteTarget,
-    Object,
-    PartialAppInfo,
-    PartialInviteChannel,
-    PartialInviteGuild,
-    VerificationLevel,
-    _get_as_snowflake,
-    parse_time,
-    snowflake_time,
-    try_enum,
-)
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from disnake.invite import (
+        Asset,
+        ChannelType,
+        Hashable,
+        I,
+        Invite,
+        InviteTarget,
+        Object,
+        PartialAppInfo,
+        PartialInviteChannel,
+        PartialInviteGuild,
+        VerificationLevel,
+        _get_as_snowflake,
+        parse_time,
+        snowflake_time,
+        try_enum,
+    )
 
 __all__ = (
     "PartialInviteChannel",
