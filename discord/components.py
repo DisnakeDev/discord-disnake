@@ -40,7 +40,13 @@ from disnake.components import (
     try_enum,
 )
 
-__all__ = ("Component", "ActionRow", "Button", "SelectMenu", "SelectOption")
+__all__ = (
+    "Component",
+    "ActionRow",
+    "Button",
+    "SelectMenu",
+    "SelectOption",
+)
 
 # isort: split
 from disnake.components import __dict__ as __original_dict__

@@ -39,7 +39,10 @@ from disnake.threads import (
     try_enum_to_int,
 )
 
-__all__ = ("Thread", "ThreadMember")
+__all__ = (
+    "Thread",
+    "ThreadMember",
+)
 
 # isort: split
 from disnake.threads import __dict__ as __original_dict__

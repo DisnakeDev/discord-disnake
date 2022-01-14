@@ -77,7 +77,10 @@ from disnake.ext.commands.base_core import (
     wrap_callback,
 )
 
-__all__ = ("InvokableApplicationCommand", "guild_permissions")
+__all__ = (
+    "InvokableApplicationCommand",
+    "guild_permissions",
+)
 
 # isort: split
 from disnake.ext.commands.base_core import __dict__ as __original_dict__

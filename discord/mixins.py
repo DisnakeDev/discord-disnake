@@ -25,7 +25,10 @@ DEALINGS IN THE SOFTWARE.
 
 from disnake.mixins import EqualityComparable, Hashable
 
-__all__ = ("EqualityComparable", "Hashable")
+__all__ = (
+    "EqualityComparable",
+    "Hashable",
+)
 
 # isort: split
 from disnake.mixins import __dict__ as __original_dict__

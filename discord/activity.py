@@ -39,7 +39,14 @@ from disnake.activity import (
     try_enum,
 )
 
-__all__ = ("BaseActivity", "Activity", "Streaming", "Game", "Spotify", "CustomActivity")
+__all__ = (
+    "BaseActivity",
+    "Activity",
+    "Streaming",
+    "Game",
+    "Spotify",
+    "CustomActivity",
+)
 
 # isort: split
 from disnake.activity import __dict__ as __original_dict__

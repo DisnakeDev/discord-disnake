@@ -45,7 +45,13 @@ from disnake.sticker import (
     try_enum,
 )
 
-__all__ = ("StickerPack", "StickerItem", "Sticker", "StandardSticker", "GuildSticker")
+__all__ = (
+    "StickerPack",
+    "StickerItem",
+    "Sticker",
+    "StandardSticker",
+    "GuildSticker",
+)
 
 # isort: split
 from disnake.sticker import __dict__ as __original_dict__

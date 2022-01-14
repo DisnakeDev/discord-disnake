@@ -37,7 +37,10 @@ from disnake.ext.commands.cog import (
     _cog_special_method,
 )
 
-__all__ = ("CogMeta", "Cog")
+__all__ = (
+    "CogMeta",
+    "Cog",
+)
 
 # isort: split
 from disnake.ext.commands.cog import __dict__ as __original_dict__

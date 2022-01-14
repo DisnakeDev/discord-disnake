@@ -59,7 +59,11 @@ from disnake.audit_logs import (
     utils,
 )
 
-__all__ = ("AuditLogDiff", "AuditLogChanges", "AuditLogEntry")
+__all__ = (
+    "AuditLogDiff",
+    "AuditLogChanges",
+    "AuditLogEntry",
+)
 
 # isort: split
 from disnake.audit_logs import __dict__ as __original_dict__

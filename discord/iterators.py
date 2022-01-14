@@ -47,7 +47,11 @@ from disnake.iterators import (
 )
 
 __all__ = (
-    "ReactionIterator", "HistoryIterator", "AuditLogIterator", "GuildIterator", "MemberIterator"
+    "ReactionIterator",
+    "HistoryIterator",
+    "AuditLogIterator",
+    "GuildIterator",
+    "MemberIterator",
 )
 
 # isort: split

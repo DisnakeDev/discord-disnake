@@ -57,7 +57,10 @@ from disnake.voice_client import (
     utils,
 )
 
-__all__ = ("VoiceProtocol", "VoiceClient")
+__all__ = (
+    "VoiceProtocol",
+    "VoiceClient",
+)
 
 # isort: split
 from disnake.voice_client import __dict__ as __original_dict__

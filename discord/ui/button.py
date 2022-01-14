@@ -37,7 +37,10 @@ from disnake.ui.button import (
     button,
 )
 
-__all__ = ("Button", "button")
+__all__ = (
+    "Button",
+    "button",
+)
 
 # isort: split
 from disnake.ui.button import __dict__ as __original_dict__

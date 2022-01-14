@@ -41,7 +41,11 @@ from disnake.invite import (
     try_enum,
 )
 
-__all__ = ("PartialInviteChannel", "PartialInviteGuild", "Invite")
+__all__ = (
+    "PartialInviteChannel",
+    "PartialInviteGuild",
+    "Invite",
+)
 
 # isort: split
 from disnake.invite import __dict__ as __original_dict__

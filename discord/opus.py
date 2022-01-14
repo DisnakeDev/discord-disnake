@@ -64,7 +64,11 @@ from disnake.opus import (
     signal_ctl,
 )
 
-__all__ = ("Encoder", "OpusError", "OpusNotLoaded")
+__all__ = (
+    "Encoder",
+    "OpusError",
+    "OpusNotLoaded",
+)
 
 # isort: split
 from disnake.opus import __dict__ as __original_dict__

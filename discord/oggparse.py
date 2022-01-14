@@ -25,7 +25,11 @@ DEALINGS IN THE SOFTWARE.
 
 from disnake.oggparse import DiscordException, OggError, OggPage, OggStream
 
-__all__ = ("OggError", "OggPage", "OggStream")
+__all__ = (
+    "OggError",
+    "OggPage",
+    "OggStream",
+)
 
 # isort: split
 from disnake.oggparse import __dict__ as __original_dict__

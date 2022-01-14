@@ -45,7 +45,10 @@ from disnake.shard import (
     VoiceKeepAliveHandler,
 )
 
-__all__ = ("AutoShardedClient", "ShardInfo")
+__all__ = (
+    "AutoShardedClient",
+    "ShardInfo",
+)
 
 # isort: split
 from disnake.shard import __dict__ as __original_dict__

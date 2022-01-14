@@ -43,7 +43,11 @@ from disnake.ext.commands.bot_base import (
     when_mentioned_or,
 )
 
-__all__ = ("when_mentioned", "when_mentioned_or", "BotBase")
+__all__ = (
+    "when_mentioned",
+    "when_mentioned_or",
+    "BotBase",
+)
 
 # isort: split
 from disnake.ext.commands.bot_base import __dict__ as __original_dict__

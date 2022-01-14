@@ -11,7 +11,10 @@ from disnake.interactions.message import (
     try_enum,
 )
 
-__all__ = ("MessageInteraction", "MessageInteractionData")
+__all__ = (
+    "MessageInteraction",
+    "MessageInteractionData",
+)
 
 # isort: split
 from disnake.interactions.message import __dict__ as __original_dict__

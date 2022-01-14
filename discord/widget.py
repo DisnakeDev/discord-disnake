@@ -39,7 +39,11 @@ from disnake.widget import (
     try_enum,
 )
 
-__all__ = ("WidgetChannel", "WidgetMember", "Widget")
+__all__ = (
+    "WidgetChannel",
+    "WidgetMember",
+    "Widget",
+)
 
 # isort: split
 from disnake.widget import __dict__ as __original_dict__

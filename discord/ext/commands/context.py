@@ -25,7 +25,10 @@ DEALINGS IN THE SOFTWARE.
 
 from disnake.ext.commands.context import MISSING, BotT, CogT, Context, GuildContext, Message, P, T
 
-__all__ = ("Context", "GuildContext")
+__all__ = (
+    "Context",
+    "GuildContext",
+)
 
 # isort: split
 from disnake.ext.commands.context import __dict__ as __original_dict__

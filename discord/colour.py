@@ -25,7 +25,10 @@ DEALINGS IN THE SOFTWARE.
 
 from disnake.colour import CT, Color, Colour
 
-__all__ = ("Colour", "Color")
+__all__ = (
+    "Colour",
+    "Color",
+)
 
 # isort: split
 from disnake.colour import __dict__ as __original_dict__

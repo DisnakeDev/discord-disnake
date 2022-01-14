@@ -39,7 +39,10 @@ from disnake.ui.select import (
     select,
 )
 
-__all__ = ("Select", "select")
+__all__ = (
+    "Select",
+    "select",
+)
 
 # isort: split
 from disnake.ui.select import __dict__ as __original_dict__

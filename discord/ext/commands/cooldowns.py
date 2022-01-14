@@ -37,7 +37,13 @@ from disnake.ext.commands.cooldowns import (
     _Semaphore,
 )
 
-__all__ = ("BucketType", "Cooldown", "CooldownMapping", "DynamicCooldownMapping", "MaxConcurrency")
+__all__ = (
+    "BucketType",
+    "Cooldown",
+    "CooldownMapping",
+    "DynamicCooldownMapping",
+    "MaxConcurrency",
+)
 
 # isort: split
 from disnake.ext.commands.cooldowns import __dict__ as __original_dict__

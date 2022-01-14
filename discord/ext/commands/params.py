@@ -42,7 +42,13 @@ from disnake.ext.commands.params import (
 )
 
 __all__ = (
-    "ParamInfo", "Param", "param", "inject", "option_enum", "register_injection", "converter_method"
+    "ParamInfo",
+    "Param",
+    "param",
+    "inject",
+    "option_enum",
+    "register_injection",
+    "converter_method",
 )
 
 # isort: split

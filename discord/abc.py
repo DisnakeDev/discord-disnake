@@ -56,7 +56,14 @@ from disnake.abc import (
     utils,
 )
 
-__all__ = ("Snowflake", "User", "PrivateChannel", "GuildChannel", "Messageable", "Connectable")
+__all__ = (
+    "Snowflake",
+    "User",
+    "PrivateChannel",
+    "GuildChannel",
+    "Messageable",
+    "Connectable",
+)
 
 # isort: split
 from disnake.abc import __dict__ as __original_dict__

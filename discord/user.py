@@ -38,7 +38,10 @@ from disnake.user import (
     snowflake_time,
 )
 
-__all__ = ("User", "ClientUser")
+__all__ = (
+    "User",
+    "ClientUser",
+)
 
 # isort: split
 from disnake.user import __dict__ as __original_dict__

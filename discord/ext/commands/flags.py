@@ -46,7 +46,11 @@ from disnake.ext.commands.flags import (
     validate_flag_name,
 )
 
-__all__ = ("Flag", "flag", "FlagConverter")
+__all__ = (
+    "Flag",
+    "flag",
+    "FlagConverter",
+)
 
 # isort: split
 from disnake.ext.commands.flags import __dict__ as __original_dict__

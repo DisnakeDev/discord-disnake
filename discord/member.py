@@ -42,7 +42,10 @@ from disnake.member import (
     utils,
 )
 
-__all__ = ("VoiceState", "Member")
+__all__ = (
+    "VoiceState",
+    "Member",
+)
 
 # isort: split
 from disnake.member import __dict__ as __original_dict__

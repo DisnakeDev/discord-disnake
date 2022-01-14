@@ -25,7 +25,10 @@ DEALINGS IN THE SOFTWARE.
 
 from disnake.appinfo import AppInfo, ApplicationFlags, Asset, PartialAppInfo, utils
 
-__all__ = ("AppInfo", "PartialAppInfo")
+__all__ = (
+    "AppInfo",
+    "PartialAppInfo",
+)
 
 # isort: split
 from disnake.appinfo import __dict__ as __original_dict__

@@ -55,7 +55,12 @@ from disnake.webhook.async_ import (
     utils,
 )
 
-__all__ = ("Webhook", "WebhookMessage", "PartialWebhookChannel", "PartialWebhookGuild")
+__all__ = (
+    "Webhook",
+    "WebhookMessage",
+    "PartialWebhookChannel",
+    "PartialWebhookGuild",
+)
 
 # isort: split
 from disnake.webhook.async_ import __dict__ as __original_dict__

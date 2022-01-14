@@ -35,7 +35,12 @@ from disnake.ext.commands.help import (
     _not_overriden,
 )
 
-__all__ = ("Paginator", "HelpCommand", "DefaultHelpCommand", "MinimalHelpCommand")
+__all__ = (
+    "Paginator",
+    "HelpCommand",
+    "DefaultHelpCommand",
+    "MinimalHelpCommand",
+)
 
 # isort: split
 from disnake.ext.commands.help import __dict__ as __original_dict__

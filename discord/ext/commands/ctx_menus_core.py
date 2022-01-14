@@ -67,7 +67,12 @@ from disnake.ext.commands.ctx_menus_core import (
     user_command,
 )
 
-__all__ = ("InvokableUserCommand", "InvokableMessageCommand", "user_command", "message_command")
+__all__ = (
+    "InvokableUserCommand",
+    "InvokableMessageCommand",
+    "user_command",
+    "message_command",
+)
 
 # isort: split
 from disnake.ext.commands.ctx_menus_core import __dict__ as __original_dict__

@@ -55,7 +55,11 @@ from disnake.interactions.base import (
     utils,
 )
 
-__all__ = ("Interaction", "InteractionMessage", "InteractionResponse")
+__all__ = (
+    "Interaction",
+    "InteractionMessage",
+    "InteractionResponse",
+)
 
 # isort: split
 from disnake.interactions.base import __dict__ as __original_dict__

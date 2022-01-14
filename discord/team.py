@@ -25,7 +25,10 @@ DEALINGS IN THE SOFTWARE.
 
 from disnake.team import Asset, BaseUser, Team, TeamMember, TeamMembershipState, try_enum, utils
 
-__all__ = ("Team", "TeamMember")
+__all__ = (
+    "Team",
+    "TeamMember",
+)
 
 # isort: split
 from disnake.team import __dict__ as __original_dict__

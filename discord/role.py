@@ -39,7 +39,10 @@ from disnake.role import (
     snowflake_time,
 )
 
-__all__ = ("RoleTags", "Role")
+__all__ = (
+    "RoleTags",
+    "Role",
+)
 
 # isort: split
 from disnake.role import __dict__ as __original_dict__

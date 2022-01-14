@@ -46,7 +46,10 @@ from disnake.webhook.sync import (
     utils,
 )
 
-__all__ = ("SyncWebhook", "SyncWebhookMessage")
+__all__ = (
+    "SyncWebhook",
+    "SyncWebhookMessage",
+)
 
 # isort: split
 from disnake.webhook.sync import __dict__ as __original_dict__

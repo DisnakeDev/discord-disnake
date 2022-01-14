@@ -38,7 +38,10 @@ from disnake.guild_scheduled_event import (
     try_enum,
 )
 
-__all__ = ("GuildScheduledEventMetadata", "GuildScheduledEvent")
+__all__ = (
+    "GuildScheduledEventMetadata",
+    "GuildScheduledEvent",
+)
 
 # isort: split
 from disnake.guild_scheduled_event import __dict__ as __original_dict__

@@ -73,7 +73,12 @@ from disnake.ext.commands.slash_core import (
     utils,
 )
 
-__all__ = ("InvokableSlashCommand", "SubCommandGroup", "SubCommand", "slash_command")
+__all__ = (
+    "InvokableSlashCommand",
+    "SubCommandGroup",
+    "SubCommand",
+    "slash_command",
+)
 
 # isort: split
 from disnake.ext.commands.slash_core import __dict__ as __original_dict__

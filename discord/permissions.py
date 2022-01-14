@@ -37,7 +37,10 @@ from disnake.permissions import (
     permission_alias,
 )
 
-__all__ = ("Permissions", "PermissionOverwrite")
+__all__ = (
+    "Permissions",
+    "PermissionOverwrite",
+)
 
 # isort: split
 from disnake.permissions import __dict__ as __original_dict__
