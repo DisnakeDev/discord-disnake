@@ -12,6 +12,7 @@ SHIM_SENTINEL = object()
 def test_shim(
     base: ModuleType, shim: ModuleType, base_name: str, _recurse_modules: bool = True
 ) -> List[pathlib.Path]:
+    name = base.__name__
     for attr in dir(base):
         if attr.startswith("__"):
             continue
@@ -36,7 +37,7 @@ def test_shim(
 
         shim_attr = getattr(shim, attr, SHIM_SENTINEL)
         if not base_attr is shim_attr:
-            print("Attribute mismatch: ", attr)
+            print("Attribute mismatch: ", name + "." + attr)
         else:
             pass
             # print(attr, " is the same")
