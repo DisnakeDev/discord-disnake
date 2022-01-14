@@ -154,6 +154,10 @@ def shim_init(path: pathlib.Path, shim_path: pathlib.Path) -> List[pathlib.Path]
     )
 
     code = fancy_list(f"if not TYPE_CHECKING:\n    from {path.stem} import ", modules)
+    code +='\n\n'
+    code += '# doubly ensure that everything is overwritten. Most of the above exist just for typechecking.'
+    # overwrite the VersionInfo and version_info to be from the original.
+    code += f"# isort: split\nfrom {path.stem} import *"
     txt = sort_imports(data + "\n" + code + "\n")
 
     if existing != txt:
