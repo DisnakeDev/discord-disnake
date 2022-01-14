@@ -1,7 +1,6 @@
 import importlib
 import inspect
 import pathlib
-import subprocess
 import sys
 import textwrap
 import types
@@ -90,7 +89,11 @@ def shim_folder(path: pathlib.Path, pypath: str, shim_path: pathlib.Path) -> Lis
             modified.append(shim_mod)
 
         elif fn.suffix == ".py":
-            docstring, imports = create_file(f"{pypath}.{fn.stem}")
+            if fn.stem == "__init__":
+                mod_path = pypath
+            else:
+                mod_path = f"{pypath}.{fn.stem}"
+            docstring, imports = create_file(mod_path)
 
             to_write = ""
             if docstring:
