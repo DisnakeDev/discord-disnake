@@ -64,4 +64,10 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    import time
+
+    start = time.time_ns()
+    res = main()
+    end = time.time_ns()
+    print(f"Took {(end - start) / 1e9} seconds.")
+    sys.exit()

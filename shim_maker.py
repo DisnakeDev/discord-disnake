@@ -4,7 +4,6 @@ import pathlib
 import sys
 import textwrap
 import types
-from importlib import import_module
 from typing import Iterable, List, Optional, Tuple
 
 import isort
@@ -27,7 +26,7 @@ def sort_imports(imports: str) -> str:
 
 def create_file(module_name: str) -> Tuple[Optional[str], str]:
     """Creates a docstring and imports for a module."""
-    subpckg = import_module(module_name)
+    subpckg = importlib.import_module(module_name)
     root_module_name = module_name.split(".")[0] + "."
     docstring = None
     members = []
@@ -154,8 +153,8 @@ def shim_init(path: pathlib.Path, shim_path: pathlib.Path) -> List[pathlib.Path]
     )
 
     code = fancy_list(f"if not TYPE_CHECKING:\n    from {path.stem} import ", modules)
-    code +='\n\n'
-    code += '# doubly ensure that everything is overwritten. Most of the above exist just for typechecking.'
+    code += "\n\n"
+    code += "# doubly ensure that everything is overwritten. Most of the above exist just for typechecking."
     # overwrite the VersionInfo and version_info to be from the original.
     code += f"# isort: split\nfrom {path.stem} import *"
     txt = sort_imports(data + "\n" + code + "\n")
@@ -181,25 +180,32 @@ def shim(path: pathlib.Path, shim_path: pathlib.Path) -> List[pathlib.Path]:
     return res
 
 
-def main():
+def main() -> Tuple[int, list]:
     import argparse
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("path", help="Path to the disnake module.")
+    parser.add_argument("path", help="Path to the base module.")
     parser.add_argument(
         "shim",
         help="Name of the shim module.",
         nargs="?",
         default="discord",
     )
-    parser.add_argument("--files", help=argparse.SUPPRESS, dest="files", nargs="*", default=None)
     args = parser.parse_args()
 
     try:
         path = pathlib.Path(args.path)
     except ValueError:
         print(f"Invalid path to package to be shimmed: {args.path}")
-        return 2
+        return 2, []
+    if not path.exists():
+        # attempt to fall back to a package name
+        try:
+            mod = importlib.import_module(args.path)
+        except ImportError:
+            print(f"Invalid path to package to be shimmed: {args.path}")
+            return 2, []
+        path = pathlib.Path(mod.__file__).parent
 
     path = path.resolve()
 
@@ -207,30 +213,27 @@ def main():
         shim_dir = pathlib.Path(args.shim)
     except ValueError:
         print(f"Invalid path to new package: {args.shim}")
-        return 2
+        return 2, []
 
     shim_dir = shim_dir.resolve()
 
     edited = shim(path, shim_dir)
-    if args.files:
-        for edited_file in edited:
-            if str(edited_file) in args.files:
-                args.files.remove(str(edited_file))
 
-        if args.files:
-            print(f"The following files were not found: {','.join(args.files)}")
-            return 1
-
-    return edited or 0
+    return 1, edited
 
 
 if __name__ == "__main__":
     import sys
+    import time
 
-    res = main()
+    start = time.time_ns()
+    res = main()[-1]
     if res:
         print(len(res), "files modified.")
     else:
         print("No changes were made.")
 
+    end = time.time_ns()
+
+    print(f"Took {(end - start) / 1e9} seconds.")
     sys.exit(bool(res))
