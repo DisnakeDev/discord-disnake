@@ -15,9 +15,10 @@ def fancy_list(prefix: str, to_join: Iterable[str]) -> str:
     prefix = prefix.rstrip()
     if not len(to_join):
         return ""
-    if len(to_join) > 1:
+    elif len(to_join) == 1:
+        return f"{prefix} ({to_join[0]},)"
+    else:
         return prefix + " (\n    " + ",\n    ".join(to_join) + ",\n)"
-    return prefix + " (" + f",\n{' ' * 4}".join(to_join) + ",)"
 
 
 def sort_imports(imports: str) -> str:
@@ -48,7 +49,7 @@ def create_file(module_name: str) -> Tuple[Optional[str], str]:
             members.append(memb)
 
     code = fancy_list(
-        f"from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n{' ' * 4}from {module_name} import ",
+        f"from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    from {module_name} import ",
         members,
     )
 
