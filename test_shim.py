@@ -11,18 +11,23 @@ SHIM_SENTINEL = object()
 
 def test_shim(
     base: ModuleType, shim: ModuleType, base_name: str, _recurse_modules: bool = True
-) -> List[pathlib.Path]:
+) -> int:
     name = base.__name__
+    result = 0
+    root_package =  base_name.split(".", 1)[0]
     for attr in dir(base):
         if attr.startswith("__"):
             continue
         base_attr: object = getattr(base, attr)
-        if not getattr(base_attr, "__package__", None) == base_name.split(".", 1)[
-            0
-        ] and not getattr(base_attr, "__module__", "").startswith(base_name):
+        
+        # check the provided attribute is part of the package to check
+        # if the attribute isn't from the same module, skip it
+        if not getattr(base_attr, "__package__", None) == root_package and not getattr(base_attr, "__module__", "").startswith(base_name):
+            # print('uhm',base_attr,base,attr)
             continue
-
-        if attr == base_name.split(".", 1)[0]:
+        
+        # skip the package as it will never be the same
+        if attr == root_package:
             continue
 
         if isinstance(base_attr, ModuleType):
@@ -36,12 +41,11 @@ def test_shim(
             continue
 
         shim_attr = getattr(shim, attr, SHIM_SENTINEL)
-        if not base_attr is shim_attr:
+        if base_attr is not shim_attr:
             print("Attribute mismatch: ", name + "." + attr)
-        else:
-            pass
-            # print(attr, " is the same")
+            result = 1
 
+    return result
 
 def main() -> int:
     parser = argparse.ArgumentParser(
@@ -53,14 +57,16 @@ def main() -> int:
 
     args = parser.parse_args()
 
+    result = 0 
     for pack in args.packages:
         if not pack.startswith("."):
             pack = f".{pack}"
-        test_shim(
+        result |= test_shim(
             importlib.import_module(pack, args.base),
             importlib.import_module(pack, args.shim),
             args.base,
         )
+    return result
 
 
 if __name__ == "__main__":
@@ -70,4 +76,4 @@ if __name__ == "__main__":
     res = main()
     end = time.time_ns()
     print(f"Took {(end - start) / 1e9} seconds.")
-    sys.exit()
+    sys.exit(res)
