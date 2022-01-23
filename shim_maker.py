@@ -1,17 +1,16 @@
 import importlib
 import inspect
 import pathlib
-import sys
 import textwrap
 import types
-from typing import Iterable, List, Optional, Tuple
+from typing import List, Optional, Sequence, Set, Tuple
 
 import isort
 
 ISORT_CONFIG = pathlib.Path("pyproject.toml")
 
 
-def fancy_list(prefix: str, to_join: Iterable[str]) -> str:
+def fancy_list(prefix: str, to_join: Sequence[str]) -> str:
     prefix = prefix.rstrip()
     if not len(to_join):
         return ""
@@ -131,7 +130,7 @@ def shim_init(path: pathlib.Path, shim_path: pathlib.Path) -> List[pathlib.Path]
     importlib.invalidate_caches()
     base = importlib.import_module(path.stem)
     shim = importlib.import_module(shim_path.stem)
-    modules = set()
+    modules: Set[str] = set()
 
     for mem in dir(base):
         base_attr = getattr(base, mem)
@@ -145,19 +144,20 @@ def shim_init(path: pathlib.Path, shim_path: pathlib.Path) -> List[pathlib.Path]
 
     data += "\n"
     data += textwrap.dedent(
-        f"""
-    # Because the main library lazy loads some files, its important to re-export them here.
-    # However, because they are lazily loaded, we don't want them showing up on intellisense
-    # so should not be reaching when typechecking.
-    from typing import TYPE_CHECKING
-    """
+        """
+        # Because the main library lazy loads some files, its important to re-export them here.
+        # However, because they are lazily loaded, we don't want them showing up on intellisense
+        # so should not be reaching when typechecking.
+        from typing import TYPE_CHECKING
+        """
     )
 
-    code = fancy_list(f"if not TYPE_CHECKING:\n    from {path.stem} import ", modules)
+    code = fancy_list(f"if not TYPE_CHECKING:\n    from {path.stem} import ", sorted(list(modules)))
     code += "\n\n"
     code += "# doubly ensure that everything is overwritten. Most of the above exist just for typechecking."
     # overwrite the VersionInfo and version_info to be from the original.
-    code += f"# isort: split\nfrom {path.stem} import *"
+    code += f"\n# isort: split\nfrom {path.stem} import __dict__ as __original_dict__\nlocals().update(__original_dict__)"
+
     txt = sort_imports(data + "\n" + code + "\n")
 
     if existing != txt:
@@ -181,7 +181,7 @@ def shim(path: pathlib.Path, shim_path: pathlib.Path) -> List[pathlib.Path]:
     return res
 
 
-def main() -> Tuple[int, list]:
+def main() -> Tuple[int, List[pathlib.Path]]:
     import argparse
 
     parser = argparse.ArgumentParser()
@@ -206,7 +206,7 @@ def main() -> Tuple[int, list]:
         except ImportError:
             print(f"Invalid path to package to be shimmed: {args.path}")
             return 2, []
-        path = pathlib.Path(mod.__file__).parent
+        path = pathlib.Path(mod.__file__).parent  # type: ignore
 
     path = path.resolve()
 

@@ -14,18 +14,20 @@ def test_shim(
 ) -> int:
     name = base.__name__
     result = 0
-    root_package =  base_name.split(".", 1)[0]
+    root_package = base_name.split(".", 1)[0]
     for attr in dir(base):
         if attr.startswith("__"):
             continue
         base_attr: object = getattr(base, attr)
-        
+
         # check the provided attribute is part of the package to check
         # if the attribute isn't from the same module, skip it
-        if not getattr(base_attr, "__package__", None) == root_package and not getattr(base_attr, "__module__", "").startswith(base_name):
+        if not getattr(base_attr, "__package__", None) == root_package and not getattr(
+            base_attr, "__module__", ""
+        ).startswith(base_name):
             # print('uhm',base_attr,base,attr)
             continue
-        
+
         # skip the package as it will never be the same
         if attr == root_package:
             continue
@@ -47,6 +49,7 @@ def test_shim(
 
     return result
 
+
 def main() -> int:
     parser = argparse.ArgumentParser(
         description="Test a shim package is identical to the main package."
@@ -57,7 +60,7 @@ def main() -> int:
 
     args = parser.parse_args()
 
-    result = 0 
+    result = 0
     for pack in args.packages:
         if not pack.startswith("."):
             pack = f".{pack}"
