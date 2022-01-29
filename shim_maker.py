@@ -1,6 +1,9 @@
+import atexit
 import importlib
 import inspect
 import pathlib
+import shutil
+import tempfile
 import textwrap
 import types
 from typing import List, Optional, Sequence, Set, Tuple
@@ -67,10 +70,15 @@ def create_file(module_name: str) -> Tuple[Optional[str], str]:
     return docstring, sort_imports(code)
 
 
-def shim_folder(path: pathlib.Path, pypath: str, shim_path: pathlib.Path) -> List[pathlib.Path]:
+def shim_folder(
+    path: pathlib.Path, pypath: str, shim_path: pathlib.Path, temp_dir: pathlib.Path
+) -> List[pathlib.Path]:
     modified = []
     for fn in path.iterdir():
+        if "__pycache__" in str(fn):
+            continue
         shim_mod = shim_path / fn.relative_to(path)
+        original_shim = temp_dir / fn.relative_to(path)
 
         if not (shim_mod).parent.exists():
             (shim_mod).parent.mkdir(exist_ok=True, parents=True)
@@ -81,7 +89,8 @@ def shim_folder(path: pathlib.Path, pypath: str, shim_path: pathlib.Path) -> Lis
                 # we will take care of this file later
                 continue
             data = sort_imports(fn.read_text(encoding="utf-8"))
-            if shim_mod.is_file() and data == shim_mod.read_text(encoding="utf-8"):
+            if original_shim.is_file() and data == original_shim.read_text(encoding="utf-8"):
+                shim_mod.write_text(data, encoding="utf-8")
                 continue
             print("Updating file: ", shim_mod)
             shim_mod.write_text(data, encoding="utf-8")
@@ -99,28 +108,35 @@ def shim_folder(path: pathlib.Path, pypath: str, shim_path: pathlib.Path) -> Lis
                 to_write += '"""\n' + docstring.strip() + '\n"""\n\n'
             to_write += imports
 
-            if shim_mod.is_file():
-                existing = shim_mod.read_text(encoding="utf-8")
+            if original_shim.is_file():
+                existing = original_shim.read_text(encoding="utf-8")
             else:
                 existing = None
 
-            if existing != to_write:
+            if existing == to_write:
+                shim_mod.write_text(to_write, encoding="utf-8")
+            else:
                 print("Updating file: ", shim_mod)
                 shim_mod.write_text(to_write, encoding="utf-8")
                 modified.append(shim_mod)
 
         elif fn.is_dir():
             (shim_mod).mkdir(parents=True, exist_ok=True)
-            modified.extend(shim_folder(fn, f"{pypath}.{fn.stem}", shim_mod))
+            modified.extend(
+                shim_folder(fn, f"{pypath}.{fn.stem}", shim_mod, temp_dir / shim_mod.name)
+            )
 
     return modified
 
 
-def shim_init(path: pathlib.Path, shim_path: pathlib.Path) -> List[pathlib.Path]:
+def shim_init(
+    path: pathlib.Path, shim_path: pathlib.Path, temp_dir: pathlib.Path
+) -> List[pathlib.Path]:
 
     init = shim_path / "__init__.py"
-    if init.is_file():
-        existing = init.read_text(encoding="utf-8")
+    shim_init = temp_dir / "__init__.py"
+    if shim_init.is_file():
+        existing = shim_init.read_text(encoding="utf-8")
     else:
         existing = None
 
@@ -172,12 +188,16 @@ def shim_init(path: pathlib.Path, shim_path: pathlib.Path) -> List[pathlib.Path]
     return [init]
 
 
-def shim(path: pathlib.Path, shim_path: pathlib.Path) -> List[pathlib.Path]:
+def shim(path: pathlib.Path, shim_path: pathlib.Path, temp_dir: pathlib.Path) -> List[pathlib.Path]:
+    if shim_path.exists():
+        shutil.copytree(shim_path, temp_dir / shim_path.name)
+        shutil.rmtree(shim_path)
+
     shim_path.mkdir(parents=True, exist_ok=True)
-    res = shim_folder(path, path.stem, shim_path)
+    res = shim_folder(path, path.stem, shim_path, temp_dir / shim_path.name)
 
     # reshim __init__.py
-    res.extend(shim_init(path, shim_path))
+    res.extend(shim_init(path, shim_path, temp_dir / shim_path.name))
     return res
 
 
@@ -218,7 +238,10 @@ def main() -> Tuple[int, List[pathlib.Path]]:
 
     shim_dir = shim_dir.resolve()
 
-    edited = shim(path, shim_dir)
+    temp_dir = tempfile.TemporaryDirectory()
+    # a bit of a hack to ensure the tempdir is deleted at exit
+    with temp_dir:
+        edited = shim(path, shim_dir, pathlib.Path(temp_dir.name))
 
     return 1, edited
 
