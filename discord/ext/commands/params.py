@@ -7,6 +7,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from disnake.ext.commands.params import (
         CONVERTER_MAPPING,
+        Annotated,
         CallableT,
         ChannelType,
         CommandInteraction,

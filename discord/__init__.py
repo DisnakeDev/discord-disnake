@@ -96,8 +96,5 @@ if not TYPE_CHECKING:
         types,
     )
 
-# doubly ensure that everything is overwritten. Most of the above exist just for typechecking.
-# isort: split
-from disnake import __dict__ as __original_dict__
-
-locals().update(__original_dict__)
+# doubly ensure that everything is overwritten. Most of the above exist just for typechecking.# isort: split
+from disnake import *
