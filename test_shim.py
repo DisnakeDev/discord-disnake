@@ -25,7 +25,6 @@ def test_shim(
         if not getattr(base_attr, "__package__", None) == root_package and not getattr(
             base_attr, "__module__", ""
         ).startswith(base_name):
-            # print('uhm',base_attr,base,attr)
             continue
 
         # skip the package as it will never be the same
