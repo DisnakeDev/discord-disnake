@@ -172,7 +172,10 @@ def shim_init(
     code += "\n\n"
     code += "# doubly ensure that everything is overwritten. Most of the above exist just for typechecking."
     # overwrite the VersionInfo and version_info to be from the original.
-    code += f"\n# isort: split\nfrom {path.stem} import __dict__ as __original_dict__\nlocals().update(__original_dict__)"
+    # we could do the original dict resetting here,
+    # but when that was done, all of the extension module shims broke
+    # and I don't want to figure out why
+    code += f"# isort: split\nfrom {path.stem} import *"
 
     txt = sort_imports(data + "\n" + code + "\n")
 
