@@ -1,15 +1,14 @@
 import argparse
 import importlib
 import importlib.metadata
-import pathlib
+import pkgutil
 import sys
 from types import ModuleType
-from typing import List
 
 SHIM_SENTINEL = object()
 
 
-def test_shim(
+def test_shim_objects(
     base: ModuleType, shim: ModuleType, base_name: str, _recurse_modules: bool = True
 ) -> int:
     name = base.__name__
@@ -33,7 +32,7 @@ def test_shim(
 
         if isinstance(base_attr, ModuleType):
             if _recurse_modules:
-                test_shim(
+                test_shim_objects(
                     base_attr,
                     getattr(shim, attr),
                     f"{base_name}.{attr}",
@@ -47,6 +46,43 @@ def test_shim(
             result = 1
 
     return result
+
+
+def test_shim_modules(base: ModuleType, shim: ModuleType, base_name: str) -> int:
+    """Test all files that should exist, do exist. For example, collections.abc"""
+    result = 0
+    # check all shim packages exist
+    for pkg in pkgutil.walk_packages(base.__path__):
+
+        try:
+            importlib.import_module(f"{shim.__name__}.{pkg.name}")
+        except ModuleNotFoundError:
+            print(f"Missing module: {shim.__name__}.{pkg.name}")
+            result |= 1
+        else:
+            if pkg.ispkg:
+                result |= test_shim_modules(
+                    importlib.import_module(f"{base.__name__}.{pkg.name}"),
+                    importlib.import_module(f"{shim.__name__}.{pkg.name}"),
+                    f"{base_name}.{pkg.name}",
+                )
+
+    # check there's no extra modules
+    for pkg in pkgutil.walk_packages(shim.__path__):
+        try:
+            importlib.import_module(f"{base.__name__}.{pkg.name}")
+        except ModuleNotFoundError:
+            print(f"Extra module: {shim.__name__}.{pkg.name}")
+            result |= 1
+
+    return result
+
+
+def test_shim(base: ModuleType, shim: ModuleType, base_name: str):
+    """Run all test methods."""
+    res = test_shim_objects(base, shim, base_name)
+    res |= test_shim_modules(base, shim, base_name)
+    return res
 
 
 def main() -> int:
