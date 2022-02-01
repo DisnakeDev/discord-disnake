@@ -174,7 +174,13 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.DEBUG, format="{levelname:<8} -  {message}", style="{")
+    try:
+        import coloredlogs
+    except ModuleNotFoundError:
+        logging.basicConfig(level=logging.DEBUG, format="{levelname:<8} -  {message}", style="{")
+    else:
+        coloredlogs.install(level="DEBUG", fmt="{levelname:<8} -  {message}", style="{")
+
     import time
 
     start = time.time_ns()
