@@ -99,9 +99,25 @@ def main() -> int:
     for pack in args.packages:
         if not pack.startswith("."):
             pack = f".{pack}"
+
+        try:
+            base = importlib.import_module(pack, args.base)
+            shim = importlib.import_module(pack, args.shim)
+        except ModuleNotFoundError as e:
+            if e.__traceback__ and e.__traceback__.tb_next:
+                frame = e.__traceback__.tb_next
+                while True:
+                    if frame.tb_next is None:
+                        break
+                    frame = frame.tb_next
+                file = frame.tb_frame.f_code.co_filename
+            else:
+                file = f"{args.shim}{pack} or {args.base}{pack}"
+            print(f"FATAL EXCEPTION encountered while loading {file}: {str(e)}")
+            return 1
         result |= test_shim(
-            importlib.import_module(pack, args.base),
-            importlib.import_module(pack, args.shim),
+            base,
+            shim,
             args.base,
         )
     return result
