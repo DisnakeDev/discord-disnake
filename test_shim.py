@@ -45,12 +45,19 @@ def test_file(base: ModuleType, shim: ModuleType) -> AttributeErrors:
             missing_attributes.append(attr)
             continue
 
+        base_attr = getattr(base, attr)
         shim_attr = getattr(shim, attr)
         if not hasattr(shim_attr, "__module__"):
             continue
-        if getattr(shim_attr, "__module__") != base.__name__:
+        if not shim_attr.__module__.startswith((base.__name__, shim.__name__)):
             continue
-        if getattr(base, attr) is shim_attr:
+
+        # handle main.
+        # main is special, since it needs to have equal attributes, but not the same attributes
+        # we can get a near perfect result for this by comparing that the signatures, docstrings, and so forth are equal.
+        # TODO:
+
+        if base_attr is shim_attr:
             continue
         logger.error(f"{shim.__name__}.{attr} is not the same as {base.__name__}.{attr}")
         mismatching_attributes.append(attr)
@@ -105,6 +112,8 @@ def test_module(
 
     if to_skip is None:
         to_skip = []
+    if (res := test_file(base, shim)) and any(res.values()):
+        results[shim.__name__ + ".__init__"] = res
 
     for module in pkgutil.walk_packages(base.__path__):
         if f"{shim.__name__}.{module.name}" in to_skip:
@@ -112,9 +121,6 @@ def test_module(
             continue
         base_module = importlib.import_module(f"{base.__name__}.{module.name}")
         shim_module = importlib.import_module(f"{shim.__name__}.{module.name}")
-        # if module.ispkg:
-        #     missing_attributes.update(test_module(base_module, shim_module,to_skip=to_skip))
-        #     continue
         if (res := test_file(base_module, shim_module)) and any(res.values()):
             results[shim_module.__name__] = res
 
