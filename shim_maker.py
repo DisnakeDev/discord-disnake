@@ -1,266 +1,138 @@
-import atexit
+import argparse
+import glob
 import importlib
+import importlib.util
 import inspect
+import os
 import pathlib
+import pkgutil
 import shutil
-import tempfile
+import sys
 import textwrap
-import types
-from typing import List, Optional, Sequence, Set, Tuple
+from types import ModuleType
+from typing import List
 
 import isort
 
 ISORT_CONFIG = pathlib.Path("pyproject.toml")
 
 
-def fancy_list(prefix: str, to_join: Sequence[str]) -> str:
-    prefix = prefix.rstrip()
-    if not len(to_join):
-        return ""
-    elif len(to_join) == 1:
-        return f"{prefix} ({to_join[0]},)"
-    else:
-        return prefix + " (\n    " + ",\n    ".join(to_join) + ",\n)"
+def find_packages(dir: str, package: str = None) -> List[str]:
+    """
+    Finds all of the submodules in the designated modules and returns a list of them.
+    """
+    submodules = set()
+    package = package or dir
+    for path in glob.iglob(f"{dir}/**/*.py", recursive=True):
+        path = path[len(dir) : -3].replace(os.sep, ".")
+        if importlib.util.find_spec(path, package) is not None:
+            submodules.add(path)
+
+    return sorted([submod[:-9] for submod in submodules if submod.endswith("__init__")])
 
 
-def sort_imports(imports: str) -> str:
-    return isort.api.sort_code_string(imports, file_path=ISORT_CONFIG)
+def _shim_code(code: ModuleType) -> str:
+    """Provided code, returns the shimmed version of it."""
+    shim = ""
+    if code.__doc__:
+        shim += f'"""{code.__doc__}"""\n'
 
+    imports = set()
 
-def create_file(module_name: str) -> Tuple[Optional[str], str]:
-    """Creates a docstring and imports for a module."""
-    subpckg = importlib.import_module(module_name)
-    root_module_name = module_name.split(".")[0] + "."
-    docstring = None
-    members = []
-    for memb, val in inspect.getmembers(subpckg):
-        if memb == "__doc__":
-            docstring = val
+    # add all non-private attributes
+    def _filter_members(member):
+        return hasattr(member, "__module__") and member.__module__ == code.__name__
+
+    for name, _ in inspect.getmembers(code, predicate=_filter_members):
+        if name.startswith("_"):
             continue
+        imports.add(name)
 
-        if (
-            not memb.startswith("__")
-            and memb not in ("TYPE_CHECKING",)
-            and (
-                not inspect.ismodule(val) or val.__name__.startswith(root_module_name)
-            )  # skip imported external modules
-            and getattr(val, "__module__", module_name).startswith(
-                root_module_name
-            )  # skip types imported from external modules
-        ):
-            members.append(memb)
+    if hasattr(code, "__all__"):
+        imports.update(code.__all__)
 
-    code = fancy_list(
-        f"from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    from {module_name} import ",
-        members,
-    )
+        shim += "__all__ = (\n"
+        shim += textwrap.indent(
+            "\n".join([f'"{member}",' for member in sorted(code.__all__)]), "    "
+        )
+        shim += "\n)\n\n"
 
-    try:
-        public_members = [f'"{memb}"' for memb in subpckg.__all__]
-    except AttributeError:
-        public_members = None
+    shim += f"from {code.__name__} import {', '.join(sorted(imports))}\n"
 
-    if public_members:
-        new_all = fancy_list("__all__ = ", public_members)
-        code += "\n\n" + new_all
-    code += "\n"
-    code += f"\n# isort: split\nfrom {module_name} import __dict__ as __original_dict__\nlocals().update(__original_dict__)"
-    code = code.strip()
+    shim += textwrap.dedent(
+        f"""
+        # isort: split
+        from {code.__name__} import __dict__ as __original_dict__
 
-    return docstring, sort_imports(code)
-
-
-def shim_folder(
-    path: pathlib.Path, pypath: str, shim_path: pathlib.Path, temp_dir: pathlib.Path
-) -> List[pathlib.Path]:
-    modified = []
-    for fn in path.iterdir():
-        if "__pycache__" in str(fn):
-            continue
-        shim_mod = shim_path / fn.relative_to(path)
-        original_shim = temp_dir / fn.relative_to(path)
-
-        if not (shim_mod).parent.exists():
-            (shim_mod).parent.mkdir(exist_ok=True, parents=True)
-            print("Created directory: ", (shim_mod))
-
-        if fn.name in ("__init__.py", "__main__.py", "py.typed") and "tasks" != fn.parent.name:
-            if fn.name == "__init__.py" and fn.parent.name == pypath.split(".", 1)[0]:
-                # we will take care of this file later
-                continue
-            data = sort_imports(fn.read_text(encoding="utf-8"))
-            if original_shim.is_file() and data == original_shim.read_text(encoding="utf-8"):
-                shim_mod.write_text(data, encoding="utf-8")
-                continue
-            print("Updating file: ", shim_mod)
-            shim_mod.write_text(data, encoding="utf-8")
-            modified.append(shim_mod)
-
-        elif fn.suffix == ".py":
-            if fn.stem == "__init__":
-                mod_path = pypath
-            else:
-                mod_path = f"{pypath}.{fn.stem}"
-            docstring, imports = create_file(mod_path)
-
-            to_write = ""
-            if docstring:
-                to_write += '"""\n' + docstring.strip() + '\n"""\n\n'
-            to_write += imports
-
-            if original_shim.is_file():
-                existing = original_shim.read_text(encoding="utf-8")
-            else:
-                existing = None
-
-            if existing == to_write:
-                shim_mod.write_text(to_write, encoding="utf-8")
-            else:
-                print("Updating file: ", shim_mod)
-                shim_mod.write_text(to_write, encoding="utf-8")
-                modified.append(shim_mod)
-
-        elif fn.is_dir():
-            (shim_mod).mkdir(parents=True, exist_ok=True)
-            modified.extend(
-                shim_folder(fn, f"{pypath}.{fn.stem}", shim_mod, temp_dir / shim_mod.name)
-            )
-
-    return modified
-
-
-def shim_init(
-    path: pathlib.Path, shim_path: pathlib.Path, temp_dir: pathlib.Path
-) -> List[pathlib.Path]:
-
-    init = shim_path / "__init__.py"
-    shim_init = temp_dir / "__init__.py"
-    if shim_init.is_file():
-        existing = shim_init.read_text(encoding="utf-8")
-    else:
-        existing = None
-
-    data = sort_imports((path / "__init__.py").read_text(encoding="utf-8"))
-    init.write_text(data)
-
-    importlib.invalidate_caches()
-    base = importlib.import_module(path.stem)
-    shim = importlib.import_module(shim_path.stem)
-    modules: Set[str] = set()
-
-    for mem in dir(base):
-        base_attr = getattr(base, mem)
-        if not isinstance(base_attr, types.ModuleType):
-            continue
-        shim_attr = getattr(shim, mem, None)
-        if shim_attr:
-            continue
-
-        modules.add(mem)
-
-    data += "\n"
-    data += textwrap.dedent(
-        """
-        # Because the main library lazy loads some files, its important to re-export them here.
-        # However, because they are lazily loaded, we don't want them showing up on intellisense
-        # so should not be reaching when typechecking.
-        from typing import TYPE_CHECKING
+        locals().update(__original_dict__)
         """
     )
-
-    code = fancy_list(f"if not TYPE_CHECKING:\n    from {path.stem} import ", sorted(list(modules)))
-    code += "\n\n"
-    code += "# doubly ensure that everything is overwritten. Most of the above exist just for typechecking."
-    # overwrite the VersionInfo and version_info to be from the original.
-    # we could do the original dict resetting here,
-    # but when that was done, all of the extension module shims broke
-    # and I don't want to figure out why
-    code += f"# isort: split\nfrom {path.stem} import *"
-
-    txt = sort_imports(data + "\n" + code + "\n")
-
-    if existing != txt:
-        print("Updating file: ", init)
-
-    with open(init, "w") as f:
-        f.write(txt)
-
-    if existing == txt:
-        return []
-
-    return [init]
+    shim = isort.api.sort_code_string(shim, file_path=ISORT_CONFIG)
+    return shim
 
 
-def shim(path: pathlib.Path, shim_path: pathlib.Path, temp_dir: pathlib.Path) -> List[pathlib.Path]:
-    if shim_path.exists():
-        shutil.copytree(shim_path, temp_dir / shim_path.name)
-        shutil.rmtree(shim_path)
+def _shim_module_type(
+    base_module: ModuleType, shim_module: str, *, original_shim: pathlib.Path = None
+):
+    """
+    Shim a module into the other location.
+    """
+    if not base_module.__file__:
+        raise RuntimeError(f"{base_module} does not have a __file__ attribute")
+    # convert the shim_module to a path
+    shim_path = shim_module.replace(".", os.sep)
+    # handle __init__
+    if base_module.__file__.endswith("__init__.py"):
+        shim_path += os.sep + "__init__.py"
+    else:
+        shim_path += ".py"
 
-    shim_path.mkdir(parents=True, exist_ok=True)
-    res = shim_folder(path, path.stem, shim_path, temp_dir / shim_path.name)
+    if not os.path.exists(os.path.dirname(shim_path)):
+        os.makedirs(os.path.dirname(shim_path))
 
-    # reshim __init__.py
-    res.extend(shim_init(path, shim_path, temp_dir / shim_path.name))
-    return res
+    # actually shim the file
+    code = _shim_code(base_module)
+    with open(shim_path, "w") as f:
+        f.write(code)
+
+    if os.path.exists(py_typed := os.path.dirname(base_module.__file__) + os.sep + "py.typed"):
+        shutil.copyfile(py_typed, os.path.dirname(shim_path) + os.sep + "py.typed")
 
 
-def main() -> Tuple[int, List[pathlib.Path]]:
-    import argparse
+def shim_module(base_name, shim_name, module_name, original_shim: pathlib.Path = None):
+    """Shim a module and all of its submodules."""
+    base = importlib.import_module(module_name or base_name, base_name)
+    _shim_module_type(base, shim_name + module_name, original_shim=original_shim)
+    for module in pkgutil.iter_modules(base.__path__):
+        if module.ispkg:
+            continue
+        submodule_name = module_name + "." + module.name
+        _shim_module_type(
+            importlib.import_module(base_name + submodule_name),
+            shim_name + submodule_name,
+            original_shim=original_shim and original_shim / f"{module.name}.py",
+        )
 
-    parser = argparse.ArgumentParser()
-    parser.add_argument("path", help="Path to the base module.")
-    parser.add_argument(
-        "shim",
-        help="Name of the shim module.",
-        nargs="?",
-        default="discord",
-    )
-    args = parser.parse_args()
 
-    try:
-        path = pathlib.Path(args.path)
-    except ValueError:
-        print(f"Invalid path to package to be shimmed: {args.path}")
-        return 2, []
-    if not path.exists():
-        # attempt to fall back to a package name
-        try:
-            mod = importlib.import_module(args.path)
-        except ImportError:
-            print(f"Invalid path to package to be shimmed: {args.path}")
-            return 2, []
-        path = pathlib.Path(mod.__file__).parent  # type: ignore
-
-    path = path.resolve()
-
-    try:
-        shim_dir = pathlib.Path(args.shim)
-    except ValueError:
-        print(f"Invalid path to new package: {args.shim}")
-        return 2, []
-
-    shim_dir = shim_dir.resolve()
-
-    temp_dir = tempfile.TemporaryDirectory()
-    # a bit of a hack to ensure the tempdir is deleted at exit
-    with temp_dir:
-        edited = shim(path, shim_dir, pathlib.Path(temp_dir.name))
-
-    return 1, edited
+def main(base_name: str, shim_name: str):
+    base = importlib.import_module(base_name)
+    if not base.__file__:
+        raise RuntimeError(f"{base_name} does not have a __file__ attribute")
+    base_dir = os.path.dirname(base.__file__)
+    packages = find_packages(base_dir, base_name)
+    for package in packages:
+        shim_module(base_name, shim_name, package)
 
 
 if __name__ == "__main__":
-    import sys
-    import time
+    import argparse
 
-    start = time.time_ns()
-    res = main()[-1]
-    if res:
-        print(len(res), "files modified.")
-    else:
-        print("No changes were made.")
+    parser = argparse.ArgumentParser(description="Create a shim for a module.")
+    parser.add_argument("module", help="The module to create a shim for.")
+    parser.add_argument(
+        "-o", "--output", help="The output module to write the shim to.", default="discord"
+    )
 
-    end = time.time_ns()
+    args = parser.parse_args()
 
-    print(f"Took {(end - start) / 1e9} seconds.")
-    sys.exit(bool(res))
+    sys.exit(main(args.module, args.output))
