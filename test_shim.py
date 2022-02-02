@@ -97,18 +97,18 @@ def test_module(base: ModuleType, shim: ModuleType, to_skip: List[str] = None):
     return missing_attributes
 
 
-def find_all_submodules(dir: str) -> List[str]:
+def find_all_submodules(dir: str, package: str = None) -> List[str]:
     """
     Finds all of the submodules in the designated modules and returns a list of them.
     """
     submodules = set()
+    package = package or dir
     for path in glob.iglob(f"{dir}/**/*.py", recursive=True):
-        path = path[:-3].replace(os.sep, ".")
-        if importlib.util.find_spec(path) is not None:
+        path = path[len(dir) : -3].replace(os.sep, ".")
+        if importlib.util.find_spec(path, package) is not None:
             submodules.add(path)
 
-    res = sorted([submod[len(dir) : -9] for submod in submodules if submod.endswith("__init__")])
-    return res
+    return sorted([submod[:-9] for submod in submodules if submod.endswith("__init__")])
 
 
 class Response(TypedDict):
