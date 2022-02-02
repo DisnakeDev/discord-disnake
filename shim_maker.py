@@ -51,16 +51,22 @@ def _shim_code(code: ModuleType) -> str:
     if hasattr(code, "__all__"):
         imports.update(code.__all__)
 
-        shim += "__all__ = (\n"
-        shim += textwrap.indent(
-            "\n".join([f'"{member}",' for member in sorted(code.__all__)]), "    "
-        )
-        shim += "\n)\n\n"
+        if len(code.__all__) > 1:
+            shim += "__all__ = (\n"
+            shim += textwrap.indent(
+                "\n".join([f'"{member}",' for member in sorted(code.__all__)]), "    "
+            )
+            shim += "\n)\n\n"
+        elif len(code.__all__) == 1:
+            shim += "__all__ = (" + f'"{code.__all__[0]}",' + ")\n\n"
+        else:
+            shim += "__all__ = ()\n\n"
 
     shim += f"from {code.__name__} import {', '.join(sorted(imports))}\n"
 
     shim += textwrap.dedent(
         f"""
+        # fmt: off
         # isort: split
         from {code.__name__} import __dict__ as __original_dict__
 
@@ -69,7 +75,7 @@ def _shim_code(code: ModuleType) -> str:
         """
     )
     shim = isort.api.sort_code_string(shim, file_path=ISORT_CONFIG)
-    return shim
+    return shim.strip() + "\n"
 
 
 def _shim_module_type(
