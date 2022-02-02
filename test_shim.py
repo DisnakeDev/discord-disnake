@@ -22,9 +22,21 @@ from typing import Dict, List, Set, Tuple, TypedDict
 logger = logging.getLogger(__name__)
 
 
-def test_file(base: ModuleType, shim: ModuleType) -> List[str]:
+class AttributeErrors(TypedDict):
+    missing_attributes: List[str]
+    mismatching_attributes: List[str]
+
+
+class Response(TypedDict):
+    extra_files: List[str]
+    missing_files: List[str]
+    attributes: Dict[str, AttributeErrors]
+
+
+def test_file(base: ModuleType, shim: ModuleType) -> AttributeErrors:
     """Test the two files against each other. Any attributes that aren't exposed by the second file are returned as an error."""
     missing_attributes = []
+    mismatching_attributes = []
     for attr in dir(base):
         if attr.startswith("_"):
             continue
@@ -32,11 +44,20 @@ def test_file(base: ModuleType, shim: ModuleType) -> List[str]:
             logger.error(f"{shim.__name__}.{attr} is missing.")
             missing_attributes.append(attr)
             continue
-        if not hasattr(getattr(shim, attr), "__module__"):
+
+        shim_attr = getattr(shim, attr)
+        if not hasattr(shim_attr, "__module__"):
             continue
-        if getattr(getattr(shim, attr), "__module__") != base.__name__:
+        if getattr(shim_attr, "__module__") != base.__name__:
             continue
-    return missing_attributes
+        if getattr(base, attr) is shim_attr:
+            continue
+        logger.error(f"{shim.__name__}.{attr} is not the same as {base.__name__}.{attr}")
+        mismatching_attributes.append(attr)
+    return {
+        "missing_attributes": missing_attributes,
+        "mismatching_attributes": mismatching_attributes,
+    }
 
 
 def test_all_replicas(base: ModuleType, shim: ModuleType) -> Tuple[List[str], List[str]]:
@@ -75,10 +96,12 @@ def test_all_replicas(base: ModuleType, shim: ModuleType) -> Tuple[List[str], Li
     return (extra_files, missing_files)
 
 
-def test_module(base: ModuleType, shim: ModuleType, to_skip: List[str] = None):
+def test_module(
+    base: ModuleType, shim: ModuleType, to_skip: List[str] = None
+) -> Dict[str, AttributeErrors]:
     """Tests every attribute for every file in the base module."""
     # dot-delimited path to missing attributes
-    missing_attributes: Dict[str, List[str]] = {}
+    results: Dict[str, AttributeErrors] = {}
 
     if to_skip is None:
         to_skip = []
@@ -92,9 +115,10 @@ def test_module(base: ModuleType, shim: ModuleType, to_skip: List[str] = None):
         # if module.ispkg:
         #     missing_attributes.update(test_module(base_module, shim_module,to_skip=to_skip))
         #     continue
-        if res := test_file(base_module, shim_module):
-            missing_attributes[shim_module.__name__] = res
-    return missing_attributes
+        if (res := test_file(base_module, shim_module)) and any(res.values()):
+            results[shim_module.__name__] = res
+
+    return results
 
 
 def find_all_submodules(dir: str, package: str = None) -> List[str]:
@@ -111,12 +135,6 @@ def find_all_submodules(dir: str, package: str = None) -> List[str]:
     return sorted([submod[:-9] for submod in submodules if submod.endswith("__init__")])
 
 
-class Response(TypedDict):
-    extra_files: List[str]
-    missing_files: List[str]
-    missing_attributes: Dict[str, List[str]]
-
-
 def test_package(base_name: str, shim_name: str) -> Response:
     """
     Imports and recursively tests all submodules of the base and shim package.
@@ -126,7 +144,7 @@ def test_package(base_name: str, shim_name: str) -> Response:
     response: Response = {
         "extra_files": [],
         "missing_files": [],
-        "missing_attributes": {},
+        "attributes": {},
     }
 
     base = importlib.import_module(base_name)
@@ -135,18 +153,14 @@ def test_package(base_name: str, shim_name: str) -> Response:
     response["extra_files"] = replicas[0]
     response["missing_files"] = replicas[1]
 
-    response["missing_attributes"].update(
-        test_module(base, shim, to_skip=response["missing_files"])
-    )
+    response["attributes"].update(test_module(base, shim, to_skip=response["missing_files"]))
     for module in find_all_submodules(shim_name):
         if not module:
             continue
         base = importlib.import_module(base_name + module)
         shim = importlib.import_module(shim_name + module)
 
-        response["missing_attributes"].update(
-            test_module(base, shim, to_skip=response["missing_files"])
-        )
+        response["attributes"].update(test_module(base, shim, to_skip=response["missing_files"]))
     return response
 
 
@@ -164,9 +178,17 @@ def main() -> int:
         logger.warning(f"Extra modules: {results['extra_files']}")
     if results.get("missing_files"):
         logger.error(f"Missing modules: {', '.join(results['missing_files'])}")
-    if results.get("missing_attributes"):
-        for module, attributes in results["missing_attributes"].items():
-            logger.error(f"{module} has missing attributes: {', '.join(attributes)}")
+    if results.get("attributes"):
+        for module, attributes in results["attributes"].items():
+            if attributes["missing_attributes"]:
+                logger.error(
+                    f"{module} has missing attributes: {', '.join(attributes['missing_attributes'])}"
+                )
+            if attributes["mismatching_attributes"]:
+                logger.error(
+                    f"{module} has mismatching attributes: {', '.join(attributes['mismatching_attributes'])}"
+                )
+
     if not any(results.values()):
         logger.info("All tests passed.")
         return 0
