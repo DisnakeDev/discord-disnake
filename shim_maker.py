@@ -70,7 +70,7 @@ def _shim_code(code: ModuleType) -> str:
         # isort: split
         from {code.__name__} import __dict__ as __original_dict__
 
-        locals().update({{k: v for k, v in __original_dict__.items() if k not in ("__file__", "__path__", "__name__", "__package__", "__loader__")}})
+        locals().update({{k: v for k, v in __original_dict__.items() if k not in ("__file__", "__path__", "__name__", "__package__", "__loader__", "__module__")}})
         del __original_dict__
         """
     )
