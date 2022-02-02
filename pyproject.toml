@@ -15,3 +15,4 @@ isort = { cmd = "task lint isort", help = "Run isort" }
 generate = { cmd= "python shim_maker.py", help = "Generate a new version of the shim" }
 lint = { cmd = "pre-commit run --all-files", help = "Checks all files for linting errors" }
 precommit = { cmd = "pre-commit install --install-hooks", help = "Installs the precommit hook" }
+test = { cmd = "python test_shim.py disnake discord", help = "Test the shim functions properly"}
