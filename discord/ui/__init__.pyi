@@ -8,5 +8,7 @@ Bot UI Kit helper for the Discord API
 :license: MIT, see LICENSE for more details.
 
 """
+from disnake.ui import *
+
 from .item import *
 from .view import *

@@ -42,14 +42,17 @@ def _type_shim_code(code: ModuleType, is_init=False) -> str:
     # add all non-private attributes
     def _filter_members(member):
         if is_init:
-            return inspect.ismodule(member)
+            return inspect.ismodule(member) and member.__name__.startswith(code.__name__)
         else:
             return hasattr(member, "__module__") and member.__module__ == code.__name__
 
-    for name, _ in inspect.getmembers(code, predicate=_filter_members):
+    for name, member in inspect.getmembers(code, predicate=_filter_members):
         if name.startswith("_"):
             continue
-        imports.add(name)
+        if is_init:
+            imports.add(member.__name__[len(code.__name__) + 1 :])
+        else:
+            imports.add(name)
 
     if hasattr(code, "__all__") and not is_init:
         imports.update(code.__all__)
@@ -66,6 +69,7 @@ def _type_shim_code(code: ModuleType, is_init=False) -> str:
             shim += "__all__ = ()\n\n"
 
     if is_init:
+        shim += f"from {code.__name__} import *\n"
         for mod in imports:
             shim += f"from .{mod} import *\n"
     else:
@@ -89,7 +93,6 @@ def _shim_module_type(
     if base_module.__file__.endswith("__init__.py"):
         shim_path += os.sep + "__init__.pyi"
         is_init = True
-        print(shim_path)
     else:
         shim_path += ".pyi"
         is_init = False
@@ -137,8 +140,6 @@ def main(base_name: str, shim_name: str):
 
     with open(original_init, "w") as f:
         f.write(original_init_code)
-
-    os.remove(original_init + "i")
 
 
 if __name__ == "__main__":

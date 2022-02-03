@@ -7,6 +7,8 @@ An extension module to facilitate creation of bot commands.
 :copyright: (c) 2015-present Rapptz
 :license: MIT, see LICENSE for more details.
 """
+from disnake.ext.commands import *
+
 from .base_core import *
 from .bot import *
 from .bot_base import *

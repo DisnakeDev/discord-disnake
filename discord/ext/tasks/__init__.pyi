@@ -22,10 +22,4 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
-from .aiohttp import *
-from .asyncio import *
-from .datetime import *
-from .disnake import *
-from .inspect import *
-from .sys import *
-from .traceback import *
+from disnake.ext.tasks import *
