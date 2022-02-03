@@ -40,12 +40,19 @@ def test_file(base: ModuleType, shim: ModuleType) -> AttributeErrors:
     for attr in dir(base):
         if attr.startswith("_"):
             continue
+
+        base_attr = getattr(base, attr)
+        if not hasattr(base_attr, "__module__"):
+            continue
+
+        if not base_attr.__module__.startswith(base.__name__):
+            continue
+
         if not hasattr(shim, attr):
             logger.error(f"{shim.__name__}.{attr} is missing.")
             missing_attributes.append(attr)
             continue
 
-        base_attr = getattr(base, attr)
         shim_attr = getattr(shim, attr)
         if not hasattr(shim_attr, "__module__"):
             continue
