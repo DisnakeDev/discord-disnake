@@ -34,7 +34,7 @@ class DiscordFinder(importlib.machinery.PathFinder):
         fullname = fullname.replace(__name__, MAIN_PACKAGE, 1)
 
         # implement a custom loader for __main__
-        if "__main__" in fullname:
+        if fullname.endswith("__main__"):
             return importlib.util.spec_from_loader(fullname, MainLoader())
         return importlib.util.find_spec(fullname)
 
