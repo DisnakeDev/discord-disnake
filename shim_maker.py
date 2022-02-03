@@ -31,8 +31,8 @@ def find_packages(dir: str, package: str = None) -> List[str]:
     return sorted([submod[:-9] for submod in submodules if submod.endswith("__init__")])
 
 
-def _shim_code(code: ModuleType) -> str:
-    """Provided code, returns the shimmed version of it."""
+def _type_shim_code(code: ModuleType, is_init=False) -> str:
+    """Provided code, returns a type-stub version of it."""
     shim = ""
     if code.__doc__:
         shim += f'"""{code.__doc__}"""\n'
@@ -41,14 +41,17 @@ def _shim_code(code: ModuleType) -> str:
 
     # add all non-private attributes
     def _filter_members(member):
-        return hasattr(member, "__module__") and member.__module__ == code.__name__
+        if is_init:
+            return inspect.ismodule(member)
+        else:
+            return hasattr(member, "__module__") and member.__module__ == code.__name__
 
     for name, _ in inspect.getmembers(code, predicate=_filter_members):
         if name.startswith("_"):
             continue
         imports.add(name)
 
-    if hasattr(code, "__all__"):
+    if hasattr(code, "__all__") and not is_init:
         imports.update(code.__all__)
 
         if len(code.__all__) > 1:
@@ -62,18 +65,12 @@ def _shim_code(code: ModuleType) -> str:
         else:
             shim += "__all__ = ()\n\n"
 
-    shim += f"from {code.__name__} import {', '.join(sorted(imports))}\n"
+    if is_init:
+        for mod in imports:
+            shim += f"from .{mod} import *\n"
+    else:
+        shim += f"from {code.__name__} import {', '.join(sorted(imports))}\n"
 
-    shim += textwrap.dedent(
-        f"""
-        # fmt: off
-        # isort: split
-        from {code.__name__} import __dict__ as __original_dict__
-
-        locals().update({{k: v for k, v in __original_dict__.items() if k not in ("__file__", "__path__", "__name__", "__package__", "__loader__", "__module__")}})
-        del __original_dict__
-        """
-    )
     shim = isort.api.sort_code_string(shim, file_path=ISORT_CONFIG)
     return shim.strip() + "\n"
 
@@ -90,15 +87,18 @@ def _shim_module_type(
     shim_path = shim_module.replace(".", os.sep)
     # handle __init__
     if base_module.__file__.endswith("__init__.py"):
-        shim_path += os.sep + "__init__.py"
+        shim_path += os.sep + "__init__.pyi"
+        is_init = True
+        print(shim_path)
     else:
-        shim_path += ".py"
+        shim_path += ".pyi"
+        is_init = False
 
     if not os.path.exists(os.path.dirname(shim_path)):
         os.makedirs(os.path.dirname(shim_path))
 
     # actually shim the file
-    code = _shim_code(base_module)
+    code = _type_shim_code(base_module, is_init=is_init)
     with open(shim_path, "w") as f:
         f.write(code)
 
@@ -122,13 +122,23 @@ def shim_module(base_name, shim_name, module_name, original_shim: pathlib.Path =
 
 
 def main(base_name: str, shim_name: str):
+
     base = importlib.import_module(base_name)
     if not base.__file__:
         raise RuntimeError(f"{base_name} does not have a __file__ attribute")
     base_dir = os.path.dirname(base.__file__)
+    # i don't care enough at the moment to do this the right way
+    original_init = shim_name + os.sep + "__init__.py"
+    with open(original_init) as f:
+        original_init_code = f.read()
     packages = find_packages(base_dir, base_name)
     for package in packages:
         shim_module(base_name, shim_name, package)
+
+    with open(original_init, "w") as f:
+        f.write(original_init_code)
+
+    os.remove(original_init + "i")
 
 
 if __name__ == "__main__":

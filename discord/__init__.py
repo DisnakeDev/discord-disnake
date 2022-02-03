@@ -9,92 +9,29 @@ A basic wrapper for the Discord API.
 
 """
 
-__title__ = "disnake"
-__author__ = "Rapptz, EQUENOS"
-__license__ = "MIT"
-__copyright__ = "Copyright 2015-present Rapptz, 2021-present EQUENOS"
-__version__ = "2.3.0"
 
-__path__ = __import__("pkgutil").extend_path(__path__, __name__)
+def _add_import_hook():
+    import importlib
+    import importlib.machinery
+    import importlib.util
+    import sys
 
-import logging
-from typing import Literal, NamedTuple
+    class DiscordFinder(importlib.machinery.PathFinder):
+        @classmethod
+        def find_spec(cls, fullname: str, path=None, target=None):
+            """Try to find a spec for 'fullname' on sys.path or 'path'.
+            The search is based on sys.path_hooks and sys.path_importer_cache.
+            """
+            if not fullname.startswith("discord"):
+                return None
+            fullname = fullname.replace("discord", "disnake")
+            return importlib.util.find_spec(fullname)
 
-from . import abc, opus, ui, utils
-from .activity import *
-from .app_commands import *
-from .appinfo import *
-from .asset import *
-from .audit_logs import *
-from .channel import *
-from .client import *
-from .colour import *
-from .components import *
-from .custom_warnings import *
-from .embeds import *
-from .emoji import *
-from .enums import *
-from .errors import *
-from .file import *
-from .flags import *
-from .guild import *
-from .guild_scheduled_event import *
-from .integrations import *
-from .interactions import *
-from .invite import *
-from .member import *
-from .mentions import *
-from .message import *
-from .object import *
-from .partial_emoji import *
-from .permissions import *
-from .player import *
-from .raw_models import *
-from .reaction import *
-from .role import *
-from .shard import *
-from .stage_instance import *
-from .sticker import *
-from .team import *
-from .template import *
-from .threads import *
-from .user import *
-from .voice_client import *
-from .webhook import *
-from .widget import *
+    sys.meta_path.insert(0, DiscordFinder)
+    sys.modules["discord"] = sys.modules.get("disnake") or importlib.import_module("disnake")
 
 
-class VersionInfo(NamedTuple):
-    major: int
-    minor: int
-    micro: int
-    releaselevel: Literal["alpha", "beta", "candidate", "final"]
-    serial: int
+_add_import_hook()
+del _add_import_hook
 
-
-version_info: VersionInfo = VersionInfo(major=2, minor=3, micro=0, releaselevel="beta", serial=0)
-
-logging.getLogger(__name__).addHandler(logging.NullHandler())
-
-
-# Because the main library lazy loads some files, its important to re-export them here.
-# However, because they are lazily loaded, we don't want them showing up on intellisense
-# so should not be reaching when typechecking.
-from typing import TYPE_CHECKING
-
-if not TYPE_CHECKING:
-    from disnake import (
-        backoff,
-        context_managers,
-        ext,
-        gateway,
-        http,
-        iterators,
-        mixins,
-        oggparse,
-        state,
-        types,
-    )
-
-# doubly ensure that everything is overwritten. Most of the above exist just for typechecking.# isort: split
 from disnake import *
