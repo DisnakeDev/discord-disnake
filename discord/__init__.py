@@ -10,11 +10,12 @@ MAIN_PACKAGE = "disnake"
 
 class MainLoader(importlib.abc.ExecutionLoader):
     def get_filename(self, fullname):
-        spec = importlib.util.find_spec(fullname.split(".")[0])
+
+        spec = importlib.util.find_spec(fullname)
         if not spec or not spec.origin:
             raise ImportError
 
-        return os.path.dirname(spec.origin) + os.sep + "__main__.py"
+        return spec.origin
 
     def get_source(self, fullname):
         if file := self.get_filename(fullname):
@@ -36,7 +37,9 @@ class DiscordFinder(importlib.machinery.PathFinder):
         # implement a custom loader for __main__
         if fullname.endswith("__main__"):
             return importlib.util.spec_from_loader(fullname, MainLoader())
-        return importlib.util.find_spec(fullname)
+        if fullname in sys.modules:
+            return importlib.util.find_spec(fullname)
+        return importlib.machinery.PathFinder.find_spec(fullname)
 
 
 def add_import_hook():
