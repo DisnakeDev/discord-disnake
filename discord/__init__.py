@@ -30,7 +30,7 @@ class DiscordFinder(importlib.machinery.PathFinder):
         """Try to find a spec for 'fullname' on sys.path or 'path'.
         The search is based on sys.path_hooks and sys.path_importer_cache.
         """
-        if not fullname.startswith(__name__):
+        if not fullname.startswith(__name__ + "."):
             return None
         fullname = fullname.replace(__name__, MAIN_PACKAGE, 1)
 
@@ -39,12 +39,12 @@ class DiscordFinder(importlib.machinery.PathFinder):
             return importlib.util.spec_from_loader(fullname, MainLoader())
         if fullname in sys.modules:
             return importlib.util.find_spec(fullname)
-        return importlib.machinery.PathFinder.find_spec(fullname)
+        return importlib.machinery.PathFinder.find_spec(fullname, path=path)
 
 
 def add_import_hook():
 
-    sys.meta_path.insert(0, DiscordFinder)
+    sys.meta_path.append(DiscordFinder)
     sys.modules[__name__] = sys.modules.get(MAIN_PACKAGE) or importlib.import_module(MAIN_PACKAGE)
 
 
