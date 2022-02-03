@@ -1,4 +1,0 @@
-# version of disnake to target
-2.3.0
-# version of the shim, typically 0 unless a bug occured
-0

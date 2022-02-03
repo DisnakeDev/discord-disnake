@@ -3,40 +3,11 @@ import re
 from setuptools import setup
 
 requirements = []
-versions = []
-with open("version.txt", "r") as f:
-    for line in f:
-        if line.startswith("#"):
-            continue
-        if not (ver := line.strip()):
-            continue
-        versions.append(ver)
-        if len(versions) == 2:
-            break
-    read_version, sub_version = versions
 
 
-requirements.append("disnake" + "==" + read_version)
+VERSION = "2.3.0"
 
-
-version = ""
-with open("discord/__init__.py", encoding="utf-8") as f:
-    version = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]', f.read(), re.MULTILINE).group(1)  # type: ignore
-
-if not version:
-    raise RuntimeError("version is not set")
-
-if read_version != version:
-    raise RuntimeError(f"version.txt is {read_version}, but __init__.py is {version}")
-
-version += "." + sub_version
-if version.strip(".").count(".") != 3:
-    raise RuntimeError(
-        'Fourth digit of version must be configured properly. Current configured version is "{}"'.format(
-            version
-        )
-    )
-
+requirements.append("disnake" + "==" + VERSION)
 
 readme = ""
 with open("README.md", encoding="utf-8") as f:
@@ -61,7 +32,7 @@ setup(
         "Documentation": "https://docs.disnake.dev/en/latest",
         "Issue tracker": "https://github.com/DisnakeDev/discord-disnake/issues",
     },
-    version=version,
+    version=VERSION,
     packages=packages,
     license="MIT",
     description="A shim for disnake (Python wrapper for the Discord API)",
