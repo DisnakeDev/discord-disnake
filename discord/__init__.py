@@ -73,6 +73,16 @@ class Loader(importlib.abc.SourceLoader, importlib.abc.Loader):
             code = compile(f.read(), path, "exec")
         exec(code, module.__dict__)
 
+        # add the parent module to the global dictionary and
+        # force the module to be an attribute
+        if "." not in module.__spec__.name:
+            return
+        shimparent, name = module.__spec__.name.rsplit(".", 1)
+        if sys.modules.get(shimparent) is not None:
+            parent = shimparent.replace(__name__, MAIN_PACKAGE, 1)
+            sys.modules[parent] = sys.modules[shimparent]
+            setattr(sys.modules[shimparent], name, module)
+
 
 class DiscordFinder(importlib.machinery.PathFinder):
     @classmethod
