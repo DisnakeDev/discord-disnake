@@ -23,15 +23,14 @@ def _find_file(fullname, path=None):
             return os.path.join(item, "__init__.py")
         if os.path.exists(item + ".py"):
             return item
-    raise ImportError("No module named {}".format(fullname))
+    raise ModuleNotFoundError("No module named '{}'".format(fullname))
 
 
 class MainLoader(importlib.abc.ExecutionLoader):
     def get_filename(self, fullname):
-
         spec = importlib.util.find_spec(fullname)
         if not spec or not spec.origin:
-            raise ImportError
+            raise ModuleNotFoundError("No module named '{}'".format(fullname))
 
         return spec.origin
 
@@ -39,7 +38,7 @@ class MainLoader(importlib.abc.ExecutionLoader):
         if file := self.get_filename(fullname):
             with open(file, "r") as f:
                 return f.read()
-        raise ImportError
+        raise ModuleNotFoundError("No module named '{}'".format(fullname))
 
 
 class Loader(importlib.abc.SourceLoader, importlib.abc.Loader):
@@ -48,14 +47,11 @@ class Loader(importlib.abc.SourceLoader, importlib.abc.Loader):
             return f.read()
 
     def get_filename(self, fullname):
-
         return _find_file(fullname)
 
     def get_source(self, fullname):
-        if file := self.get_filename(fullname):
-            with open(file, "r") as f:
-                return f.read()
-        raise ImportError
+        with open(self.get_filename(fullname), "r") as f:
+            return f.read()
 
     def create_module(self, spec):
         return None
@@ -67,7 +63,7 @@ class Loader(importlib.abc.SourceLoader, importlib.abc.Loader):
         # Get the path to the module
         path = self.get_filename(module.__spec__.name)
         if not path:
-            raise RuntimeError("Could not find module")
+            raise ImportError(f"Could not find {module} on the file system.")
         # Execute the module
         with open(path, "r") as f:
             code = compile(f.read(), path, "exec")
@@ -77,14 +73,14 @@ class Loader(importlib.abc.SourceLoader, importlib.abc.Loader):
         # force the module to be an attribute
         if "." not in module.__spec__.name:
             return
-        shimparent, name = module.__spec__.name.rsplit(".", 1)
-        parent = shimparent.replace(__name__, MAIN_PACKAGE, 1)
-        if sys.modules.get(shimparent) is not None:
+        shim_parent, name = module.__spec__.name.rsplit(".", 1)
+        parent = shim_parent.replace(__name__, MAIN_PACKAGE, 1)
+        if sys.modules.get(shim_parent) is not None:
             if parent not in sys.modules:
                 importlib.import_module(parent)
             # extremely hacky
-            ogparentmodule = sys.modules[parent]
-            setattr(ogparentmodule, name, module)
+            og_parent_module = sys.modules[parent]
+            setattr(og_parent_module, name, module)
 
 
 class DiscordFinder(importlib.machinery.PathFinder):
