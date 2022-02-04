@@ -78,10 +78,13 @@ class Loader(importlib.abc.SourceLoader, importlib.abc.Loader):
         if "." not in module.__spec__.name:
             return
         shimparent, name = module.__spec__.name.rsplit(".", 1)
+        parent = shimparent.replace(__name__, MAIN_PACKAGE, 1)
         if sys.modules.get(shimparent) is not None:
-            parent = shimparent.replace(__name__, MAIN_PACKAGE, 1)
-            sys.modules[parent] = sys.modules[shimparent]
-            setattr(sys.modules[shimparent], name, module)
+            if parent not in sys.modules:
+                importlib.import_module(parent)
+            # extremely hacky
+            ogparentmodule = sys.modules[parent]
+            setattr(ogparentmodule, name, module)
 
 
 class DiscordFinder(importlib.machinery.PathFinder):
