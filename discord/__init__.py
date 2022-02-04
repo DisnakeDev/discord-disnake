@@ -4,8 +4,26 @@ import importlib.machinery
 import importlib.util
 import os
 import sys
+import types
 
 MAIN_PACKAGE = "disnake"
+
+
+def _find_file(fullname, path=None):
+    """Give a fullname, find the file on disk."""
+    # this is hacky but it probably works?
+    # i couldn't figure out a better way to do this
+    # and i don't want to lie in my comments
+    # so i'm sorry
+    if path is None:
+        path = sys.path
+    for pth in path:
+        item = os.path.join(pth, fullname.replace(".", os.sep))
+        if os.path.exists(item):
+            return os.path.join(item, "__init__.py")
+        if os.path.exists(item + ".py"):
+            return item
+    raise ImportError("No module named {}".format(fullname))
 
 
 class MainLoader(importlib.abc.ExecutionLoader):
@@ -24,6 +42,38 @@ class MainLoader(importlib.abc.ExecutionLoader):
         raise ImportError
 
 
+class Loader(importlib.abc.SourceLoader, importlib.abc.Loader):
+    def get_data(self, path):
+        with open(path, "r") as f:
+            return f.read()
+
+    def get_filename(self, fullname):
+
+        return _find_file(fullname)
+
+    def get_source(self, fullname):
+        if file := self.get_filename(fullname):
+            with open(file, "r") as f:
+                return f.read()
+        raise ImportError
+
+    def create_module(self, spec):
+        return None
+
+    def exec_module(self, module: types.ModuleType) -> None:
+        """
+        Executes the module.
+        """
+        # Get the path to the module
+        path = self.get_filename(module.__spec__.name)
+        if not path:
+            raise RuntimeError("Could not find module")
+        # Execute the module
+        with open(path, "r") as f:
+            code = compile(f.read(), path, "exec")
+        exec(code, module.__dict__)
+
+
 class DiscordFinder(importlib.machinery.PathFinder):
     @classmethod
     def find_spec(cls, fullname: str, path=None, target=None):
@@ -32,6 +82,7 @@ class DiscordFinder(importlib.machinery.PathFinder):
         """
         if not fullname.startswith(__name__ + "."):
             return None
+        ogname = fullname
         fullname = fullname.replace(__name__, MAIN_PACKAGE, 1)
 
         # implement a custom loader for __main__
@@ -39,11 +90,17 @@ class DiscordFinder(importlib.machinery.PathFinder):
             return importlib.util.spec_from_loader(fullname, MainLoader())
         if fullname in sys.modules:
             return importlib.util.find_spec(fullname)
-        return importlib.machinery.PathFinder.find_spec(fullname, path=path)
+
+        spec = importlib.machinery.PathFinder.find_spec(fullname, path=path)
+        if spec:
+            return spec
+
+        # attempt with an unshimmed package
+        spec = importlib.util.spec_from_loader(ogname, Loader())
+        return spec
 
 
 def add_import_hook():
-
     sys.meta_path.append(DiscordFinder)
     sys.modules[__name__] = sys.modules.get(MAIN_PACKAGE) or importlib.import_module(MAIN_PACKAGE)
 
