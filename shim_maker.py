@@ -20,6 +20,13 @@ ISORT_CONFIG = pathlib.Path("pyproject.toml")
 def find_packages(dir: str, package: str = None) -> List[str]:
     """
     Finds all of the submodules in the designated modules and returns a list of them.
+
+    Parameters
+    ----------
+    dir : str
+        The directory to search for packages.
+    package : str, optional
+        The package to search for submodules, defaults to dir.
     """
     submodules = set()
     package = package or dir
@@ -86,7 +93,7 @@ def _shim_module_type(
     Shim a module into the other location.
     """
     if not base_module.__file__:
-        raise RuntimeError(f"{base_module} does not have a __file__ attribute")
+        raise RuntimeError(f"{base_module}'s __file__ attribute is not set")
     # convert the shim_module to a path
     shim_path = shim_module.replace(".", os.sep)
     # handle __init__
@@ -125,13 +132,12 @@ def shim_module(base_name, shim_name, module_name, original_shim: pathlib.Path =
 
 
 def main(base_name: str, shim_name: str):
-
     base = importlib.import_module(base_name)
     if not base.__file__:
-        raise RuntimeError(f"{base_name} does not have a __file__ attribute")
+        raise RuntimeError(f"{base_name}'s __file__ attribute is not set")
     base_dir = os.path.dirname(base.__file__)
     # i don't care enough at the moment to do this the right way
-    original_init = shim_name + os.sep + "__init__.py"
+    original_init = os.path.join(shim_name, "__init__.py")
     with open(original_init) as f:
         original_init_code = f.read()
     packages = find_packages(base_dir, base_name)
