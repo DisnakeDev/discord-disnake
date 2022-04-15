@@ -20,4 +20,4 @@ py -3 -m pip install -U disnake[discord]
 
 - [Documentation](https://docs.disnake.dev/en/latest)
 - [disnake GitHub](https://github.com/DisnakeDev/disnake)
-- [disnake Discord](https://discord.gg/gJDbCw8aQy)
+- [disnake Discord](https://discord.gg/disnake)
