@@ -139,7 +139,7 @@ def main(base_name: str, shim_name: str) -> Any:
     base_dir = os.path.dirname(base.__file__)
     # i don't care enough at the moment to do this the right way
     original_init = os.path.join(shim_name, "__init__.py")
-    
+
     with open(original_init, "rb") as f:
         original_init_code = f.read()
     # delete the entire shim to remove files that should no longer be shimmed
@@ -148,11 +148,10 @@ def main(base_name: str, shim_name: str) -> Any:
     # rewrite the original init code
     with open(original_init, "wb") as f:
         f.write(original_init_code)
-    
+
     packages = find_packages(base_dir, base_name)
     for package in packages:
         shim_module(base_name, shim_name, package)
-
 
 
 if __name__ == "__main__":
