@@ -10,14 +10,14 @@ import shutil
 import sys
 import textwrap
 from types import ModuleType
-from typing import List
+from typing import Any, List, Optional
 
 import isort
 
 ISORT_CONFIG = pathlib.Path("pyproject.toml")
 
 
-def find_packages(dir: str, package: str = None) -> List[str]:
+def find_packages(dir: str, package: Optional[str] = None) -> List[str]:
     """
     Finds all of the submodules in the designated modules and returns a list of them.
 
@@ -30,15 +30,16 @@ def find_packages(dir: str, package: str = None) -> List[str]:
     """
     submodules = set()
     package = package or dir
-    for path in glob.iglob(f"{dir}/**/*.py", recursive=True):
+    for path in glob.iglob(f"{dir}/**/__init__.py", recursive=True):
         path = path[len(dir) : -3].replace(os.sep, ".")
         if importlib.util.find_spec(path, package) is not None:
-            submodules.add(path)
+            # 9 is the number of characters in '__init__'
+            submodules.add(path[:-9])
 
-    return sorted([submod[:-9] for submod in submodules if submod.endswith("__init__")])
+    return sorted(submodules)
 
 
-def _type_shim_code(code: ModuleType, is_init=False) -> str:
+def _type_shim_code(code: ModuleType, is_init: bool = False) -> str:
     """Provided code, returns a type-stub version of it."""
     shim = ""
     if code.__doc__:
@@ -87,7 +88,7 @@ def _type_shim_code(code: ModuleType, is_init=False) -> str:
 
 
 def _shim_module_type(
-    base_module: ModuleType, shim_module: str, *, original_shim: pathlib.Path = None
+    base_module: ModuleType, shim_module: str, *, original_shim: Optional[pathlib.Path] = None
 ):
     """
     Shim a module into the other location.
@@ -105,18 +106,18 @@ def _shim_module_type(
         is_init = False
 
     if not os.path.exists(os.path.dirname(shim_path)):
-        os.makedirs(os.path.dirname(shim_path))
+        os.makedirs(os.path.dirname(shim_path), exist_ok=True)
 
     # actually shim the file
     code = _type_shim_code(base_module, is_init=is_init)
-    with open(shim_path, "w") as f:
+    with open(shim_path, "w", encoding="utf8") as f:
         f.write(code)
 
     if os.path.exists(py_typed := os.path.dirname(base_module.__file__) + os.sep + "py.typed"):
         shutil.copyfile(py_typed, os.path.dirname(shim_path) + os.sep + "py.typed")
 
 
-def shim_module(base_name, shim_name, module_name, original_shim: pathlib.Path = None):
+def shim_module(base_name, shim_name, module_name, original_shim: Optional[pathlib.Path] = None):
     """Shim a module and all of its submodules."""
     base = importlib.import_module(module_name or base_name, base_name)
     _shim_module_type(base, shim_name + module_name, original_shim=original_shim)
@@ -131,21 +132,27 @@ def shim_module(base_name, shim_name, module_name, original_shim: pathlib.Path =
         )
 
 
-def main(base_name: str, shim_name: str):
+def main(base_name: str, shim_name: str) -> Any:
     base = importlib.import_module(base_name)
     if not base.__file__:
         raise RuntimeError(f"{base_name}'s __file__ attribute is not set")
     base_dir = os.path.dirname(base.__file__)
     # i don't care enough at the moment to do this the right way
     original_init = os.path.join(shim_name, "__init__.py")
-    with open(original_init) as f:
+    
+    with open(original_init, "rb") as f:
         original_init_code = f.read()
+    # delete the entire shim to remove files that should no longer be shimmed
+    shutil.rmtree(shim_name)
+    os.makedirs(shim_name)
+    # rewrite the original init code
+    with open(original_init, "wb") as f:
+        f.write(original_init_code)
+    
     packages = find_packages(base_dir, base_name)
     for package in packages:
         shim_module(base_name, shim_name, package)
 
-    with open(original_init, "w") as f:
-        f.write(original_init_code)
 
 
 if __name__ == "__main__":
