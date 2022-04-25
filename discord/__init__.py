@@ -35,13 +35,11 @@ class MainLoader(importlib.abc.ExecutionLoader):
         return spec.origin
 
     def get_source(self, fullname):
-        if file := self.get_filename(fullname):
-            with open(file, "r", encoding="utf8") as f:
-                return f.read()
-        raise ModuleNotFoundError("No module named '{}'".format(fullname))
+        with open(self.get_filename(fullname), "r", encoding="utf8") as f:
+            return f.read()
 
 
-class Loader(importlib.abc.SourceLoader, importlib.abc.Loader):
+class Loader(importlib.abc.SourceLoader):
     def get_data(self, path: str) -> bytes:
         with open(path, "rb") as f:
             return f.read()
@@ -53,14 +51,13 @@ class Loader(importlib.abc.SourceLoader, importlib.abc.Loader):
         with open(self.get_filename(fullname), "r", encoding="utf8") as f:
             return f.read()
 
-    def create_module(self, spec):
-        return None
-
     def exec_module(self, module: types.ModuleType) -> None:
         """
         Executes the module.
         """
         # Get the path to the module
+        if module.__spec__ is None:
+            raise RuntimeError("The module to execute does not have a __spec__.")
         path = self.get_filename(module.__spec__.name)
         if not path:
             raise ImportError(f"Could not find {module} on the file system.")
