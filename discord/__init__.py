@@ -36,21 +36,21 @@ class MainLoader(importlib.abc.ExecutionLoader):
 
     def get_source(self, fullname):
         if file := self.get_filename(fullname):
-            with open(file, "r") as f:
+            with open(file, "r", encoding="utf8") as f:
                 return f.read()
         raise ModuleNotFoundError("No module named '{}'".format(fullname))
 
 
 class Loader(importlib.abc.SourceLoader, importlib.abc.Loader):
-    def get_data(self, path):
-        with open(path, "r") as f:
+    def get_data(self, path: str) -> bytes:
+        with open(path, "rb") as f:
             return f.read()
 
-    def get_filename(self, fullname):
+    def get_filename(self, fullname: str) -> str:
         return _find_file(fullname)
 
     def get_source(self, fullname):
-        with open(self.get_filename(fullname), "r") as f:
+        with open(self.get_filename(fullname), "r", encoding="utf8") as f:
             return f.read()
 
     def create_module(self, spec):
@@ -65,7 +65,7 @@ class Loader(importlib.abc.SourceLoader, importlib.abc.Loader):
         if not path:
             raise ImportError(f"Could not find {module} on the file system.")
         # Execute the module
-        with open(path, "r") as f:
+        with open(path, "r", encoding="utf8") as f:
             code = compile(f.read(), path, "exec")
         exec(code, module.__dict__)
 
