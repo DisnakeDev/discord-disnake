@@ -16,6 +16,8 @@ import isort
 
 ISORT_CONFIG = pathlib.Path("pyproject.toml")
 
+BLACKLIST = ("disnake.types",)
+
 
 def find_packages(dir: str, package: Optional[str] = None) -> List[str]:
     """
@@ -117,7 +119,9 @@ def _shim_module_type(
         shutil.copyfile(py_typed, os.path.dirname(shim_path) + os.sep + "py.typed")
 
 
-def shim_module(base_name, shim_name, module_name, original_shim: Optional[pathlib.Path] = None):
+def shim_module(
+    base_name: str, shim_name: str, module_name: str, original_shim: Optional[pathlib.Path] = None
+):
     """Shim a module and all of its submodules."""
     base = importlib.import_module(module_name or base_name, base_name)
     _shim_module_type(base, shim_name + module_name, original_shim=original_shim)
@@ -125,6 +129,8 @@ def shim_module(base_name, shim_name, module_name, original_shim: Optional[pathl
         if module.ispkg:
             continue
         submodule_name = module_name + "." + module.name
+        if (base_name + submodule_name).startswith(BLACKLIST):
+            continue
         _shim_module_type(
             importlib.import_module(base_name + submodule_name),
             shim_name + submodule_name,
