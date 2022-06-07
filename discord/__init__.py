@@ -1,77 +1,114 @@
-"""
-Discord API Wrapper
-~~~~~~~~~~~~~~~~~~~
+import importlib
+import importlib.abc
+import importlib.machinery
+import importlib.util
+import os
+import sys
+import types
 
-A basic wrapper for the Discord API.
-
-:copyright: (c) 2015-present Rapptz
-:license: MIT, see LICENSE for more details.
-
-"""
-
-__title__ = "disnake"
-__author__ = "Rapptz, EQUENOS"
-__license__ = "MIT"
-__copyright__ = "Copyright 2015-present Rapptz, 2021-present EQUENOS"
-__version__ = "2.3.0"
-
-__path__ = __import__("pkgutil").extend_path(__path__, __name__)
-
-import logging
-from typing import NamedTuple, Literal
-
-from .client import *
-from .appinfo import *
-from .app_commands import *
-from .user import *
-from .emoji import *
-from .partial_emoji import *
-from .activity import *
-from .channel import *
-from .guild import *
-from .flags import *
-from .member import *
-from .message import *
-from .asset import *
-from .errors import *
-from .permissions import *
-from .role import *
-from .file import *
-from .colour import *
-from .integrations import *
-from .invite import *
-from .template import *
-from .widget import *
-from .object import *
-from .reaction import *
-from . import utils, opus, abc, ui
-from .enums import *
-from .embeds import *
-from .mentions import *
-from .shard import *
-from .player import *
-from .webhook import *
-from .voice_client import *
-from .audit_logs import *
-from .raw_models import *
-from .team import *
-from .sticker import *
-from .stage_instance import *
-from .interactions import *
-from .components import *
-from .threads import *
-from .custom_warnings import *
-from .guild_scheduled_event import *
+MAIN_PACKAGE = "disnake"
 
 
-class VersionInfo(NamedTuple):
-    major: int
-    minor: int
-    micro: int
-    releaselevel: Literal["alpha", "beta", "candidate", "final"]
-    serial: int
+def _find_file(fullname, path=None):
+    """Give a fullname, find the file on disk."""
+    # this is hacky but it probably works?
+    # i couldn't figure out a better way to do this
+    # and i don't want to lie in my comments
+    # so i'm sorry
+    if path is None:
+        path = sys.path
+    for pth in path:
+        item = os.path.join(pth, fullname.replace(".", os.sep))
+        if os.path.exists(item):
+            return os.path.join(item, "__init__.py")
+        if os.path.exists(item + ".py"):
+            return item
+    raise ModuleNotFoundError("No module named '{}'".format(fullname))
 
 
-version_info: VersionInfo = VersionInfo(major=2, minor=3, micro=0, releaselevel="beta", serial=0)
+class MainLoader(importlib.abc.ExecutionLoader):
+    def get_filename(self, fullname):
+        spec = importlib.util.find_spec(fullname)
+        if not spec or not spec.origin:
+            raise ModuleNotFoundError("No module named '{}'".format(fullname))
 
-logging.getLogger(__name__).addHandler(logging.NullHandler())
+        return spec.origin
+
+    def get_source(self, fullname):
+        with open(self.get_filename(fullname), "r", encoding="utf8") as f:
+            return f.read()
+
+
+class Loader(importlib.abc.SourceLoader):
+    def get_data(self, path: str) -> bytes:
+        with open(path, "rb") as f:
+            return f.read()
+
+    def get_filename(self, fullname: str) -> str:
+        return _find_file(fullname)
+
+    def get_source(self, fullname):
+        with open(self.get_filename(fullname), "r", encoding="utf8") as f:
+            return f.read()
+
+    def exec_module(self, module: types.ModuleType) -> None:
+        """
+        Executes the module.
+        """
+        # Get the path to the module
+        if module.__spec__ is None:
+            raise RuntimeError("The module to execute does not have a __spec__.")
+        path = self.get_filename(module.__spec__.name)
+        if not path:
+            raise ImportError(f"Could not find {module} on the file system.")
+        # Execute the module
+        with open(path, "r", encoding="utf8") as f:
+            code = compile(f.read(), path, "exec")
+        exec(code, module.__dict__)
+
+        # add the parent module to the global dictionary and
+        # force the module to be an attribute
+        if "." not in module.__spec__.name:
+            return
+        shim_parent, name = module.__spec__.name.rsplit(".", 1)
+        parent = shim_parent.replace(__name__, MAIN_PACKAGE, 1)
+        if sys.modules.get(shim_parent) is not None:
+            if parent not in sys.modules:
+                importlib.import_module(parent)
+            # extremely hacky
+            og_parent_module = sys.modules[parent]
+            setattr(og_parent_module, name, module)
+
+
+class DiscordFinder(importlib.machinery.PathFinder):
+    @classmethod
+    def find_spec(cls, fullname: str, path=None, target=None):
+        """Try to find a spec for 'fullname' on sys.path or 'path'.
+        The search is based on sys.path_hooks and sys.path_importer_cache.
+        """
+        if not fullname.startswith(__name__ + "."):
+            return None
+        ogname = fullname
+        fullname = fullname.replace(__name__, MAIN_PACKAGE, 1)
+
+        # implement a custom loader for __main__
+        if fullname.endswith("__main__"):
+            return importlib.util.spec_from_loader(fullname, MainLoader())
+        if fullname in sys.modules:
+            return importlib.util.find_spec(fullname)
+
+        spec = importlib.machinery.PathFinder.find_spec(fullname, path=path)
+        if spec:
+            return spec
+
+        # attempt with an unshimmed package
+        spec = importlib.util.spec_from_loader(ogname, Loader())
+        return spec
+
+
+def add_import_hook():
+    sys.meta_path.append(DiscordFinder)
+    sys.modules[__name__] = sys.modules.get(MAIN_PACKAGE) or importlib.import_module(MAIN_PACKAGE)
+
+
+add_import_hook()

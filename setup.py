@@ -1,17 +1,13 @@
 import re
+
 from setuptools import setup
 
-
 requirements = []
-with open("requirements.txt", "r", encoding="utf-8") as f:
-    requirements = f.readlines()
 
-version = ""
-with open("discord/__init__.py", encoding="utf-8") as f:
-    version = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]', f.read(), re.MULTILINE).group(1)  # type: ignore
 
-if not version:
-    raise RuntimeError("version is not set")
+VERSION = "2.3.0"
+
+requirements.append("disnake" + "==" + VERSION)
 
 readme = ""
 with open("README.md", encoding="utf-8") as f:
@@ -19,12 +15,12 @@ with open("README.md", encoding="utf-8") as f:
 
 packages = [
     "discord",
+    "discord.ext.commands",
+    "discord.ext.tasks",
+    "discord.interactions",
     "discord.types",
     "discord.ui",
     "discord.webhook",
-    "discord.interactions",
-    "discord.ext.commands",
-    "discord.ext.tasks",
 ]
 
 setup(
@@ -32,10 +28,11 @@ setup(
     author="Rapptz, EQUENOS",
     url="https://github.com/DisnakeDev/discord-disnake",
     project_urls={
+        "Homepage:": "https://disnake.dev/",
         "Documentation": "https://docs.disnake.dev/en/latest",
         "Issue tracker": "https://github.com/DisnakeDev/discord-disnake/issues",
     },
-    version=version,
+    version=VERSION,
     packages=packages,
     license="MIT",
     description="A shim for disnake (Python wrapper for the Discord API)",

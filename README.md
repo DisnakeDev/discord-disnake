@@ -1,8 +1,9 @@
-# This package is a shim
+# disnake-discord
 
 This module allows to use [disnake](https://github.com/DisnakeDev/disnake) using `discord` namespace. This is not an independent library.
 
-# Installing
+
+## Installing
 
 **Python 3.8 or higher is required**
 
