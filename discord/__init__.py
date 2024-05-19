@@ -16,6 +16,7 @@ warnings.warn(
     UserWarning,
     stacklevel=2,
 )
+del warnings
 ######################
 
 
