@@ -9,11 +9,23 @@ A basic wrapper for the Discord API.
 
 """
 
+##### DEPRECATED #####
+import warnings
+warnings.warn(
+    "The discord-disnake compatibility shim is deprecated and is no longer being updated. Please migrate your project to use https://pypi.org/project/disnake directly.",
+    UserWarning,
+    stacklevel=2,
+)
+del warnings
+######################
+
+
+
 __title__ = "disnake"
 __author__ = "Rapptz, EQUENOS"
 __license__ = "MIT"
 __copyright__ = "Copyright 2015-present Rapptz, 2021-present EQUENOS"
-__version__ = "2.3.0"
+__version__ = "2.3.0.2.post0"
 
 __path__ = __import__("pkgutil").extend_path(__path__, __name__)
 
